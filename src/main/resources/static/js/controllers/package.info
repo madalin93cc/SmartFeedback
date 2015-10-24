@@ -1,0 +1,5 @@
+Aici se adauga toate controllerele de AngularJs de forma:
+
+app.controller('~controller-name~Controller', ['$scope'..alte servicii.., function($scope, ..alte servicii in aceeasi ordine de mai inainte..){
+    // code goes here
+}]);
