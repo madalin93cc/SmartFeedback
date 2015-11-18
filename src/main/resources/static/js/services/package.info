@@ -1,7 +1,0 @@
-Aici se adauga toate serviciile AngularJs de forma:
-
-app.service('~service-name~Service', ['..dependinte..', ..., function(..dependinte in aceeasi ordine ca mai inainte..){
-
-    // code goes here
-
-}]);
