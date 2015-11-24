@@ -24,4 +24,14 @@ public class Curs implements BaseEntity {
     @ManyToOne(optional = false)
     @JoinColumn(name = "id_profesor", unique = false, nullable = false, updatable = true)
     private Profesor idProfesor;
+
+    @Override
+    public Long getId() {
+        return id;
+    }
+
+    @Override
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
