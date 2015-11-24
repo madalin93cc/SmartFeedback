@@ -1,0 +1,95 @@
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header" align="center">Completare Feedback</h1>
+        </div>
+    </div>
+    <div>
+        <div style="display: inline-block; margin-left: 150px">
+            <h3 style="margin-left: 50px"> Statistica</h3>
+            <br>
+            <p>Numarul studentilor participanti:</p>
+            <p>Numarul feedback-urilor completate:</p>
+            <p>Nota actuala a cursului:</p>
+        </div>
+
+        <div style="display: inline-block; margin-left: 200px; vertical-align: top">
+            <h3  style="margin-left: 50px"> Acordare calificative</h3>
+            <br>
+            <p style="display: inline; margin-left: 50px">Nota curs:</p>
+            <select style="display: inline" id="selectNota">
+                <option></option>
+            </select>
+            <!--Calificative (checkboxes)-->
+            <div id="wrapper">
+                <br>
+                <div id="column1">
+                    <label>Calificative pozitive</label>
+                    <br><input id="CbInteresant" type="checkbox" onchange="cbInteresantChange(this)">Interesant
+                    <br><input id="CbInteractiv" type="checkbox" onchange="cbInteractivChange(this)">Interactiv
+                    <br><input id="CbUsor" type="checkbox" onchange="cbUsorChange(this)">Usor de inteles
+                    <br><input id="CbOrganizat" type="checkbox" onchange="cbOrganizatChange(this)">Bine organizat
+                    <br><input id="CbUtil" type="checkbox" onchange="cbUtilChange(this)">Util
+                </div>
+                <div id="column2">
+                    <label>Calificative negative</label>
+                    <br><input id="CbNInteresant" type="checkbox" onchange="cbInteresantChange(this)">Nenteresant
+                    <br><input id="CbNInteractiv" type="checkbox" onchange="cbInteractivChange(this)">Plictisitor
+                    <br><input id="CbNUsor" type="checkbox" onchange="cbUsorChange(this)">Dificil de inteles
+                    <br><input id="CbNOrganizat" type="checkbox" onchange="cbOrganizatChange(this)">SlaB organizat
+                    <br><input id="CbNUtil" type="checkbox" onchange="cbUtilChange(this)">Inutil
+                </div>
+            </div>
+        </div>
+
+        <div align="center">
+            <br>
+            <h3> Adauga comentariu</h3>
+            <textarea style="background-color:#f8f8f8; height: 100px; width: 500px"></textarea>
+        </div>
+        <div align="center" style="margin-top: 10px">
+            <button type="button" class="btn btn-primary">Trimitere</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    #column1 {
+        float: left;
+        width: 150px;
+        background-color: lightgreen;
+    }
+    #column2 {
+        float: right;
+        width: 150px;
+        background-color: lightcoral;
+    }
+</style>
+
+<script>
+    function cbInteresantChange(obj) {
+        document.getElementById("CbInteresant").checked = false;
+        document.getElementById("CbNInteresant").checked = false;
+        obj.checked = true;
+    }
+    function cbInteractivChange(obj) {
+        document.getElementById("CbInteractiv").checked = false;
+        document.getElementById("CbNInteractiv").checked = false;
+        obj.checked = true;
+    }
+    function cbUsorChange(obj) {
+        document.getElementById("CbUsor").checked = false;
+        document.getElementById("CbNUsor").checked = false;
+        obj.checked = true;
+    }
+    function cbOrganizatChange(obj) {
+        document.getElementById("CbOrganizat").checked = false;
+        document.getElementById("CbNOrganizat").checked = false;
+        obj.checked = true;
+    }
+    function cbUtilChange(obj) {
+        document.getElementById("CbUtil").checked = false;
+        document.getElementById("CbNUtil").checked = false;
+        obj.checked = true;
+    }
+</script>

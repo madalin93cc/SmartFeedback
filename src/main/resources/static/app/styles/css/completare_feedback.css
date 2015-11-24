@@ -1,0 +1,10 @@
+#column1 {
+    float: left;
+    width: 150px;
+    background-color: lightgreen;
+}
+#column2 {
+    float: right;
+    width: 150px;
+    background-color: lightcoral;
+}
