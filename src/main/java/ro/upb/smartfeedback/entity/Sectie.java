@@ -58,6 +58,9 @@ public class Sectie implements BaseEntity {
 
     }
 
+    public Sectie() {
+    }
+
     public Sectie(String nume, String code) {
         this.nume = nume;
         this.code = code;

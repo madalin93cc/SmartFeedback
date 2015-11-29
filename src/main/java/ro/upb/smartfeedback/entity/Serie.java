@@ -57,6 +57,17 @@ public class Serie implements BaseEntity {
         this.idSectie = idSectie;
     }
 
+    public Serie(String nume, String code, Sectie idSectie) {
+        this.nume = nume;
+        this.code = code;
+        this.idSectie = idSectie;
+    }
+
+    public Serie(String code, Sectie idSectie) {
+        this.code = code;
+        this.idSectie = idSectie;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

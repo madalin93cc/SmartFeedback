@@ -9,4 +9,5 @@ import ro.upb.smartfeedback.entity.Sectie;
  */
 @Repository
 public interface SectieRepository extends JpaRepository<Sectie, Integer>{
+    public Sectie findByCode(String code);
 }
