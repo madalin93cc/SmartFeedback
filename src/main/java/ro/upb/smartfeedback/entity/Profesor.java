@@ -19,6 +19,14 @@ public class Profesor implements BaseEntity{
     @ManyToMany(mappedBy = "profesors")
     private List<Activitate> activitati;
 
+    public Profesor(User user, List<Activitate> activitati) {
+        this.user = user;
+        this.activitati = activitati;
+    }
+
+    public Profesor() {
+    }
+
     @Override
     public Long getId() {
         return id;

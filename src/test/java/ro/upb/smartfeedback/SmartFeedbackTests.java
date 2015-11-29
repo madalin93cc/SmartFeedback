@@ -7,14 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import ro.upb.smartfeedback.entity.Activitate;
-import ro.upb.smartfeedback.entity.Sectie;
-import ro.upb.smartfeedback.entity.Serie;
-import ro.upb.smartfeedback.entity.TipActivitate;
-import ro.upb.smartfeedback.repository.ActivitateRepository;
-import ro.upb.smartfeedback.repository.SectieRepository;
-import ro.upb.smartfeedback.repository.SerieRepository;
-import ro.upb.smartfeedback.repository.TipActivitateRepository;
+import ro.upb.smartfeedback.entity.*;
+import ro.upb.smartfeedback.repository.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SmartFeedback.class)
@@ -31,6 +29,12 @@ public class SmartFeedbackTests {
 
     @Autowired
     ActivitateRepository activitateRepository;
+
+    @Autowired
+    ProfesorRepository profesorRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
 	@Test
 	@Ignore
@@ -87,13 +91,34 @@ public class SmartFeedbackTests {
 	}
 
     @Test
+    @Ignore
     public void add_activitate() {
         Serie s = serieRepository.getByCode("CC");
         TipActivitate ta = tipActivitateRepository.getByNume("curs");
         Activitate a = new Activitate(1, "Utilizarea sistemelor de operare", "USO", ta, s, null);
         activitateRepository.save(a);
+        a = new Activitate(3, "Sisteme de operare", "SO", ta, s, null);
+        activitateRepository.save(a);
+    }
+
+    @Test
+    public void add_user() {
+        //Profesor p = profesorRepository.getById(1);
+        // voiam sa ii iau id-ul
+        User u = new User("Deaconescu", "Razvan", "rdeaconescu", "razvan", "razvan.deaconescu@cs.pub.ro", 1, null, null);
+        userRepository.save(u);
     }
 
 
+    @Test
+    @Ignore
+    public void add_profesor() {
+        //List<Activitate> activitati = new ArrayList<Activitate>();
+        // bagate activitatile
+        //User u = userRepository.getByNume("Deaconescu");
+        // aici trebuia luat user-ul
+        Profesor p = new Profesor();
+        profesorRepository.save(p);
+    }
 
 }

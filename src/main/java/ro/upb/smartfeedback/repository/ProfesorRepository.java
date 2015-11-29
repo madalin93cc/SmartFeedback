@@ -9,4 +9,5 @@ import ro.upb.smartfeedback.entity.Profesor;
  */
 @Repository
 public interface ProfesorRepository extends JpaRepository<Profesor, Integer>{
+    public Profesor getById(Integer id);
 }

@@ -19,6 +19,21 @@ public class User implements BaseEntity {
     @Column(name = "prenume", length = 50, nullable = false)
     private String prenume;
 
+    public User(String nume, String prenume, String username, String password, String email, Integer tip, Student idStudent, Profesor idProfesor) {
+        this.nume = nume;
+        this.prenume = prenume;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.tip = tip;
+        this.idStudent = idStudent;
+        this.idProfesor = idProfesor;
+    }
+
+    public User() {
+
+    }
+
     @Column(name = "username", length = 50, nullable = false, unique = true)
     private String username;
 
