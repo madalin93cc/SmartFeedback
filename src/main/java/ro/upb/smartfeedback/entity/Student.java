@@ -1,6 +1,7 @@
 package ro.upb.smartfeedback.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by colez on 23/11/2015.
@@ -18,7 +19,7 @@ public class Student implements BaseEntity{
     @OneToOne(optional = false, mappedBy = "idStudent")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_student_serie"),name = "serie_id", unique = false, nullable = false, updatable = true)
     private Serie idSerie;
 
@@ -26,6 +27,8 @@ public class Student implements BaseEntity{
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_student_grupa"), name = "grupa_id", unique = false, nullable = false, updatable = true)
     private Grupa idGrupa;
 
+    @ManyToMany(mappedBy = "students")
+    private List<Activitate> activitati;
 
     @Override
     public Long getId() {
@@ -43,6 +46,38 @@ public class Student implements BaseEntity{
 
     public void setAnStudiu(Integer anStudiu) {
         this.anStudiu = anStudiu;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Serie getIdSerie() {
+        return idSerie;
+    }
+
+    public void setIdSerie(Serie idSerie) {
+        this.idSerie = idSerie;
+    }
+
+    public Grupa getIdGrupa() {
+        return idGrupa;
+    }
+
+    public void setIdGrupa(Grupa idGrupa) {
+        this.idGrupa = idGrupa;
+    }
+
+    public List<Activitate> getActivitati() {
+        return activitati;
+    }
+
+    public void setActivitati(List<Activitate> activitati) {
+        this.activitati = activitati;
     }
 
     @Override
