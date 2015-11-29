@@ -274,8 +274,9 @@
                 <!--</div>-->
                 <!-- /input-group -->
               <!--</li>-->
+
               <!-- CURSURI -->
-              <li ng-app="" ng-init="cursuri=['Interactiunea om - calculator','Compilatoare','Proiectarea reterelor']">
+              <li ng-controller="MenuCtrl">
                   <a href="index.html"><i class="fa  fa-folder-open-o fa-fw"></i> Cursuri<span class="fa arrow"></span></a>
                   <ul class="nav nav-second-level">
                         <li ng-repeat="x in cursuri">
@@ -349,7 +350,10 @@
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/completare_feedback.js"></script>
         <!-- endbuild -->
-
+        <!-- controllers-->
+        <script src="scripts/controllers/menu.js"></script>
+        <!-- service -->
+        <script src="scripts/services/menuService.js"></script>
   <!--<script src="scripts/js/morris-data.js"></script>-->
   <script src="scripts/js/sb-admin-2.js"></script>
   <!--<script src="scripts/js/flot-data.js"></script>-->
