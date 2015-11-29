@@ -1,6 +1,8 @@
 package ro.upb.smartfeedback.service.impl;
 
 import org.springframework.stereotype.Service;
+import ro.upb.smartfeedback.SmartFeedback;
+import ro.upb.smartfeedback.entity.User;
 import ro.upb.smartfeedback.repository.UserRepository;
 import ro.upb.smartfeedback.service.LoginService;
 
@@ -20,9 +22,12 @@ public class LoginServiceImpl implements LoginService{
 
     @Override
     public Boolean login(String username, String password) {
-        if(userRepository.getByUsernameAndPassword(username, password) == null) {
+        User loggedUser = userRepository.getByUsernameAndPassword(username, password);
+        if(loggedUser == null) {
             return Boolean.FALSE;
+        } else {
+            SmartFeedback.loggedUser = loggedUser;
+            return Boolean.TRUE;
         }
-        return Boolean.TRUE;
     }
 }
