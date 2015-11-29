@@ -27,7 +27,7 @@ public class Activitate implements BaseEntity {
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_activitate_tip_activitate"), name = "tip_activitate_id", unique = false, nullable = true, updatable = true)
     private TipActivitate idTipActivitate;
 
-    public Activitate(Integer an, String nume, String code, TipActivitate idTipActivitate, Serie idSerie, Grupa idGrupa, List<Student> students, List<Profesor> profesors) {
+    public Activitate(Integer an, String nume, String code, TipActivitate idTipActivitate, Serie idSerie, Grupa idGrupa) {
         this.an = an;
         this.nume = nume;
         this.code = code;

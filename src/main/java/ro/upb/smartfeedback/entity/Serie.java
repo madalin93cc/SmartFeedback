@@ -23,6 +23,9 @@ public class Serie implements BaseEntity {
     @JoinColumn(name = "id_sectie", unique = false, nullable = false, updatable = true)
     private Sectie idSectie;
 
+    public Serie() {
+    }
+
     @Override
     public Long getId() {
         return id;
