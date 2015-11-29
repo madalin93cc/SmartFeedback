@@ -24,20 +24,8 @@ public class Activitate implements BaseEntity {
     private String code;
 
     @ManyToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_activitate_tip_activitate"), name = "tip_activitate_id", unique = false, nullable = true, updatable = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_activitate_tip_activitate"), name = "id_tip_activitate", unique = false, nullable = true, updatable = true)
     private TipActivitate idTipActivitate;
-
-    public Activitate(Integer an, String nume, String code, TipActivitate idTipActivitate, Serie idSerie, Grupa idGrupa) {
-        this.an = an;
-        this.nume = nume;
-        this.code = code;
-        this.idTipActivitate = idTipActivitate;
-        this.idSerie = idSerie;
-        this.idGrupa = idGrupa;
-    }
-
-    public Activitate() {
-    }
 
     @ManyToOne(optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_activitate_serie"), name = "id_serie", unique = false, nullable = false, updatable = true)
@@ -58,6 +46,18 @@ public class Activitate implements BaseEntity {
             joinColumns = @JoinColumn(name = "id_profesor", foreignKey = @ForeignKey(name = "FK_profesor_activitate_profesor")),
             inverseJoinColumns = @JoinColumn(name = "id_activitate", foreignKey = @ForeignKey(name = "FK_profesor_activitate_activitate")))
     private List<Profesor> profesors;
+
+    public Activitate(Integer an, String nume, String code, TipActivitate idTipActivitate, Serie idSerie, Grupa idGrupa) {
+        this.an = an;
+        this.nume = nume;
+        this.code = code;
+        this.idTipActivitate = idTipActivitate;
+        this.idSerie = idSerie;
+        this.idGrupa = idGrupa;
+    }
+
+    public Activitate() {
+    }
 
     @Override
     public Long getId() {
