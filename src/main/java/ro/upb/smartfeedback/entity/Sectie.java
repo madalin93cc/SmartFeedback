@@ -58,8 +58,14 @@ public class Sectie implements BaseEntity {
 
     }
 
+    public Sectie(String nume, String code) {
+        this.nume = nume;
+        this.code = code;
+    }
+
     @Override
     public int hashCode() {
+
         int result = id.hashCode();
         result = 31 * result + nume.hashCode();
         result = 31 * result + code.hashCode();
