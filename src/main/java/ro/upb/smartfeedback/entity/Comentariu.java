@@ -17,10 +17,10 @@ public class Comentariu implements BaseEntity{
     @Column(name = "text", nullable = false)
     private String text;
 
-    @Column(name = "created_at", length = 50, nullable = false)
+    @Column(name = "created_at", nullable = false)
     private Date created_at;
 
-    @Column(name = "updated_at", length = 50, nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Date updated_at;
 
     @OneToOne(optional = false)
