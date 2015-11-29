@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import ro.upb.smartfeedback.entity.Activitate;
 import ro.upb.smartfeedback.entity.Sectie;
 import ro.upb.smartfeedback.entity.Serie;
 import ro.upb.smartfeedback.entity.TipActivitate;
+import ro.upb.smartfeedback.repository.ActivitateRepository;
 import ro.upb.smartfeedback.repository.SectieRepository;
 import ro.upb.smartfeedback.repository.SerieRepository;
 import ro.upb.smartfeedback.repository.TipActivitateRepository;
@@ -26,6 +28,9 @@ public class SmartFeedbackTests {
 
 	@Autowired
 	SerieRepository serieRepository;
+
+    @Autowired
+    ActivitateRepository activitateRepository;
 
 	@Test
 	@Ignore
@@ -80,5 +85,15 @@ public class SmartFeedbackTests {
 		s = new Serie("AC", "AC", is);
 		serieRepository.save(s);
 	}
+
+    @Test
+    public void add_activitate() {
+        Serie s = serieRepository.getByCode("CC");
+        TipActivitate ta = tipActivitateRepository.getByNume("curs");
+        Activitate a = new Activitate(1, "Utilizarea sistemelor de operare", "USO", ta, s, null);
+        activitateRepository.save(a);
+    }
+
+
 
 }

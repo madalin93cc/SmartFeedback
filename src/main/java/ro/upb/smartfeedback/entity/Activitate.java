@@ -24,8 +24,20 @@ public class Activitate implements BaseEntity {
     private String code;
 
     @ManyToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_activitate_tip_activitate"), name = "tip_activitate_id", unique = false, nullable = false, updatable = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_activitate_tip_activitate"), name = "tip_activitate_id", unique = false, nullable = true, updatable = true)
     private TipActivitate idTipActivitate;
+
+    public Activitate(Integer an, String nume, String code, TipActivitate idTipActivitate, Serie idSerie, Grupa idGrupa, List<Student> students, List<Profesor> profesors) {
+        this.an = an;
+        this.nume = nume;
+        this.code = code;
+        this.idTipActivitate = idTipActivitate;
+        this.idSerie = idSerie;
+        this.idGrupa = idGrupa;
+    }
+
+    public Activitate() {
+    }
 
     @ManyToOne(optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_activitate_serie"), name = "id_serie", unique = false, nullable = false, updatable = true)
