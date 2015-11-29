@@ -8,16 +8,21 @@
  * Controller of the smartFeedbackApp
  */
 angular.module('smartFeedbackApp')
-  .controller('LoginCtrl', ['$rootScope', '$scope', '$location', 'LoginService', function ($rootScope, $scope, $location, LoginService) {
+  .controller('LoginCtrl', ['$cookies', '$rootScope', '$scope', '$location', 'LoginService', function ($cookies, $rootScope, $scope, $location, LoginService) {
 
+    $scope.username = "Ion";
     $scope.login = function () {
-      LoginService.login($scope.user.username, $scope.user.password)
-        .success(function(response){
-          if (response){
-            $rootScope.isAuthenticated = true;
-            $location.path("#/");
-          }
-        });
+      if ($scope.user && $scope.user.username && $scope.user.password) {
+        LoginService.login($scope.user.username, $scope.user.password)
+          .success(function (response) {
+            if (response) {
+              $cookies.put('isAuthenticated', $scope.user);
+              $rootScope.isAuthenticated = true;
+              LoginService.user = response;
+              $location.path("#/");
+            }
+          });
+      }
     };
 
     $scope.logout = function () {
@@ -25,6 +30,7 @@ angular.module('smartFeedbackApp')
         .success(function(response){
           if (response){
             $rootScope.isAuthenticated = false;
+            $cookies.remove('isAuthenticated');
             $location.path("#/login");
           }
         });
@@ -32,9 +38,11 @@ angular.module('smartFeedbackApp')
 
   }]);
 
-app.run(['$rootScope', '$location', function ($rootScope, $location) {
+app.run(['$cookies', '$rootScope', '$location', function ($cookies ,$rootScope, $location) {
   $rootScope.$on('$routeChangeStart', function (event) {
-    if (!$rootScope.isAuthenticated){
+    if ($cookies.get('isAuthenticated')){
+      $rootScope.isAuthenticated = true;
+    } else {
       $location.path("/login");
     }
   });

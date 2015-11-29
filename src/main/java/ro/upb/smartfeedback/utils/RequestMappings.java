@@ -10,4 +10,5 @@ public interface RequestMappings {
 //    public static final String ADD_PERSON = "/add/person";
     public static final String GET_MATERII_UTILIZATOR = "/getMateriiUtilizator";
     public static final String GET_LOGIN_PARAMS = "/login/username/{username}/password/{password}";
+    public static final String LOGOUT = "/logout";
 }
