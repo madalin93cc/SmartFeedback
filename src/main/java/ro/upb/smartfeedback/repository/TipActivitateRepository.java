@@ -10,4 +10,5 @@ import java.util.List;
 
 @Repository
 public interface TipActivitateRepository extends JpaRepository<TipActivitate, Integer> {
+    public TipActivitate getByNume(String nume);
 }

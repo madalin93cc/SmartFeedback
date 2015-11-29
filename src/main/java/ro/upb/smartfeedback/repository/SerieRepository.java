@@ -9,4 +9,5 @@ import ro.upb.smartfeedback.entity.Serie;
  */
 @Repository
 public interface SerieRepository extends JpaRepository<Serie, Integer>{
+    public Serie getByCode(String code);
 }
