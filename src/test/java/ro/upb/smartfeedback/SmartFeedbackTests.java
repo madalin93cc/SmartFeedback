@@ -103,15 +103,15 @@ public class SmartFeedbackTests {
 
     @Test
     public void add_user() {
-        //Profesor p = profesorRepository.getById(1);
+        Profesor p = profesorRepository.getById(1l);
         // voiam sa ii iau id-ul
-        User u = new User("Deaconescu", "Razvan", "rdeaconescu", "razvan", "razvan.deaconescu@cs.pub.ro", 1, null, null);
+        User u = new User("Deaconescu", "Razvan", "rdeaconescu", "razvan", "razvan.deaconescu@cs.pub.ro", 1, null, p);
         userRepository.save(u);
     }
 
 
     @Test
-    @Ignore
+//    @Ignore
     public void add_profesor() {
         //List<Activitate> activitati = new ArrayList<Activitate>();
         // bagate activitatile
