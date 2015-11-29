@@ -6,7 +6,8 @@ package ro.upb.smartfeedback.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-
+@Entity
+@Table(name = "mesaj")
 public class Mesaj implements BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

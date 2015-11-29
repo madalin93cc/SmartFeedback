@@ -7,7 +7,7 @@ import java.util.List;
  * Created by colez on 23/11/2015.
  */
 @Entity
-@Table(name = "STUDENT")
+@Table(name = "student")
 public class Student implements BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

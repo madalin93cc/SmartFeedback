@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by George on 11/23/2015.
  */
 @Entity
-@Table(name = "SECTIE")
+@Table(name = "sectie")
 public class Sectie implements BaseEntity {
 
     @Id
