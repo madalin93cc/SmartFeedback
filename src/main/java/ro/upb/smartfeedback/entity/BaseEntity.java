@@ -9,4 +9,8 @@ public interface BaseEntity extends Serializable{
     public Long getId();
 
     public void setId(Long id);
+
+    public boolean equals(Object o);
+
+    public int hashCode();
 }

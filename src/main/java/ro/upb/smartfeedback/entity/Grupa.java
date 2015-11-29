@@ -3,12 +3,11 @@ package ro.upb.smartfeedback.entity;
 import javax.persistence.*;
 
 /**
- * Created by George on 11/23/2015.
+ * Created by colez on 29/11/2015.
  */
 @Entity
-@Table(name = "SECTIE")
-public class Sectie implements BaseEntity {
-
+@Table(name = "grupa")
+public class Grupa implements BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -16,15 +15,13 @@ public class Sectie implements BaseEntity {
     @Column(name = "nume", length = 50, nullable = false)
     private String nume;
 
-    @Column(name = "code", length = 50, nullable = false)
-    private String code;
+    @Column(name = "an", nullable = true)
+    private Integer an;
 
-    @Override
     public Long getId() {
         return id;
     }
 
-    @Override
     public void setId(Long id) {
         this.id = id;
     }
@@ -37,12 +34,12 @@ public class Sectie implements BaseEntity {
         this.nume = nume;
     }
 
-    public String getCode() {
-        return code;
+    public Integer getAn() {
+        return an;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setAn(Integer an) {
+        this.an = an;
     }
 
     @Override
@@ -50,19 +47,19 @@ public class Sectie implements BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Sectie sectie = (Sectie) o;
+        Grupa grupa = (Grupa) o;
 
-        if (!id.equals(sectie.id)) return false;
-        if (!nume.equals(sectie.nume)) return false;
-        return code.equals(sectie.code);
+        if (id != null ? !id.equals(grupa.id) : grupa.id != null) return false;
+        if (nume != null ? !nume.equals(grupa.nume) : grupa.nume != null) return false;
+        return !(an != null ? !an.equals(grupa.an) : grupa.an != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + nume.hashCode();
-        result = 31 * result + code.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (nume != null ? nume.hashCode() : 0);
+        result = 31 * result + (an != null ? an.hashCode() : 0);
         return result;
     }
 }

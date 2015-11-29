@@ -5,7 +5,9 @@ import javax.persistence.*;
 /**
  * Created by George on 11/23/2015.
  */
-public class Specializare implements BaseEntity {
+@Entity
+@Table(name = "serie")
+public class Serie implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -60,7 +62,7 @@ public class Specializare implements BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Specializare that = (Specializare) o;
+        Serie that = (Serie) o;
 
         if (!id.equals(that.id)) return false;
         if (!nume.equals(that.nume)) return false;

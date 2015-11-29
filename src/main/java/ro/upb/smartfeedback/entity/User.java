@@ -6,18 +6,18 @@ import javax.persistence.*;
  * Created by colez on 23/11/2015.
  */
 @Entity
-@Table(name = "UTILIZATOR")
+@Table(name = "utilizator")
 public class User implements BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "prenume", length = 50, nullable = false)
-    private String prenume;
-
     @Column(name = "nume", length = 50, nullable = false)
     private String nume;
+
+    @Column(name = "prenume", length = 50, nullable = false)
+    private String prenume;
 
     @Column(name = "username", length = 50, nullable = false, unique = true)
     private String username;
@@ -28,13 +28,16 @@ public class User implements BaseEntity {
     @Column(name = "email", length = 50, nullable = false, unique = true)
     private String email;
 
-    @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_user_student"), name = "student_id", unique = true, nullable = false, updatable = true)
-    private Student fkStudent;
+    @Column(name = "tip", nullable = false, length = 11)
+    private Integer tip;
 
     @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "fk_user_profesor"), name = "profesor_id", unique = true, nullable = false, updatable = true)
-    private Student fkProfesor;
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_utilizator_student"), name = "id_student", unique = true, nullable = false, updatable = true)
+    private Student idStudent;
+
+    @OneToOne(optional = false)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_utilizator_profesor"), name = "id_profesor", unique = true, nullable = false, updatable = true)
+    private Profesor idProfesor;
 
     @Override
     public Long getId() {
@@ -46,20 +49,20 @@ public class User implements BaseEntity {
         this.id = id;
     }
 
-    public String getPrenume() {
-        return prenume;
-    }
-
-    public void setPrenume(String prenume) {
-        this.prenume = prenume;
-    }
-
     public String getNume() {
         return nume;
     }
 
     public void setNume(String nume) {
         this.nume = nume;
+    }
+
+    public String getPrenume() {
+        return prenume;
+    }
+
+    public void setPrenume(String prenume) {
+        this.prenume = prenume;
     }
 
     public String getUsername() {
@@ -86,20 +89,28 @@ public class User implements BaseEntity {
         this.email = email;
     }
 
-    public Student getFkStudent() {
-        return fkStudent;
+    public Integer getTip() {
+        return tip;
     }
 
-    public void setFkStudent(Student fkStudent) {
-        this.fkStudent = fkStudent;
+    public void setTip(Integer tip) {
+        this.tip = tip;
     }
 
-    public Student getFkProfesor() {
-        return fkProfesor;
+    public Student getIdStudent() {
+        return idStudent;
     }
 
-    public void setFkProfesor(Student fkProfesor) {
-        this.fkProfesor = fkProfesor;
+    public void setIdStudent(Student idStudent) {
+        this.idStudent = idStudent;
+    }
+
+    public Profesor getIdProfesor() {
+        return idProfesor;
+    }
+
+    public void setIdProfesor(Profesor idProfesor) {
+        this.idProfesor = idProfesor;
     }
 
     @Override
@@ -110,26 +121,28 @@ public class User implements BaseEntity {
         User user = (User) o;
 
         if (id != null ? !id.equals(user.id) : user.id != null) return false;
-        if (prenume != null ? !prenume.equals(user.prenume) : user.prenume != null) return false;
         if (nume != null ? !nume.equals(user.nume) : user.nume != null) return false;
+        if (prenume != null ? !prenume.equals(user.prenume) : user.prenume != null) return false;
         if (username != null ? !username.equals(user.username) : user.username != null) return false;
         if (password != null ? !password.equals(user.password) : user.password != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (fkStudent != null ? !fkStudent.equals(user.fkStudent) : user.fkStudent != null) return false;
-        return !(fkProfesor != null ? !fkProfesor.equals(user.fkProfesor) : user.fkProfesor != null);
+        if (tip != null ? !tip.equals(user.tip) : user.tip != null) return false;
+        if (idStudent != null ? !idStudent.equals(user.idStudent) : user.idStudent != null) return false;
+        return !(idProfesor != null ? !idProfesor.equals(user.idProfesor) : user.idProfesor != null);
 
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (prenume != null ? prenume.hashCode() : 0);
         result = 31 * result + (nume != null ? nume.hashCode() : 0);
+        result = 31 * result + (prenume != null ? prenume.hashCode() : 0);
         result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (fkStudent != null ? fkStudent.hashCode() : 0);
-        result = 31 * result + (fkProfesor != null ? fkProfesor.hashCode() : 0);
+        result = 31 * result + (tip != null ? tip.hashCode() : 0);
+        result = 31 * result + (idStudent != null ? idStudent.hashCode() : 0);
+        result = 31 * result + (idProfesor != null ? idProfesor.hashCode() : 0);
         return result;
     }
 }
