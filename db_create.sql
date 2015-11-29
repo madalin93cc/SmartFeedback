@@ -10,6 +10,12 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+-- Dumping database structure for smartfeedback
+DROP DATABASE IF EXISTS `smartfeedback`;
+CREATE DATABASE IF NOT EXISTS `smartfeedback` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `smartfeedback`;
+
+
 -- Dumping structure for table smartfeedback.activitate
 DROP TABLE IF EXISTS `activitate`;
 CREATE TABLE IF NOT EXISTS `activitate` (
