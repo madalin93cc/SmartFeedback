@@ -37,9 +37,15 @@ public class Activitate implements BaseEntity {
 
     @ManyToMany
     @JoinTable(name = "student_activitate",
-            joinColumns = @JoinColumn(name = "id_student"),
-            inverseJoinColumns = @JoinColumn(name = "id_activitate"))
+            joinColumns = @JoinColumn(name = "id_student", foreignKey = @ForeignKey(name = "FK__student")),
+            inverseJoinColumns = @JoinColumn(name = "id_activitate", foreignKey = @ForeignKey(name = "FK_student_activitate_activitate")))
     private List<Student> students;
+
+    @ManyToMany
+    @JoinTable(name = "profesor_activitate",
+            joinColumns = @JoinColumn(name = "id_profesor", foreignKey = @ForeignKey(name = "FK_profesor_activitate_profesor")),
+            inverseJoinColumns = @JoinColumn(name = "id_activitate", foreignKey = @ForeignKey(name = "FK_profesor_activitate_activitate")))
+    private List<Profesor> profesors;
 
     @Override
     public Long getId() {
@@ -89,6 +95,26 @@ public class Activitate implements BaseEntity {
 
     public Integer getAn() {
         return an;
+    }
+
+    public void setIdGrupa(Grupa idGrupa) {
+        this.idGrupa = idGrupa;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
+    }
+
+    public List<Profesor> getProfesors() {
+        return profesors;
+    }
+
+    public void setProfesors(List<Profesor> profesors) {
+        this.profesors = profesors;
     }
 
     @Override

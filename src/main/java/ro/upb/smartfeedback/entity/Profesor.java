@@ -1,6 +1,7 @@
 package ro.upb.smartfeedback.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by colez on 23/11/2015.
@@ -14,6 +15,9 @@ public class Profesor implements BaseEntity{
 
     @OneToOne(optional = false, mappedBy = "idProfesor")
     private User user;
+
+    @ManyToMany(mappedBy = "profesors")
+    private List<Activitate> activitati;
 
     @Override
     public Long getId() {
@@ -31,6 +35,14 @@ public class Profesor implements BaseEntity{
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Activitate> getActivitati() {
+        return activitati;
+    }
+
+    public void setActivitati(List<Activitate> activitati) {
+        this.activitati = activitati;
     }
 
     @Override
