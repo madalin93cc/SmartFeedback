@@ -33,6 +33,13 @@ public class TipActivitate implements BaseEntity{
         this.nume = nume;
     }
 
+    public TipActivitate(String nume) {
+        this.nume = nume;
+    }
+
+    public TipActivitate() {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

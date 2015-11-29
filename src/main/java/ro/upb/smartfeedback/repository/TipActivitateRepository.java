@@ -9,5 +9,5 @@ import ro.upb.smartfeedback.entity.TipActivitate;
 import java.util.List;
 
 @Repository
-public interface TipActivitateRepository  extends JpaRepository<TipActivitate, Integer> {
+public interface TipActivitateRepository extends JpaRepository<TipActivitate, Integer> {
 }
