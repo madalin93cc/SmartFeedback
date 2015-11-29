@@ -10,12 +10,8 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping database structure for smartfeedback
-CREATE DATABASE IF NOT EXISTS `smartfeedback` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `smartfeedback`;
-
-
 -- Dumping structure for table smartfeedback.activitate
+DROP TABLE IF EXISTS `activitate`;
 CREATE TABLE IF NOT EXISTS `activitate` (
   `id` int(11) NOT NULL,
   `an` int(11) NOT NULL,
@@ -37,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `activitate` (
 
 
 -- Dumping structure for table smartfeedback.feedback
+DROP TABLE IF EXISTS `feedback`;
 CREATE TABLE IF NOT EXISTS `feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nume` varchar(255) NOT NULL,
@@ -50,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `feedback` (
 
 
 -- Dumping structure for table smartfeedback.grupa
+DROP TABLE IF EXISTS `grupa`;
 CREATE TABLE IF NOT EXISTS `grupa` (
   `id` int(11) NOT NULL,
   `nume` varchar(50) DEFAULT NULL,
@@ -61,6 +59,7 @@ CREATE TABLE IF NOT EXISTS `grupa` (
 
 
 -- Dumping structure for table smartfeedback.profesor
+DROP TABLE IF EXISTS `profesor`;
 CREATE TABLE IF NOT EXISTS `profesor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
@@ -70,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `profesor` (
 
 
 -- Dumping structure for table smartfeedback.profesor_activitate
+DROP TABLE IF EXISTS `profesor_activitate`;
 CREATE TABLE IF NOT EXISTS `profesor_activitate` (
   `id_activitate` int(11) NOT NULL,
   `id_profesor` int(11) NOT NULL,
@@ -83,6 +83,7 @@ CREATE TABLE IF NOT EXISTS `profesor_activitate` (
 
 
 -- Dumping structure for table smartfeedback.sectie
+DROP TABLE IF EXISTS `sectie`;
 CREATE TABLE IF NOT EXISTS `sectie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nume` varchar(50) NOT NULL,
@@ -94,17 +95,22 @@ CREATE TABLE IF NOT EXISTS `sectie` (
 
 
 -- Dumping structure for table smartfeedback.serie
+DROP TABLE IF EXISTS `serie`;
 CREATE TABLE IF NOT EXISTS `serie` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nume` varchar(50) DEFAULT NULL,
-  `code` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `nume` varchar(50) NOT NULL,
+  `code` varchar(50) NOT NULL,
+  `id_sectie` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_serie_sectie` (`id_sectie`),
+  CONSTRAINT `FK_serie_sectie` FOREIGN KEY (`id_sectie`) REFERENCES `sectie` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Data exporting was unselected.
 
 
 -- Dumping structure for table smartfeedback.student
+DROP TABLE IF EXISTS `student`;
 CREATE TABLE IF NOT EXISTS `student` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `an_studiu` int(11) NOT NULL,
@@ -121,6 +127,7 @@ CREATE TABLE IF NOT EXISTS `student` (
 
 
 -- Dumping structure for table smartfeedback.student_activitate
+DROP TABLE IF EXISTS `student_activitate`;
 CREATE TABLE IF NOT EXISTS `student_activitate` (
   `id_student` int(11) NOT NULL,
   `id_activitate` int(11) NOT NULL,
@@ -134,6 +141,7 @@ CREATE TABLE IF NOT EXISTS `student_activitate` (
 
 
 -- Dumping structure for table smartfeedback.tip_activitate
+DROP TABLE IF EXISTS `tip_activitate`;
 CREATE TABLE IF NOT EXISTS `tip_activitate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nume` varchar(255) NOT NULL DEFAULT '0',
@@ -144,6 +152,7 @@ CREATE TABLE IF NOT EXISTS `tip_activitate` (
 
 
 -- Dumping structure for table smartfeedback.utilizator
+DROP TABLE IF EXISTS `utilizator`;
 CREATE TABLE IF NOT EXISTS `utilizator` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nume` varchar(50) NOT NULL,
@@ -155,6 +164,7 @@ CREATE TABLE IF NOT EXISTS `utilizator` (
   `id_student` int(11) DEFAULT NULL,
   `id_profesor` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`),
   KEY `FK_utilizator_student` (`id_student`),
   KEY `FK_utilizator_profesor` (`id_profesor`),
   CONSTRAINT `FK_utilizator_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`),
