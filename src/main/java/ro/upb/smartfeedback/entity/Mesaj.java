@@ -6,7 +6,6 @@ package ro.upb.smartfeedback.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 public class Mesaj implements BaseEntity{
     @Id
@@ -14,25 +13,25 @@ public class Mesaj implements BaseEntity{
     private Long id;
 
     @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_mesaj"),name = "id_parinte", unique = false, nullable = false, updatable = true)
-    private Mesaj id_parinte;
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_mesaj"),name = "idParinte", unique = false, nullable = false, updatable = true)
+    private Mesaj idParinte;
 
     @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_utilizator"),name = "id_user_send", unique = false, nullable = false, updatable = true)
-    private User id_user_send;
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_utilizator"),name = "idUserSend", unique = false, nullable = false, updatable = true)
+    private User idUserSend;
 
     @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_utilizator_2"),name = "id_user_recv", unique = false, nullable = false, updatable = true)
-    private Comentariu id_user_recv;
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_utilizator_2"),name = "idUserRecv", unique = false, nullable = false, updatable = true)
+    private Comentariu idUserRecv;
 
     @Column(name = "seen", nullable = false)
     private Integer seen;
 
-    @Column(name = "created_at", nullable = false)
-    private Date created_at;
+    @Column(name = "createdAt", nullable = false)
+    private Date createdAt;
 
-    @Column(name = "updated_at", nullable = false)
-    private Date updated_at;
+    @Column(name = "updatedAt", nullable = false)
+    private Date updatedAt;
 
     @Column(name = "text", nullable = false)
     private String text;
@@ -47,28 +46,28 @@ public class Mesaj implements BaseEntity{
         this.id = id;
     }
 
-    public Mesaj getId_parinte() {
-        return id_parinte;
+    public Mesaj getIdParinte() {
+        return idParinte;
     }
 
-    public void setId_parinte(Mesaj id_parinte) {
-        this.id_parinte = id_parinte;
+    public void setIdParinte(Mesaj idParinte) {
+        this.idParinte = idParinte;
     }
 
-    public User getId_user_send() {
-        return id_user_send;
+    public User getIdUserSend() {
+        return idUserSend;
     }
 
-    public void setId_user_send(User id_user_send) {
-        this.id_user_send = id_user_send;
+    public void setIdUserSend(User idUserSend) {
+        this.idUserSend = idUserSend;
     }
 
-    public Comentariu getId_user_recv() {
-        return id_user_recv;
+    public Comentariu getIdUserRecv() {
+        return idUserRecv;
     }
 
-    public void setId_user_recv(Comentariu id_user_recv) {
-        this.id_user_recv = id_user_recv;
+    public void setIdUserRecv(Comentariu idUserRecv) {
+        this.idUserRecv = idUserRecv;
     }
 
     public Integer getSeen() {
@@ -79,20 +78,20 @@ public class Mesaj implements BaseEntity{
         this.seen = seen;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public String getText() {
@@ -110,14 +109,14 @@ public class Mesaj implements BaseEntity{
 
         Mesaj mesaj = (Mesaj) o;
 
-        if (created_at != null ? !created_at.equals(mesaj.created_at) : mesaj.created_at != null) return false;
+        if (createdAt != null ? !createdAt.equals(mesaj.createdAt) : mesaj.createdAt != null) return false;
         if (id != null ? !id.equals(mesaj.id) : mesaj.id != null) return false;
-        if (id_parinte != null ? !id_parinte.equals(mesaj.id_parinte) : mesaj.id_parinte != null) return false;
-        if (id_user_recv != null ? !id_user_recv.equals(mesaj.id_user_recv) : mesaj.id_user_recv != null) return false;
-        if (id_user_send != null ? !id_user_send.equals(mesaj.id_user_send) : mesaj.id_user_send != null) return false;
+        if (idParinte != null ? !idParinte.equals(mesaj.idParinte) : mesaj.idParinte != null) return false;
+        if (idUserRecv != null ? !idUserRecv.equals(mesaj.idUserRecv) : mesaj.idUserRecv != null) return false;
+        if (idUserSend != null ? !idUserSend.equals(mesaj.idUserSend) : mesaj.idUserSend != null) return false;
         if (seen != null ? !seen.equals(mesaj.seen) : mesaj.seen != null) return false;
         if (text != null ? !text.equals(mesaj.text) : mesaj.text != null) return false;
-        if (updated_at != null ? !updated_at.equals(mesaj.updated_at) : mesaj.updated_at != null) return false;
+        if (updatedAt != null ? !updatedAt.equals(mesaj.updatedAt) : mesaj.updatedAt != null) return false;
 
         return true;
     }
@@ -125,12 +124,12 @@ public class Mesaj implements BaseEntity{
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (id_parinte != null ? id_parinte.hashCode() : 0);
-        result = 31 * result + (id_user_send != null ? id_user_send.hashCode() : 0);
-        result = 31 * result + (id_user_recv != null ? id_user_recv.hashCode() : 0);
+        result = 31 * result + (idParinte != null ? idParinte.hashCode() : 0);
+        result = 31 * result + (idUserSend != null ? idUserSend.hashCode() : 0);
+        result = 31 * result + (idUserRecv != null ? idUserRecv.hashCode() : 0);
         result = 31 * result + (seen != null ? seen.hashCode() : 0);
-        result = 31 * result + (created_at != null ? created_at.hashCode() : 0);
-        result = 31 * result + (updated_at != null ? updated_at.hashCode() : 0);
+        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
+        result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         result = 31 * result + (text != null ? text.hashCode() : 0);
         return result;
     }

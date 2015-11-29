@@ -2,7 +2,6 @@ package ro.upb.smartfeedback.entity;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by VladC on 29-Nov-15.
@@ -17,19 +16,19 @@ public class Comentariu implements BaseEntity{
     @Column(name = "text", nullable = false)
     private String text;
 
-    @Column(name = "created_at", nullable = false)
-    private Date created_at;
+    @Column(name = "createdAt", nullable = false)
+    private Date createdAt;
 
-    @Column(name = "updated_at", nullable = false)
-    private Date updated_at;
-
-    @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_comentariu_comentariu"),name = "id_parinte", unique = false, nullable = true, updatable = true)
-    private Comentariu id_parinte;
+    @Column(name = "updatedAt", nullable = false)
+    private Date updatedAt;
 
     @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_comentariu_utilizator"),name = "id_utilizator", unique = false, nullable = false, updatable = true)
-    private User id_utilizator;
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_comentariu_comentariu"),name = "idParinte", unique = false, nullable = true, updatable = true)
+    private Comentariu idParinte;
+
+    @OneToOne(optional = false)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_comentariu_utilizator"),name = "idUtilizator", unique = false, nullable = false, updatable = true)
+    private User idUtilizator;
 
     @Override
     public Long getId() {
@@ -49,36 +48,36 @@ public class Comentariu implements BaseEntity{
         this.text = text;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
-    public Comentariu getId_parinte() {
-        return id_parinte;
+    public Comentariu getIdParinte() {
+        return idParinte;
     }
 
-    public void setId_parinte(Comentariu id_parinte) {
-        this.id_parinte = id_parinte;
+    public void setIdParinte(Comentariu idParinte) {
+        this.idParinte = idParinte;
     }
 
-    public User getId_utilizator() {
-        return id_utilizator;
+    public User getIdUtilizator() {
+        return idUtilizator;
     }
 
-    public void setId_utilizator(User id_utilizator) {
-        this.id_utilizator = id_utilizator;
+    public void setIdUtilizator(User idUtilizator) {
+        this.idUtilizator = idUtilizator;
     }
 
     @Override
@@ -88,13 +87,13 @@ public class Comentariu implements BaseEntity{
 
         Comentariu that = (Comentariu) o;
 
-        if (created_at != null ? !created_at.equals(that.created_at) : that.created_at != null) return false;
+        if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (id_parinte != null ? !id_parinte.equals(that.id_parinte) : that.id_parinte != null) return false;
-        if (id_utilizator != null ? !id_utilizator.equals(that.id_utilizator) : that.id_utilizator != null)
+        if (idParinte != null ? !idParinte.equals(that.idParinte) : that.idParinte != null) return false;
+        if (idUtilizator != null ? !idUtilizator.equals(that.idUtilizator) : that.idUtilizator != null)
             return false;
         if (text != null ? !text.equals(that.text) : that.text != null) return false;
-        if (updated_at != null ? !updated_at.equals(that.updated_at) : that.updated_at != null) return false;
+        if (updatedAt != null ? !updatedAt.equals(that.updatedAt) : that.updatedAt != null) return false;
 
         return true;
     }
@@ -103,10 +102,10 @@ public class Comentariu implements BaseEntity{
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (text != null ? text.hashCode() : 0);
-        result = 31 * result + (created_at != null ? created_at.hashCode() : 0);
-        result = 31 * result + (updated_at != null ? updated_at.hashCode() : 0);
-        result = 31 * result + (id_parinte != null ? id_parinte.hashCode() : 0);
-        result = 31 * result + (id_utilizator != null ? id_utilizator.hashCode() : 0);
+        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
+        result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
+        result = 31 * result + (idParinte != null ? idParinte.hashCode() : 0);
+        result = 31 * result + (idUtilizator != null ? idUtilizator.hashCode() : 0);
         return result;
     }
 }
