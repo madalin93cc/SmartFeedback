@@ -19,21 +19,6 @@ public class User implements BaseEntity {
     @Column(name = "prenume", length = 50, nullable = false)
     private String prenume;
 
-    public User(String nume, String prenume, String username, String password, String email, Integer tip, Student idStudent, Profesor idProfesor) {
-        this.nume = nume;
-        this.prenume = prenume;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.tip = tip;
-        this.idStudent = idStudent;
-        this.idProfesor = idProfesor;
-    }
-
-    public User() {
-
-    }
-
     @Column(name = "username", length = 50, nullable = false, unique = true)
     private String username;
 
@@ -53,6 +38,21 @@ public class User implements BaseEntity {
     @OneToOne(optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_utilizator_profesor"), name = "id_profesor", unique = true, nullable = false, updatable = true)
     private Profesor idProfesor;
+
+    public User(String nume, String prenume, String username, String password, String email, Integer tip, Student idStudent, Profesor idProfesor) {
+        this.nume = nume;
+        this.prenume = prenume;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.tip = tip;
+        this.idStudent = idStudent;
+        this.idProfesor = idProfesor;
+    }
+
+    public User() {
+
+    }
 
     @Override
     public Long getId() {

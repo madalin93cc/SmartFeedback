@@ -8,6 +8,6 @@ import ro.upb.smartfeedback.entity.Sectie;
  * Created by colez on 29/11/2015.
  */
 @Repository
-public interface SectieRepository extends JpaRepository<Sectie, Integer>{
+public interface SectieRepository extends JpaRepository<Sectie, Long>{
     public Sectie findByCode(String code);
 }

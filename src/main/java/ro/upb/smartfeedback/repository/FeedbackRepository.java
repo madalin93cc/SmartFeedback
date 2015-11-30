@@ -8,6 +8,6 @@ import ro.upb.smartfeedback.entity.Feedback;
  * Created by colez on 29/11/2015.
  */
 @Repository
-public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
+public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
 
 }

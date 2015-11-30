@@ -8,6 +8,6 @@ import ro.upb.smartfeedback.entity.Comentariu;
  * Created by colez on 29/11/2015.
  */
 @Repository
-public interface ComentariuRepository extends JpaRepository<Comentariu, Integer> {
+public interface ComentariuRepository extends JpaRepository<Comentariu, Long> {
 
 }

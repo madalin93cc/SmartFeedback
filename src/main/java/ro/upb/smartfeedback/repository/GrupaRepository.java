@@ -8,5 +8,5 @@ import ro.upb.smartfeedback.entity.Grupa;
  * Created by colez on 29/11/2015.
  */
 @Repository
-public interface GrupaRepository extends JpaRepository<Grupa, Integer> {
+public interface GrupaRepository extends JpaRepository<Grupa, Long> {
 }

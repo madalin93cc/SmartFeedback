@@ -8,6 +8,6 @@ import ro.upb.smartfeedback.entity.Serie;
  * Created by colez on 29/11/2015.
  */
 @Repository
-public interface SerieRepository extends JpaRepository<Serie, Integer>{
+public interface SerieRepository extends JpaRepository<Serie, Long>{
     public Serie getByCode(String code);
 }

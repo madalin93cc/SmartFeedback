@@ -1,7 +1,11 @@
 package ro.upb.smartfeedback.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by colez on 23/11/2015.
@@ -20,15 +24,25 @@ public class Student implements BaseEntity{
     private User user;
 
     @ManyToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_student_serie"),name = "serie_id", unique = false, nullable = false, updatable = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_student_serie"),name = "id_serie", unique = false, nullable = false, updatable = true)
     private Serie idSerie;
 
     @ManyToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_student_grupa"), name = "grupa_id", unique = false, nullable = false, updatable = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_student_grupa"), name = "id_grupa", unique = false, nullable = false, updatable = true)
     private Grupa idGrupa;
 
-    @ManyToMany(mappedBy = "students")
-    private List<Activitate> activitati;
+    @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @Fetch(value = FetchMode.SELECT)
+    private Set<Activitate> activitati;
+
+    public Student() {
+    }
+
+    public Student(Integer anStudiu, Serie idSerie, Grupa idGrupa) {
+        this.anStudiu = anStudiu;
+        this.idSerie = idSerie;
+        this.idGrupa = idGrupa;
+    }
 
     @Override
     public Long getId() {
@@ -72,11 +86,11 @@ public class Student implements BaseEntity{
         this.idGrupa = idGrupa;
     }
 
-    public List<Activitate> getActivitati() {
+    public Set<Activitate> getActivitati() {
         return activitati;
     }
 
-    public void setActivitati(List<Activitate> activitati) {
+    public void setActivitati(Set<Activitate> activitati) {
         this.activitati = activitati;
     }
 

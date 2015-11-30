@@ -4,15 +4,11 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 import ro.upb.smartfeedback.entity.*;
 import ro.upb.smartfeedback.repository.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SmartFeedback.class)
@@ -35,6 +31,12 @@ public class SmartFeedbackTests {
 
     @Autowired
     UserRepository userRepository;
+
+	@Autowired
+	GrupaRepository grupaRepository;
+
+	@Autowired
+	StudentRepository studentRepository;
 
 	@Test
 	@Ignore
@@ -102,6 +104,7 @@ public class SmartFeedbackTests {
     }
 
     @Test
+	@Ignore
     public void add_user() {
         Profesor p = profesorRepository.getById(1l);
         // voiam sa ii iau id-ul
@@ -111,7 +114,7 @@ public class SmartFeedbackTests {
 
 
     @Test
-//    @Ignore
+    @Ignore
     public void add_profesor() {
         //List<Activitate> activitati = new ArrayList<Activitate>();
         // bagate activitatile
@@ -120,5 +123,27 @@ public class SmartFeedbackTests {
         Profesor p = new Profesor();
         profesorRepository.save(p);
     }
+
+	@Test
+	@Ignore
+	public void add_grupa() {
+		Grupa g = new Grupa("334CC", 2015);
+		grupaRepository.save(g);
+		g = new Grupa("333CC", 2015);
+		grupaRepository.save(g);
+		g = new Grupa("332CC", 2015);
+		grupaRepository.save(g);
+	}
+
+	@Test
+	@Ignore
+	public void add_student() {
+		Grupa g = grupaRepository.findOne(1l);
+		Serie s = serieRepository.getByCode("CC");
+		Student student = new Student(2015, s, g);
+		studentRepository.save(student);
+		User u = new User("Colezea", "Madalin", "colezea", "madalin", "madalin.colezea@cs.pub.ro", 2, student, null);
+		userRepository.save(u);
+	}
 
 }

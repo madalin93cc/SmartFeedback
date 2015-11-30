@@ -1,7 +1,11 @@
 package ro.upb.smartfeedback.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by colez on 23/11/2015.
@@ -16,10 +20,11 @@ public class Profesor implements BaseEntity{
     @OneToOne(optional = false, mappedBy = "idProfesor")
     private User user;
 
-    @ManyToMany(mappedBy = "profesors", fetch = FetchType.EAGER)
-    private List<Activitate> activitati;
+    @ManyToMany(mappedBy = "profesors", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    @Fetch(value = FetchMode.SELECT)
+    private Set<Activitate> activitati;
 
-    public Profesor(User user, List<Activitate> activitati) {
+    public Profesor(User user, Set<Activitate> activitati) {
         this.user = user;
         this.activitati = activitati;
     }
@@ -45,11 +50,11 @@ public class Profesor implements BaseEntity{
         this.user = user;
     }
 
-    public List<Activitate> getActivitati() {
+    public Set<Activitate> getActivitati() {
         return activitati;
     }
 
-    public void setActivitati(List<Activitate> activitati) {
+    public void setActivitati(Set<Activitate> activitati) {
         this.activitati = activitati;
     }
 

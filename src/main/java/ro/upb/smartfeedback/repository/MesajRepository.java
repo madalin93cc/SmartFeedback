@@ -8,5 +8,5 @@ import ro.upb.smartfeedback.entity.Mesaj;
  * Created by colez on 29/11/2015.
  */
 @Repository
-public interface MesajRepository extends JpaRepository<Mesaj, Integer>{
+public interface MesajRepository extends JpaRepository<Mesaj, Long>{
 }

@@ -42,6 +42,14 @@ public class Grupa implements BaseEntity{
         this.an = an;
     }
 
+    public Grupa() {
+    }
+
+    public Grupa(String nume, Integer an) {
+        this.nume = nume;
+        this.an = an;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

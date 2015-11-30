@@ -12,9 +12,7 @@ import ro.upb.smartfeedback.repository.UserRepository;
 import ro.upb.smartfeedback.service.ActivitatiService;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by George on 11/30/2015.
@@ -29,7 +27,7 @@ public class ActivitatiServiceImpl implements ActivitatiService{
     public List<ActivitateMenuDTO> getMateriiUtilizator() {
         List<ActivitateMenuDTO> activitateMenuDTOs = new ArrayList<>();
         if (SmartFeedback.loggedUser != null) {
-            List<Activitate> activitates = new ArrayList<>();
+            Set<Activitate> activitates = new HashSet<>();
             if (SmartFeedback.loggedUser.getTip() == 1) {
                 activitates = SmartFeedback.loggedUser.getIdProfesor().getActivitati();
             } else if (SmartFeedback.loggedUser.getTip() == 2) {
