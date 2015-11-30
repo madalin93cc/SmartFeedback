@@ -3,6 +3,7 @@ package ro.upb.smartfeedback.service.impl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.upb.smartfeedback.SmartFeedback;
+import ro.upb.smartfeedback.dto.ActivitateMenuDTO;
 import ro.upb.smartfeedback.entity.Activitate;
 import ro.upb.smartfeedback.entity.Profesor;
 import ro.upb.smartfeedback.entity.Student;
@@ -25,12 +26,19 @@ public class ActivitatiServiceImpl implements ActivitatiService{
     ActivitateRepository activitateRepository;
 
     @Override
-    public List<Activitate> getMateriiUtilizator() {
-        if(SmartFeedback.loggedUser.getTip() == 1) {
-            return SmartFeedback.loggedUser.getIdProfesor().getActivitati();
-        } else if(SmartFeedback.loggedUser.getTip() == 2) {
-            return SmartFeedback.loggedUser.getIdStudent().getActivitati();
+    public List<ActivitateMenuDTO> getMateriiUtilizator() {
+        List<ActivitateMenuDTO> activitateMenuDTOs = new ArrayList<>();
+        if (SmartFeedback.loggedUser != null) {
+            List<Activitate> activitates = new ArrayList<>();
+            if (SmartFeedback.loggedUser.getTip() == 1) {
+                activitates = SmartFeedback.loggedUser.getIdProfesor().getActivitati();
+            } else if (SmartFeedback.loggedUser.getTip() == 2) {
+                activitates = SmartFeedback.loggedUser.getIdStudent().getActivitati();
+            }
+            for (Activitate a : activitates){
+                activitateMenuDTOs.add(new ActivitateMenuDTO(a));
+            }
         }
-        return null;
+        return activitateMenuDTOs;
     }
 }
