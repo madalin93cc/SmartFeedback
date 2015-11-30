@@ -16,7 +16,7 @@ public class Profesor implements BaseEntity{
     @OneToOne(optional = false, mappedBy = "idProfesor")
     private User user;
 
-    @ManyToMany(mappedBy = "profesors")
+    @ManyToMany(mappedBy = "profesors", fetch = FetchType.EAGER)
     private List<Activitate> activitati;
 
     public Profesor(User user, List<Activitate> activitati) {

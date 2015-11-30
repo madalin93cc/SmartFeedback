@@ -46,11 +46,11 @@ public class User implements BaseEntity {
     @Column(name = "tip", nullable = false, length = 11)
     private Integer tip;
 
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @OneToOne(optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_utilizator_student"), name = "id_student", unique = true, nullable = false, updatable = true)
     private Student idStudent;
 
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @OneToOne(optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_utilizator_profesor"), name = "id_profesor", unique = true, nullable = false, updatable = true)
     private Profesor idProfesor;
 

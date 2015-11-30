@@ -37,14 +37,14 @@ public class Activitate implements BaseEntity {
 
     @ManyToMany
     @JoinTable(name = "student_activitate",
-            joinColumns = @JoinColumn(name = "id_student", foreignKey = @ForeignKey(name = "FK__student")),
-            inverseJoinColumns = @JoinColumn(name = "id_activitate", foreignKey = @ForeignKey(name = "FK_student_activitate_activitate")))
+            joinColumns = @JoinColumn(name = "id_activitate"),
+            inverseJoinColumns = @JoinColumn(name = "id_student"))
     private List<Student> students;
 
     @ManyToMany
     @JoinTable(name = "profesor_activitate",
-            joinColumns = @JoinColumn(name = "id_profesor", foreignKey = @ForeignKey(name = "FK_profesor_activitate_profesor")),
-            inverseJoinColumns = @JoinColumn(name = "id_activitate", foreignKey = @ForeignKey(name = "FK_profesor_activitate_activitate")))
+            joinColumns = @JoinColumn(name = "id_activitate"),
+            inverseJoinColumns = @JoinColumn(name = "id_profesor"))
     private List<Profesor> profesors;
 
     public Activitate(Integer an, String nume, String code, TipActivitate idTipActivitate, Serie idSerie, Grupa idGrupa) {
