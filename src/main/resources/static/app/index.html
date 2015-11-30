@@ -35,7 +35,7 @@
     <div id="wrapper">
       <!-- Navigation -->
       <nav ng-controller="LoginCtrl" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div ng-show="isAuthenticated">
+        <div ng-if="isAuthenticated">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>

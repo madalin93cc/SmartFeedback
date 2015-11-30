@@ -8,8 +8,8 @@
  * Controller of the smartFeedbackApp
  */
 angular.module('smartFeedbackApp')
-  .controller('LoginCtrl', ['$route', '$cookies', '$rootScope', '$scope', '$location', 'LoginService',
-    function ($route, $cookies, $rootScope, $scope, $location, LoginService) {
+  .controller('LoginCtrl', ['$cookies', '$rootScope', '$scope', '$location', 'LoginService',
+    function ($cookies, $rootScope, $scope, $location, LoginService) {
 
     $scope.username = "Ion";
     $scope.login = function () {
@@ -21,7 +21,6 @@ angular.module('smartFeedbackApp')
               $rootScope.isAuthenticated = true;
               LoginService.user = response;
               $location.path("#/");
-              $route.reload();
             }
           });
       }
