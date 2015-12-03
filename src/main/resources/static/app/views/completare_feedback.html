@@ -1,52 +1,82 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header" align="center">Completare Feedback</h1>
+            <h1 class="page-header" align="center">{{numeFeedback}}</h1>
         </div>
     </div>
-    <div class="row">
+    <div class="row" align="center">
       <h3> Statistica</h3>
       <br>
       <p>Numarul studentilor participanti:</p>
       <p>Numarul feedback-urilor completate:</p>
       <p>Nota actuala a cursului:</p>
     </div>
-    <div class="row">
-      <!--AICI PUI CALIFICATIVELE-->
-      <h3  style="margin-left: 50px"> Acordare calificative</h3>
-      <br>
-      <p style="display: inline; margin-left: 50px">Nota curs:</p>
-      <select style="display: inline" id="selectNota">
-        <option></option>
-      </select>
-      <!--Calificative (checkboxes)-->
-      <div id="wrapper">
-        <br>
-        <div id="column1">
-          <label>Calificative pozitive</label>
-          <br><input id="CbInteresant" type="checkbox" onchange="cbInteresantChange(this)">Interesant
-          <br><input id="CbInteractiv" type="checkbox" onchange="cbInteractivChange(this)">Interactiv
-          <br><input id="CbUsor" type="checkbox" onchange="cbUsorChange(this)">Usor de inteles
-          <br><input id="CbOrganizat" type="checkbox" onchange="cbOrganizatChange(this)">Bine organizat
-          <br><input id="CbUtil" type="checkbox" onchange="cbUtilChange(this)">Util
-        </div>
-        <div id="column2">
-          <label>Calificative negative</label>
-          <br><input id="CbNInteresant" type="checkbox" onchange="cbInteresantChange(this)">Nenteresant
-          <br><input id="CbNInteractiv" type="checkbox" onchange="cbInteractivChange(this)">Plictisitor
-          <br><input id="CbNUsor" type="checkbox" onchange="cbUsorChange(this)">Dificil de inteles
-          <br><input id="CbNOrganizat" type="checkbox" onchange="cbOrganizatChange(this)">SlaB organizat
-          <br><input id="CbNUtil" type="checkbox" onchange="cbUtilChange(this)">Inutil
-        </div>
-      </div>
 
-      <div>
+  <h3  style="margin-left: 50px"> Acordare calificative</h3>
+  <br>
+  <!--AICI PUI CALIFICATIVELE-->
+    <div class="row">
+        <div class="col-lg-2" style = "height: 54px; padding-top: 25px">
+          Nota generala
+        </div>
+        <div class="col-lg-4">
+          <rzslider
+            rz-slider-model="value"
+            rz-slider-options="{floor: 1, ceil: 10, step:1}">
+          </rzslider>
+        </div>
+    </div>
+    <!--AICI PUI CALIFICATIVELE-->
+    <div class="row">
+      <div class="col-lg-2" style = "height: 54px; padding-top: 25px">
+        Nota generala
+      </div>
+      <div class="col-lg-4">
         <rzslider
           rz-slider-model="value"
           rz-slider-options="{floor: 1, ceil: 10, step:1}">
         </rzslider>
       </div>
     </div>
+    <!--AICI PUI CALIFICATIVELE-->
+    <div class="row">
+      <div class="col-lg-2" style = "height: 54px; padding-top: 25px">
+        Nota generala
+      </div>
+      <div class="col-lg-4">
+        <rzslider
+          rz-slider-model="value"
+          rz-slider-options="{floor: 1, ceil: 10, step:1}">
+        </rzslider>
+      </div>
+    </div>
+    <!--AICI PUI CALIFICATIVELE-->
+    <div class="row">
+      <div class="col-lg-2" style = "height: 54px; padding-top: 25px">
+        Nota generala
+      </div>
+      <div class="col-lg-4">
+        <rzslider
+          rz-slider-model="value"
+          rz-slider-options="{floor: 1, ceil: 10, step:1}">
+        </rzslider>
+      </div>
+    </div>
+    <!--AICI PUI CALIFICATIVELE-->
+    <div class="row">
+      <div class="col-lg-2" style = "height: 54px; padding-top: 25px">
+        Nota generala
+      </div>
+      <div class="col-lg-4">
+        <rzslider
+          rz-slider-model="value"
+          rz-slider-options="{floor: 1, ceil: 10, step:1}">
+        </rzslider>
+      </div>
+    </div>
+
+
+
     <div class="row">
       <!--AICI PUI COMENTARIILE-->
       <div align="center">
