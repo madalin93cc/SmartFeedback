@@ -53,6 +53,14 @@ public class FeedbackMenuDTO {
         this.saptamana = saptamana;
     }
 
+    public String getNume() {
+        return nume;
+    }
+
+    public void setNume(String nume) {
+        this.nume = nume;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

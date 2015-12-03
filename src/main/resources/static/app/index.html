@@ -283,9 +283,11 @@
                         <li ng-repeat="x in cursuri">
                             <a> {{ x.nume }}<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
-                                <li> <a href="#/completare_feedback">Completare feedback</a> </li>
-                                <li> <a href="#">Vizualizare feedback</a> </li>
-                                <li> <a href="#">Solicitare feedback</a> </li>
+                                <li ng-repeat="feedback in x.feedbacks"><a href="#/completare_feedback">{{feedback.nume
+                                  }}</a></li>
+                                <!--<li> <a href="#/completare_feedback">{{feedback.saptamana}}</a> </li>-->
+                                <!--<li> <a href="#">Vizualizare feedback</a> </li>-->
+                                <!--<li> <a href="#">Solicitare feedback</a> </li>-->
                             </ul>
                         </li>
                   </ul>
