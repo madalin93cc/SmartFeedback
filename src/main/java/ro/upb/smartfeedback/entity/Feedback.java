@@ -30,6 +30,17 @@ public class Feedback {
     @Column(name = "to_date", nullable = true)
     private Date toDate;
 
+    @Column(name = "saptamana", nullable = false)
+    private Integer saptamana;
+
+    public Integer getSaptamana() {
+        return saptamana;
+    }
+
+    public void setSaptamana(Integer saptamana) {
+        this.saptamana = saptamana;
+    }
+
     @ManyToMany
     @JoinTable(name = "feedback_intrebari",
             joinColumns = @JoinColumn(name = "id_feedback", foreignKey = @ForeignKey(name = "FK__feedback")),
@@ -106,6 +117,7 @@ public class Feedback {
             return false;
         if (fromDate != null ? !fromDate.equals(feedback.fromDate) : feedback.fromDate != null) return false;
         if (toDate != null ? !toDate.equals(feedback.toDate) : feedback.toDate != null) return false;
+        if (saptamana != null ? !saptamana.equals(feedback.saptamana) : feedback.saptamana != null) return false;
         return !(intrebari != null ? !intrebari.equals(feedback.intrebari) : feedback.intrebari != null);
 
     }
@@ -118,6 +130,7 @@ public class Feedback {
         result = 31 * result + (idActivitate != null ? idActivitate.hashCode() : 0);
         result = 31 * result + (fromDate != null ? fromDate.hashCode() : 0);
         result = 31 * result + (toDate != null ? toDate.hashCode() : 0);
+        result = 31 * result + (saptamana != null ? saptamana.hashCode() : 0);
         result = 31 * result + (intrebari != null ? intrebari.hashCode() : 0);
         return result;
     }
