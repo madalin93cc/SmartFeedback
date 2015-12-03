@@ -21,7 +21,7 @@ public class Feedback {
     private Integer status;
 
     @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_feedback_activitate"), name = "id_activitate", unique = true, nullable = false, updatable = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_feedback_activitate"), name = "id_activitate", unique = false, nullable = false, updatable = true)
     private Activitate idActivitate;
 
     @Column(name = "from_date", nullable = true)
