@@ -14,24 +14,24 @@ public class Mesaj implements BaseEntity{
     private Long id;
 
     @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_mesaj"),name = "idParinte", unique = false, nullable = false, updatable = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_mesaj"),name = "id_parinte", unique = false, nullable = false, updatable = true)
     private Mesaj idParinte;
 
     @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_utilizator"),name = "idUserSend", unique = false, nullable = false, updatable = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_utilizator"),name = "id_user_send", unique = false, nullable = false, updatable = true)
     private User idUserSend;
 
     @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_utilizator_2"),name = "idUserRecv", unique = false, nullable = false, updatable = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_utilizator_2"),name = "id_user_recv", unique = false, nullable = false, updatable = true)
     private Comentariu idUserRecv;
 
     @Column(name = "seen", nullable = false)
     private Integer seen;
 
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private Date createdAt;
 
-    @Column(name = "updatedAt", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
 
     @Column(name = "text", nullable = false)

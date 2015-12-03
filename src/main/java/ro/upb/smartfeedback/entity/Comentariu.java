@@ -16,18 +16,18 @@ public class Comentariu implements BaseEntity{
     @Column(name = "text", nullable = false)
     private String text;
 
-    @Column(name = "createdAt", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private Date createdAt;
 
-    @Column(name = "updatedAt", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Date updatedAt;
 
     @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_comentariu_comentariu"),name = "idParinte", unique = false, nullable = true, updatable = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_comentariu_comentariu"),name = "id_parinte", unique = false, nullable = true, updatable = true)
     private Comentariu idParinte;
 
     @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_comentariu_utilizator"),name = "idUtilizator", unique = false, nullable = false, updatable = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_comentariu_utilizator"),name = "id_utilizator", unique = false, nullable = false, updatable = true)
     private User idUtilizator;
 
     @Override
