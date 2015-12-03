@@ -2,6 +2,8 @@ package ro.upb.smartfeedback.dto;
 
 import ro.upb.smartfeedback.entity.Activitate;
 
+import java.util.List;
+
 /**
  * Created by colez on 30/11/2015.
  */
@@ -10,6 +12,7 @@ public class ActivitateMenuDTO {
     private Integer an;
     private String nume;
     private String code;
+    List<FeedbackMenuDTO> feedbacks;
 
     public ActivitateMenuDTO() {
     }
@@ -55,6 +58,14 @@ public class ActivitateMenuDTO {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public List<FeedbackMenuDTO> getFeedbacks() {
+        return feedbacks;
+    }
+
+    public void setFeedbacks(List<FeedbackMenuDTO> feedbacks) {
+        this.feedbacks = feedbacks;
     }
 
     @Override
