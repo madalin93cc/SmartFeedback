@@ -17,7 +17,8 @@ var app = angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'rzModule'
   ])
   .config(function ($routeProvider) {
     $routeProvider
