@@ -1,6 +1,6 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               10.1.8-MariaDB - mariadb.org binary distribution
+-- Server version:               5.6.26 - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL Version:             9.3.0.4984
 -- --------------------------------------------------------
@@ -33,9 +33,14 @@ CREATE TABLE IF NOT EXISTS `activitate` (
   CONSTRAINT `FK_activitate_grupa` FOREIGN KEY (`id_grupa`) REFERENCES `grupa` (`id`),
   CONSTRAINT `FK_activitate_serie` FOREIGN KEY (`id_serie`) REFERENCES `serie` (`id`),
   CONSTRAINT `FK_activitate_tip_activitate` FOREIGN KEY (`id_tip_activitate`) REFERENCES `tip_activitate` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabele pentru activitate';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Tabele pentru activitate';
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.activitate: ~0 rows (approximately)
+DELETE FROM `activitate`;
+/*!40000 ALTER TABLE `activitate` DISABLE KEYS */;
+INSERT INTO `activitate` (`id`, `an`, `nume`, `code`, `id_tip_activitate`, `id_serie`, `id_grupa`) VALUES
+	(1, 1, 'Utilizarea sistemelor de operare', 'USO', 1, 3, NULL);
+/*!40000 ALTER TABLE `activitate` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.comentariu
@@ -47,14 +52,25 @@ CREATE TABLE IF NOT EXISTS `comentariu` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_parinte` int(11) DEFAULT NULL,
   `id_utilizator` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `idParinte` bigint(20) NOT NULL,
+  `idUtilizator` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_fc6nk9khge33nptr1014fmdto` (`id_utilizator`),
+  UNIQUE KEY `UK_shm34qvw91bcssb16n8556bx2` (`idParinte`),
+  UNIQUE KEY `UK_9b9quc9ur0q4ekk4qls59awjt` (`idUtilizator`),
+  UNIQUE KEY `UK_nr1h2hvcgos81lleqnpmg0wpw` (`id_parinte`),
   KEY `FK_comentariu_comentariu` (`id_parinte`),
   KEY `FK_comentariu_utilizator` (`id_utilizator`),
   CONSTRAINT `FK_comentariu_comentariu` FOREIGN KEY (`id_parinte`) REFERENCES `comentariu` (`id`),
   CONSTRAINT `FK_comentariu_utilizator` FOREIGN KEY (`id_utilizator`) REFERENCES `utilizator` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.comentariu: ~0 rows (approximately)
+DELETE FROM `comentariu`;
+/*!40000 ALTER TABLE `comentariu` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comentariu` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.feedback
@@ -67,11 +83,15 @@ CREATE TABLE IF NOT EXISTS `feedback` (
   `from_date` datetime DEFAULT NULL,
   `to_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_4somc0752jgvbh8q3qj1uxgxq` (`id_activitate`),
   KEY `FK_feedback_activitate` (`id_activitate`),
   CONSTRAINT `FK_feedback_activitate` FOREIGN KEY (`id_activitate`) REFERENCES `activitate` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.feedback: ~0 rows (approximately)
+DELETE FROM `feedback`;
+/*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
+/*!40000 ALTER TABLE `feedback` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.feedback_intrebari
@@ -85,7 +105,10 @@ CREATE TABLE IF NOT EXISTS `feedback_intrebari` (
   CONSTRAINT `FK_feedback_intrebari_intrebari` FOREIGN KEY (`id_intrebare`) REFERENCES `intrebari` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.feedback_intrebari: ~0 rows (approximately)
+DELETE FROM `feedback_intrebari`;
+/*!40000 ALTER TABLE `feedback_intrebari` DISABLE KEYS */;
+/*!40000 ALTER TABLE `feedback_intrebari` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.grupa
@@ -95,9 +118,16 @@ CREATE TABLE IF NOT EXISTS `grupa` (
   `nume` varchar(50) DEFAULT NULL,
   `an` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.grupa: ~2 rows (approximately)
+DELETE FROM `grupa`;
+/*!40000 ALTER TABLE `grupa` DISABLE KEYS */;
+INSERT INTO `grupa` (`id`, `nume`, `an`) VALUES
+	(1, '334CC', 2015),
+	(2, '333CC', 2015),
+	(3, '332CC', 2015);
+/*!40000 ALTER TABLE `grupa` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.intrebari
@@ -108,7 +138,10 @@ CREATE TABLE IF NOT EXISTS `intrebari` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.intrebari: ~0 rows (approximately)
+DELETE FROM `intrebari`;
+/*!40000 ALTER TABLE `intrebari` DISABLE KEYS */;
+/*!40000 ALTER TABLE `intrebari` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.mesaj
@@ -122,7 +155,15 @@ CREATE TABLE IF NOT EXISTS `mesaj` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `text` text NOT NULL,
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL,
+  `idParinte` bigint(20) NOT NULL,
+  `idUserRecv` bigint(20) NOT NULL,
+  `idUserSend` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_mavh5wssivjuxpfy7l60i5qd8` (`idParinte`),
+  UNIQUE KEY `UK_15uxwmcprpiybs728og2ss5p0` (`idUserRecv`),
+  UNIQUE KEY `UK_eah374n5l8s9sjfenctykykr9` (`idUserSend`),
   KEY `FK_mesaj_utilizator` (`id_user_send`),
   KEY `FK_mesaj_utilizator_2` (`id_user_recv`),
   KEY `FK_mesaj_mesaj` (`id_parinte`),
@@ -131,7 +172,10 @@ CREATE TABLE IF NOT EXISTS `mesaj` (
   CONSTRAINT `FK_mesaj_utilizator_2` FOREIGN KEY (`id_user_recv`) REFERENCES `utilizator` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.mesaj: ~0 rows (approximately)
+DELETE FROM `mesaj`;
+/*!40000 ALTER TABLE `mesaj` DISABLE KEYS */;
+/*!40000 ALTER TABLE `mesaj` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.profesor
@@ -139,9 +183,14 @@ DROP TABLE IF EXISTS `profesor`;
 CREATE TABLE IF NOT EXISTS `profesor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabele pentru profesori';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Tabele pentru profesori';
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.profesor: ~0 rows (approximately)
+DELETE FROM `profesor`;
+/*!40000 ALTER TABLE `profesor` DISABLE KEYS */;
+INSERT INTO `profesor` (`id`) VALUES
+	(1);
+/*!40000 ALTER TABLE `profesor` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.profesor_activitate
@@ -155,7 +204,12 @@ CREATE TABLE IF NOT EXISTS `profesor_activitate` (
   CONSTRAINT `FK_profesor_activitate_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='profesor_activitate';
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.profesor_activitate: ~0 rows (approximately)
+DELETE FROM `profesor_activitate`;
+/*!40000 ALTER TABLE `profesor_activitate` DISABLE KEYS */;
+INSERT INTO `profesor_activitate` (`id_activitate`, `id_profesor`) VALUES
+	(1, 1);
+/*!40000 ALTER TABLE `profesor_activitate` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.raspuns_intrebare
@@ -172,7 +226,10 @@ CREATE TABLE IF NOT EXISTS `raspuns_intrebare` (
   CONSTRAINT `FK__student_raspuns` FOREIGN KEY (`id_student`) REFERENCES `student` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.raspuns_intrebare: ~0 rows (approximately)
+DELETE FROM `raspuns_intrebare`;
+/*!40000 ALTER TABLE `raspuns_intrebare` DISABLE KEYS */;
+/*!40000 ALTER TABLE `raspuns_intrebare` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.sectie
@@ -182,9 +239,15 @@ CREATE TABLE IF NOT EXISTS `sectie` (
   `nume` varchar(50) NOT NULL,
   `code` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.sectie: ~2 rows (approximately)
+DELETE FROM `sectie`;
+/*!40000 ALTER TABLE `sectie` DISABLE KEYS */;
+INSERT INTO `sectie` (`id`, `nume`, `code`) VALUES
+	(1, 'Calculatoare si Tehnologia Informatiei', 'CTI'),
+	(2, 'Ingineria sistemelor', 'IS');
+/*!40000 ALTER TABLE `sectie` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.serie
@@ -197,9 +260,24 @@ CREATE TABLE IF NOT EXISTS `serie` (
   PRIMARY KEY (`id`),
   KEY `FK_serie_sectie` (`id_sectie`),
   CONSTRAINT `FK_serie_sectie` FOREIGN KEY (`id_sectie`) REFERENCES `sectie` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.serie: ~11 rows (approximately)
+DELETE FROM `serie`;
+/*!40000 ALTER TABLE `serie` DISABLE KEYS */;
+INSERT INTO `serie` (`id`, `nume`, `code`, `id_sectie`) VALUES
+	(1, 'CA', 'CA', 1),
+	(2, 'CB', 'CB', 1),
+	(3, 'CC', 'CC', 1),
+	(4, 'Arhitectura Sistemelor de Calcul', 'C1', 1),
+	(5, 'Sisteme embedded', 'C2', 1),
+	(6, 'Compilatoare', 'C3', 1),
+	(7, 'Inteligenta artificiala', 'C4', 1),
+	(8, 'Programare web', 'C5', 1),
+	(9, 'AA', 'AA', 2),
+	(10, 'AB', 'AB', 2),
+	(11, 'AC', 'AC', 2);
+/*!40000 ALTER TABLE `serie` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.student
@@ -214,9 +292,14 @@ CREATE TABLE IF NOT EXISTS `student` (
   KEY `FK_student_grupa` (`id_grupa`),
   CONSTRAINT `FK_student_grupa` FOREIGN KEY (`id_grupa`) REFERENCES `grupa` (`id`),
   CONSTRAINT `FK_student_serie` FOREIGN KEY (`id_serie`) REFERENCES `serie` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabele pentru studenti';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Tabele pentru studenti';
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.student: ~0 rows (approximately)
+DELETE FROM `student`;
+/*!40000 ALTER TABLE `student` DISABLE KEYS */;
+INSERT INTO `student` (`id`, `an_studiu`, `id_serie`, `id_grupa`) VALUES
+	(1, 2015, 3, 1);
+/*!40000 ALTER TABLE `student` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.student_activitate
@@ -230,7 +313,12 @@ CREATE TABLE IF NOT EXISTS `student_activitate` (
   CONSTRAINT `FK_student_activitate_activitate` FOREIGN KEY (`id_activitate`) REFERENCES `activitate` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.student_activitate: ~0 rows (approximately)
+DELETE FROM `student_activitate`;
+/*!40000 ALTER TABLE `student_activitate` DISABLE KEYS */;
+INSERT INTO `student_activitate` (`id_student`, `id_activitate`) VALUES
+	(1, 1);
+/*!40000 ALTER TABLE `student_activitate` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.tip_activitate
@@ -239,9 +327,16 @@ CREATE TABLE IF NOT EXISTS `tip_activitate` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nume` varchar(255) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.tip_activitate: ~3 rows (approximately)
+DELETE FROM `tip_activitate`;
+/*!40000 ALTER TABLE `tip_activitate` DISABLE KEYS */;
+INSERT INTO `tip_activitate` (`id`, `nume`) VALUES
+	(1, 'curs'),
+	(2, 'seminar'),
+	(3, 'laborator');
+/*!40000 ALTER TABLE `tip_activitate` ENABLE KEYS */;
 
 
 -- Dumping structure for table smartfeedback.utilizator
@@ -258,13 +353,21 @@ CREATE TABLE IF NOT EXISTS `utilizator` (
   `id_profesor` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `UK_nnj7958wgayx950e6rg7v4yup` (`id_profesor`),
+  UNIQUE KEY `UK_5nly9nfi7i00292dmn460m19c` (`id_student`),
   KEY `FK_utilizator_student` (`id_student`),
   KEY `FK_utilizator_profesor` (`id_profesor`),
   CONSTRAINT `FK_utilizator_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`),
   CONSTRAINT `FK_utilizator_student` FOREIGN KEY (`id_student`) REFERENCES `student` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tabela generica pentru orice utilizator';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='Tabela generica pentru orice utilizator';
 
--- Data exporting was unselected.
+-- Dumping data for table smartfeedback.utilizator: ~0 rows (approximately)
+DELETE FROM `utilizator`;
+/*!40000 ALTER TABLE `utilizator` DISABLE KEYS */;
+INSERT INTO `utilizator` (`id`, `nume`, `prenume`, `username`, `password`, `email`, `tip`, `id_student`, `id_profesor`) VALUES
+	(1, 'Deaconescu', 'Razvan', 'rdeaconescu', 'razvan', 'razvan.deaconescu@cs.pub.ro', 1, NULL, 1),
+	(2, 'Colezea', 'Madalin', 'colezea', 'madalin', 'madalin.colezea@cs.pub.ro', 2, 1, NULL);
+/*!40000 ALTER TABLE `utilizator` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

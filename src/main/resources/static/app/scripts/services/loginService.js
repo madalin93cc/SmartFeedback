@@ -9,10 +9,10 @@ app.factory('LoginService', ['$http', function($http){
   };
 
   factory.login = function (username, password) {
-    return $http.get('login/username/' + username + "/password/" + password);
+    return $http.get('http://localhost:8080/login/username/' + username + "/password/" + password);
   };
   factory.logout = function (username, password) {
-    return $http.get('logout');
+    return $http.get('http://localhost:8080/logout');
   };
   return factory;
 }]);
