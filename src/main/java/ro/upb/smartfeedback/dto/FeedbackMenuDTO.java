@@ -10,21 +10,23 @@ public class FeedbackMenuDTO {
     private long id;
     private TipActivitateEnum tipActivitate;
     private Integer saptamana;
+    private String nume;
 
     public FeedbackMenuDTO() {
     }
 
-    public FeedbackMenuDTO(long id, TipActivitateEnum tipActivitate, Integer saptamana) {
+    public FeedbackMenuDTO(long id, TipActivitateEnum tipActivitate, Integer saptamana, String nume) {
         this.id = id;
         this.tipActivitate = tipActivitate;
         this.saptamana = saptamana;
+        this.nume = nume;
     }
 
     public FeedbackMenuDTO(Feedback feedback){
         this.id = feedback.getId();
         this.saptamana = feedback.getSaptamana();
         this.tipActivitate = TipActivitateEnum.getByActivitate(feedback.getIdActivitate());
-
+        this.nume = feedback.getNume();
     }
 
     public long getId() {

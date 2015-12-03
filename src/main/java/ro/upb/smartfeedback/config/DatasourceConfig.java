@@ -37,7 +37,7 @@ public class DatasourceConfig {
         Properties jpaProperties = new Properties();
         jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         jpaProperties.put("hibernate.hbm2ddl.auto", "update");
-        jpaProperties.put("hibernate.show_sql", "false");
+        jpaProperties.put("hibernate.show_sql", "true");
         lef.setJpaProperties(jpaProperties);
         return lef;
     }

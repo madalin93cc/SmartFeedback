@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import ro.upb.smartfeedback.dto.ActivitateMenuDTO;
 import ro.upb.smartfeedback.dto.FeedbackMenuDTO;
+import ro.upb.smartfeedback.entity.Activitate;
 import ro.upb.smartfeedback.entity.Feedback;
+import ro.upb.smartfeedback.repository.ActivitateRepository;
 import ro.upb.smartfeedback.service.ActivitatiService;
 import ro.upb.smartfeedback.service.FeedbackService;
 import ro.upb.smartfeedback.utils.RequestMappings;
@@ -24,6 +26,9 @@ public class MenuController {
 
     @Autowired
     FeedbackService feedbackService;
+
+    @Autowired
+    ActivitateRepository activitateRepository;
 
     @RequestMapping(value = RequestMappings.GET_MATERII_UTILIZATOR, method = RequestMethod.GET, produces = "application/json")
     public List<ActivitateMenuDTO> getMateriiUtilizator(){

@@ -17,9 +17,5 @@ import java.util.List;
  */
 @Repository
 public interface ActivitateRepository extends JpaRepository<Activitate, Long> {
-//    @Query("SELECT a FROM Activitate a INNER JOIN a.students b WHERE b in (:students)")
-//    ArrayList<Activitate> findByStudents(@Param("students") Collection<Student> students);
-//
-//    @Query("SELECT a FROM Activitate a INNER JOIN a.profesors b WHERE b in (:profesors)")
-//    ArrayList<Activitate> findByProfesors(@Param("profesors") Collection<Profesor> profesors);
+
 }

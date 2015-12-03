@@ -31,8 +31,8 @@ public class Activitate implements BaseEntity {
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_activitate_serie"), name = "id_serie", unique = false, nullable = false, updatable = true)
     private Serie idSerie;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_activitate_grupa"), name = "id_grupa", unique = false, nullable = false, updatable = true)
+    @ManyToOne(optional = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_activitate_grupa"), name = "id_grupa", unique = false, nullable = true, updatable = true)
     private Grupa idGrupa;
 
     @ManyToMany
