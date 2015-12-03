@@ -32,7 +32,7 @@ var app = angular
       })
       .when('/completare_feedback', {
         templateUrl: 'views/completare_feedback.html',
-        controller: 'MainCtrl'
+        controller: 'CompletareFeedbackCtrl'
       })
       .otherwise({
         redirectTo: '/'
