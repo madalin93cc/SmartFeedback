@@ -1,5 +1,3 @@
-<script src="//canvasjs.com/assets/script/canvasjs.min.js"></script>
-
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
@@ -85,13 +83,19 @@
 
     <div class="row">
       <!--AICI PUI COMENTARIILE-->
-      <div align="center">
-        <br>
+      <div class="row text-center">
         <h3> Adaugă comentariu</h3>
-        <textarea id="textareaComment" style="background-color:#f8f8f8; height: 100px; width: 500px;resize: none;"></textarea>
       </div>
-      <div align="center">
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+          <textarea class="form-control" rows="3"></textarea>
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-sm-2 col-sm-offset-5">
         <button onclick="saveComment()" type="button" id="saveComment" class="btn btn-primary btn-md">Salveaza comentariul</button>
+        </div>
       </div>
     </div>
 
@@ -112,7 +116,7 @@
                         </div>
                         <div class="timeline-body">
                             <p id="comment"></p>
-                    </div>
+                        </div>
                     </div>
                 </li>
                 <li class="timeline-inverted success">
