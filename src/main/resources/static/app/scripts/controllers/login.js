@@ -8,34 +8,38 @@
  * Controller of the smartFeedbackApp
  */
 angular.module('smartFeedbackApp')
-  .controller('LoginCtrl', ['$cookies', '$rootScope', '$scope', '$location', 'LoginService',
-    function ($cookies, $rootScope, $scope, $location, LoginService) {
+  .controller('LoginCtrl', ['$cookies', '$rootScope', '$scope', '$location', '$route','LoginService',
+    function ($cookies, $rootScope, $scope, $location, $route, LoginService) {
+      if ($cookies.getObject('isAuthenticated')){
+        debugger;
+        var user = $cookies.getObject('isAuthenticated');
+        $scope.username = user.prenume + " " + user.nume;
+      }
+      $scope.login = function () {
+        if ($scope.user && $scope.user.username && $scope.user.password) {
+          LoginService.login($scope.user.username, $scope.user.password)
+            .success(function (response) {
+              if (response) {
+                $cookies.remove('isAuthenticated');
+                $cookies.putObject('isAuthenticated', response);
+                $scope.username = response.prenume + " " + response.nume;
+                $rootScope.isAuthenticated = true;
+                $location.path("#/");
+              }
+            });
+        }
+      };
 
-    $scope.username = "Ion";
-    $scope.login = function () {
-      if ($scope.user && $scope.user.username && $scope.user.password) {
-        LoginService.login($scope.user.username, $scope.user.password)
-          .success(function (response) {
-            if (response) {
-              $cookies.put('isAuthenticated', $scope.user);
-              $rootScope.isAuthenticated = true;
-              LoginService.user = response;
-              $location.path("#/");
+      $scope.logout = function () {
+        LoginService.logout()
+          .success(function(response){
+            if (response){
+              $rootScope.isAuthenticated = false;
+              $cookies.remove('isAuthenticated');
+              $location.path("#/login");
             }
           });
       }
-    };
-
-    $scope.logout = function () {
-      LoginService.logout()
-        .success(function(response){
-          if (response){
-            $rootScope.isAuthenticated = false;
-            $cookies.remove('isAuthenticated');
-            $location.path("#/login");
-          }
-        });
-    }
 
   }]);
 
