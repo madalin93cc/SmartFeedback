@@ -12,7 +12,11 @@
  */
 angular.module('smartFeedbackApp')
     .controller('CompletareFeedbackCtrl', ['$scope', function ($scope) {
-        $scope.value = 1;
+        $scope.value1 = 1;
+        $scope.value2 = 1;
+        $scope.value3 = 1;
+        $scope.value4 = 1;
+        $scope.value5 = 1;
         $scope.numeFeedback = "USO feedback saptamana 2";
     }]);
 

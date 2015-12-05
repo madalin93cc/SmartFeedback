@@ -5,72 +5,72 @@
         </div>
     </div>
     <div class="row" align="center">
-      <h3> Statistica</h3>
+      <h3> Statistică</h3>
       <br>
-      <p>Numarul studentilor participanti:</p>
-      <p>Numarul feedback-urilor completate:</p>
-      <p>Nota actuala a cursului:</p>
+      <p>Numărul studenților participanți:</p>
+      <p>Numărul feedback-urilor completate:</p>
+      <p>Nota actuală a cursului:</p>
     </div>
 
-  <h3  style="margin-left: 50px"> Acordare calificative</h3>
+  <h3 align="center"> Acordare calificative</h3>
   <br>
   <!--AICI PUI CALIFICATIVELE-->
     <div class="row">
-        <div class="col-lg-2" style = "height: 54px; padding-top: 25px">
-          Nota generala
+        <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
+          Nota generală
         </div>
-        <div class="col-lg-4">
+        <div class="col-lg-6">
           <rzslider
-            rz-slider-model="value"
-            rz-slider-options="{floor: 1, ceil: 10, step:1}">
+            rz-slider-model="value1"
+            rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
           </rzslider>
         </div>
     </div>
     <!--AICI PUI CALIFICATIVELE-->
     <div class="row">
-      <div class="col-lg-2" style = "height: 54px; padding-top: 25px">
-        Nota generala
+      <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
+        Interacțiunea cu studenții
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <rzslider
-          rz-slider-model="value"
-          rz-slider-options="{floor: 1, ceil: 10, step:1}">
+          rz-slider-model="value2"
+          rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
         </rzslider>
       </div>
     </div>
     <!--AICI PUI CALIFICATIVELE-->
     <div class="row">
-      <div class="col-lg-2" style = "height: 54px; padding-top: 25px">
-        Nota generala
+      <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
+        Gradul de înțelegere
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <rzslider
-          rz-slider-model="value"
-          rz-slider-options="{floor: 1, ceil: 10, step:1}">
+          rz-slider-model="value3"
+          rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
         </rzslider>
       </div>
     </div>
     <!--AICI PUI CALIFICATIVELE-->
     <div class="row">
-      <div class="col-lg-2" style = "height: 54px; padding-top: 25px">
-        Nota generala
+      <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
+        Organizare
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <rzslider
-          rz-slider-model="value"
-          rz-slider-options="{floor: 1, ceil: 10, step:1}">
+          rz-slider-model="value4"
+          rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
         </rzslider>
       </div>
     </div>
     <!--AICI PUI CALIFICATIVELE-->
     <div class="row">
-      <div class="col-lg-2" style = "height: 54px; padding-top: 25px">
-        Nota generala
+      <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
+        Expunerea activității
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <rzslider
-          rz-slider-model="value"
-          rz-slider-options="{floor: 1, ceil: 10, step:1}">
+          rz-slider-model="value5"
+          rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
         </rzslider>
       </div>
     </div>
@@ -81,10 +81,66 @@
       <!--AICI PUI COMENTARIILE-->
       <div align="center">
         <br>
-        <h3> Adauga comentariu</h3>
-        <textarea style="background-color:#f8f8f8; height: 100px; width: 500px"></textarea>
+        <h3> Adaugă comentariu</h3>
+        <textarea id="textareaComment" style="background-color:#f8f8f8; height: 100px; width: 500px;resize: none;"></textarea>
+      </div>
+      <div align="center">
+        <button onclick="saveComment()" type="button" id="saveComment" class="btn btn-primary btn-md">Salveaza comentariul</button>
       </div>
     </div>
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-clock-o fa-fw"></i> Comentarii
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <ul class="timeline">
+                <li class="timeline-inverted success">
+                    <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Ionel Danciulescu</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p id="comment"></p>
+                    </div>
+                    </div>
+                </li>
+                <li class="timeline-inverted success">
+                    <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Student</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Tres bien</p>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="timeline-inverted success">
+                    <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i>
+                    </div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h4 class="timeline-title">Ionel Danciulescu</h4>
+                        </div>
+                        <div class="timeline-body">
+                            <p>Comentariu</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+
+
+
     <div class="row">
     <div align="center" style="margin-top: 10px">
       <button type="button" class="btn btn-primary">Trimitere</button>
@@ -106,6 +162,11 @@
 </style>
 
 <script>
+    function saveComment() {
+        document.getElementById('comment').innerHTML = document.getElementById('textareaComment').value;
+        document.getElementById('saveComment').disabled = true;
+    }
+
     function cbInteresantChange(obj) {
         document.getElementById("CbInteresant").checked = false;
         document.getElementById("CbNInteresant").checked = false;
