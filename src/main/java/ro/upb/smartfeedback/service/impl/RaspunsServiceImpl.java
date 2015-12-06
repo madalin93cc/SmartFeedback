@@ -12,6 +12,7 @@ import ro.upb.smartfeedback.repository.RaspunsIntrebareRepository;
 import ro.upb.smartfeedback.service.RaspunsService;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by George on 12/6/2015.
@@ -31,11 +32,16 @@ public class RaspunsServiceImpl implements RaspunsService{
     IntrebariRepository intrebariRepository;
 
     @Override
-    public Boolean saveIntrebare(long idFeedback, User utilizator, long idIntrebare, Integer raspuns) {
+    public Boolean saveIntrebare(Long idFeedback, User utilizator, Long idIntrebare, Integer raspuns) {
         Feedback feedback = feedbackRepository.getOne(idFeedback);
         Intrebari intrebare = intrebariRepository.getOne(idIntrebare);
 
+        List<RaspunsIntrebare> raspAnterior = raspunsIntrebareRepository.getRaspunsForSpecificUserFeedbackIntrebare(utilizator.getId(), idIntrebare, idFeedback);
         RaspunsIntrebare raspunsIntrebare = new RaspunsIntrebare();
+
+        if(!raspAnterior.isEmpty()) {
+            raspunsIntrebare.setId(raspAnterior.get(0).getId());
+        }
         raspunsIntrebare.setIdFeedback(feedback);
         raspunsIntrebare.setIdUser(utilizator);
         raspunsIntrebare.setIdIntrebare(intrebare);
@@ -46,7 +52,7 @@ public class RaspunsServiceImpl implements RaspunsService{
     }
 
     @Override
-    public Boolean saveComentariu(long idFeedback, User utilizator, String raspuns) {
+    public Boolean saveComentariu(Long idFeedback, User utilizator, String raspuns) {
         Feedback feedback = feedbackRepository.getOne(idFeedback);
 
         RaspunsIntrebare raspunsIntrebare = new RaspunsIntrebare();

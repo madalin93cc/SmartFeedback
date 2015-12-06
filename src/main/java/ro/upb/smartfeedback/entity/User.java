@@ -32,11 +32,11 @@ public class User implements BaseEntity {
     private Integer tip;
 
     @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_utilizator_student"), name = "id_student", unique = true, nullable = false, updatable = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_utilizator_student"), name = "id_student", unique = true, nullable = true, updatable = true)
     private Student idStudent;
 
     @OneToOne(optional = false)
-    @JoinColumn(foreignKey = @ForeignKey(name = "FK_utilizator_profesor"), name = "id_profesor", unique = true, nullable = false, updatable = true)
+    @JoinColumn(foreignKey = @ForeignKey(name = "FK_utilizator_profesor"), name = "id_profesor", unique = true, nullable = true, updatable = true)
     private Profesor idProfesor;
 
     public User(String nume, String prenume, String username, String password, String email, Integer tip, Student idStudent, Profesor idProfesor) {

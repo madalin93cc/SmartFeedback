@@ -31,6 +31,10 @@ public class FeedbackController {
         if(!completareFeedbackDTO.getComentariu().isEmpty()) {
             raspunsService.saveComentariu(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, completareFeedbackDTO.getComentariu());
         }
+        raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, 1l, completareFeedbackDTO.getNotaGenerala());
+        raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, 2l, completareFeedbackDTO.getInteractiune());
+        raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, 3l, completareFeedbackDTO.getGradIntelegere());
+        raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, 4l, completareFeedbackDTO.getExpunere());
 
     }
 }

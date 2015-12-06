@@ -4,7 +4,7 @@ package ro.upb.smartfeedback.dto;
  * Created by colez on 06/12/2015.
  */
 public class CompletareFeedbackDTO {
-    private Integer idFeedback;
+    private Long idFeedback;
     private Integer notaGenerala;
     private Integer interactiune;
     private Integer gradIntelegere;
@@ -15,7 +15,7 @@ public class CompletareFeedbackDTO {
     public CompletareFeedbackDTO() {
     }
 
-    public CompletareFeedbackDTO(Integer notaGenerala, Integer interactiune, Integer gradIntelegere, Integer idFeedback, Integer organizare, Integer expunere, String comentariu) {
+    public CompletareFeedbackDTO(Integer notaGenerala, Integer interactiune, Integer gradIntelegere, Long idFeedback, Integer organizare, Integer expunere, String comentariu) {
         this.idFeedback = idFeedback;
         this.notaGenerala = notaGenerala;
         this.interactiune = interactiune;
@@ -25,11 +25,11 @@ public class CompletareFeedbackDTO {
         this.comentariu = comentariu;
     }
 
-    public Integer getIdFeedback() {
+    public Long getIdFeedback() {
         return idFeedback;
     }
 
-    public void setIdFeedback(Integer idFeedback) {
+    public void setIdFeedback(Long idFeedback) {
         this.idFeedback = idFeedback;
     }
 

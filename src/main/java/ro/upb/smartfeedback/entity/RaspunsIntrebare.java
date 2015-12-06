@@ -22,15 +22,15 @@ public class RaspunsIntrebare implements BaseEntity {
     @Column(name = "raspuns", nullable = false)
     private String raspuns;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_feedback_raspuns"),name = "id_feedback", unique = false, nullable = false, updatable = true)
     private Feedback idFeedback;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_raspuns_intrebare_utilizator"),name = "id_utilizator", unique = false, nullable = false, updatable = true)
     private User idUser;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_raspuns_intrebare_intrebari"),name = "id_intrebare", unique = false, nullable = true, updatable = true)
     private Intrebari idIntrebare;
 
