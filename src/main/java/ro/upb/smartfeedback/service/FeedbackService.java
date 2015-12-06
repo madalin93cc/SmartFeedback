@@ -1,5 +1,6 @@
 package ro.upb.smartfeedback.service;
 
+import ro.upb.smartfeedback.dto.FeedbackMenuDTO;
 import ro.upb.smartfeedback.entity.Feedback;
 
 import java.util.List;
@@ -9,4 +10,6 @@ import java.util.List;
  */
 public interface FeedbackService {
     public List<Feedback> getAllFeedbacksForActivity(Long activityId);
+
+    public FeedbackMenuDTO getFeedbackDetailsById(Long id);
 }

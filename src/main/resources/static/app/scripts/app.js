@@ -30,7 +30,7 @@ var app = angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
-      .when('/completare_feedback', {
+      .when('/completare_feedback/:feedbackId', {
         templateUrl: 'views/completare_feedback.html',
         controller: 'CompletareFeedbackCtrl'
       })

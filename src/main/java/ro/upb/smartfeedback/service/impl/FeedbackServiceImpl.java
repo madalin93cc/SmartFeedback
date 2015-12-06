@@ -2,6 +2,7 @@ package ro.upb.smartfeedback.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.upb.smartfeedback.dto.FeedbackMenuDTO;
 import ro.upb.smartfeedback.entity.Activitate;
 import ro.upb.smartfeedback.entity.Feedback;
 import ro.upb.smartfeedback.repository.FeedbackRepository;
@@ -22,5 +23,11 @@ public class FeedbackServiceImpl implements FeedbackService{
     @Override
     public List<Feedback> getAllFeedbacksForActivity(Long activityId) {
         return feedbackRepository.getAllFeedbackForActivity(activityId);
+    }
+
+    @Override
+    public FeedbackMenuDTO getFeedbackDetailsById(Long id) {
+        Feedback feedback = feedbackRepository.getOne(id);
+        return new FeedbackMenuDTO(feedback);
     }
 }

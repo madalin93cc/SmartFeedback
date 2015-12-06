@@ -8,8 +8,12 @@
  * Controller of the smartFeedbackApp
  */
 angular.module('smartFeedbackApp')
-  .controller('MenuCtrl', ['$scope', 'MenuService', function ($scope, MenuService) {
+  .controller('MenuCtrl', ['$scope', '$location', 'MenuService', function ($scope, $location, MenuService) {
     MenuService.getMateriiUtilizator().then(function(response){
       $scope.cursuri = response;
     });
+
+    $scope.viewFeedback = function (id) {
+      $location.path("/completare_feedback/" + id);
+    }
   }]);

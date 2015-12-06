@@ -1,7 +1,7 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header" align="center">{{numeFeedback}}</h1>
+            <h1 class="page-header" align="center">{{feedbackDetails.nume}}</h1>
         </div>
     </div>
     <div class="row" align="center">
@@ -9,7 +9,6 @@
       <br>
       <p>Numărul studenților participanți:</p>
       <p>Numărul feedback-urilor completate:</p>
-      <p>Nota actuală a cursului:</p>
     </div>
 
     <div id="chartContainer" style="height: 300px; width: 100%;">
@@ -25,7 +24,7 @@
         </div>
         <div class="col-lg-6">
           <rzslider
-            rz-slider-model="value1"
+            rz-slider-model="feedback.notaGenerala"
             rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
           </rzslider>
         </div>
@@ -37,7 +36,7 @@
       </div>
       <div class="col-lg-6">
         <rzslider
-          rz-slider-model="value2"
+          rz-slider-model="feedback.interactiune"
           rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
         </rzslider>
       </div>
@@ -49,7 +48,7 @@
       </div>
       <div class="col-lg-6">
         <rzslider
-          rz-slider-model="value3"
+          rz-slider-model="feedback.gradIntelegere"
           rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
         </rzslider>
       </div>
@@ -61,7 +60,7 @@
       </div>
       <div class="col-lg-6">
         <rzslider
-          rz-slider-model="value4"
+          rz-slider-model="feedback.organizare"
           rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
         </rzslider>
       </div>
@@ -73,13 +72,11 @@
       </div>
       <div class="col-lg-6">
         <rzslider
-          rz-slider-model="value5"
+          rz-slider-model="feedback.expunere"
           rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
         </rzslider>
       </div>
     </div>
-
-
 
     <div class="row">
       <!--AICI PUI COMENTARIILE-->
@@ -88,13 +85,13 @@
       </div>
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-          <textarea class="form-control" rows="3"></textarea>
+          <textarea ng-model="feedback.comentariu" class="form-control" rows="3"></textarea>
         </div>
       </div>
       <br/>
       <div class="row">
         <div class="col-sm-2 col-sm-offset-5">
-        <button onclick="saveComment()" type="button" id="saveComment" class="btn btn-primary btn-md">Salveaza comentariul</button>
+        <button ng-click="saveFeedback()" type="button" class="btn btn-primary btn-md">Salveaza comentariul</button>
         </div>
       </div>
     </div>

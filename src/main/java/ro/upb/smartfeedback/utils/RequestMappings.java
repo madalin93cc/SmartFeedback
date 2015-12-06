@@ -6,8 +6,8 @@ package ro.upb.smartfeedback.utils;
  */
 public interface RequestMappings {
 
-//    public static final String EXAMPLE_MAPPING = "/get/example/{firstName}";
-//    public static final String ADD_PERSON = "/add/person";
+    public static final String SAVE_FEEDBACK = "/saveFeedback";
+    public static final String GET_DETALII_FEEDBACK_BY_ID = "/getFeedbackDetailById/{id}";
     public static final String GET_MATERII_UTILIZATOR = "/getMateriiUtilizator";
     public static final String GET_LOGIN_PARAMS = "/login/username/{username}/password/{password}";
     public static final String LOGOUT = "/logout";

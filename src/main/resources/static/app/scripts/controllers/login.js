@@ -11,7 +11,6 @@ angular.module('smartFeedbackApp')
   .controller('LoginCtrl', ['$cookies', '$rootScope', '$scope', '$location', '$route','LoginService',
     function ($cookies, $rootScope, $scope, $location, $route, LoginService) {
       if ($cookies.getObject('isAuthenticated')){
-        debugger;
         var user = $cookies.getObject('isAuthenticated');
         $scope.username = user.prenume + " " + user.nume;
       }
@@ -43,9 +42,9 @@ angular.module('smartFeedbackApp')
 
   }]);
 
-app.run(['$cookies', '$rootScope', '$location',
+app.run(['$cookies', '$rootScope', '$location', '$route',
   function (
-    $cookies ,$rootScope, $location) {
+    $cookies ,$rootScope, $location, $route) {
   $rootScope.$on('$routeChangeStart', function (event) {
     if ($cookies.get('isAuthenticated')){
       $rootScope.isAuthenticated = true;
