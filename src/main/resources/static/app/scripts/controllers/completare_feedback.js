@@ -22,6 +22,7 @@ angular.module('smartFeedbackApp')
     };
 
     $scope.feedback = {
+      'idFeedback' : $routeParams.feedbackId,
       'notaGenerala': 5,
       'interactiune': 5,
       'gradIntelegere': 5,

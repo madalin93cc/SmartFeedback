@@ -4,6 +4,7 @@ package ro.upb.smartfeedback.dto;
  * Created by colez on 06/12/2015.
  */
 public class CompletareFeedbackDTO {
+    private Integer idFeedback;
     private Integer notaGenerala;
     private Integer interactiune;
     private Integer gradIntelegere;
@@ -14,13 +15,22 @@ public class CompletareFeedbackDTO {
     public CompletareFeedbackDTO() {
     }
 
-    public CompletareFeedbackDTO(Integer notaGenerala, Integer interactiune, Integer gradIntelegere, Integer organizare, Integer expunere, String comentariu) {
+    public CompletareFeedbackDTO(Integer notaGenerala, Integer interactiune, Integer gradIntelegere, Integer idFeedback, Integer organizare, Integer expunere, String comentariu) {
+        this.idFeedback = idFeedback;
         this.notaGenerala = notaGenerala;
         this.interactiune = interactiune;
         this.gradIntelegere = gradIntelegere;
         this.organizare = organizare;
         this.expunere = expunere;
         this.comentariu = comentariu;
+    }
+
+    public Integer getIdFeedback() {
+        return idFeedback;
+    }
+
+    public void setIdFeedback(Integer idFeedback) {
+        this.idFeedback = idFeedback;
     }
 
     public Integer getNotaGenerala() {
@@ -78,6 +88,7 @@ public class CompletareFeedbackDTO {
 
         CompletareFeedbackDTO that = (CompletareFeedbackDTO) o;
 
+        if (idFeedback != null ? !idFeedback.equals(that.idFeedback) : that.idFeedback != null) return false;
         if (notaGenerala != null ? !notaGenerala.equals(that.notaGenerala) : that.notaGenerala != null) return false;
         if (interactiune != null ? !interactiune.equals(that.interactiune) : that.interactiune != null) return false;
         if (gradIntelegere != null ? !gradIntelegere.equals(that.gradIntelegere) : that.gradIntelegere != null)
@@ -90,7 +101,8 @@ public class CompletareFeedbackDTO {
 
     @Override
     public int hashCode() {
-        int result = notaGenerala != null ? notaGenerala.hashCode() : 0;
+        int result = idFeedback != null ? idFeedback.hashCode() : 0;
+        result = 31 * result + (notaGenerala != null ? notaGenerala.hashCode() : 0);
         result = 31 * result + (interactiune != null ? interactiune.hashCode() : 0);
         result = 31 * result + (gradIntelegere != null ? gradIntelegere.hashCode() : 0);
         result = 31 * result + (organizare != null ? organizare.hashCode() : 0);
