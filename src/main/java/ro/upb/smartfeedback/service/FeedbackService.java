@@ -1,5 +1,6 @@
 package ro.upb.smartfeedback.service;
 
+import ro.upb.smartfeedback.dto.CompletareFeedbackDTO;
 import ro.upb.smartfeedback.dto.FeedbackMenuDTO;
 import ro.upb.smartfeedback.entity.Feedback;
 
@@ -12,4 +13,6 @@ public interface FeedbackService {
     public List<Feedback> getAllFeedbacksForActivity(Long activityId);
 
     public FeedbackMenuDTO getFeedbackDetailsById(Long id);
+
+    public CompletareFeedbackDTO getFeedbackByUserAndFeedbackId(Long userId, Long feedbackId);
 }

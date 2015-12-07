@@ -9,6 +9,7 @@ import ro.upb.smartfeedback.entity.Comentariu;
 import ro.upb.smartfeedback.service.FeedbackService;
 import ro.upb.smartfeedback.service.RaspunsService;
 import ro.upb.smartfeedback.utils.RequestMappings;
+import ro.upb.smartfeedback.utils.TipIntrebareEnum;
 
 /**
  * Created by colez on 06/12/2015.
@@ -31,10 +32,15 @@ public class FeedbackController {
         if(!completareFeedbackDTO.getComentariu().isEmpty()) {
             raspunsService.saveComentariu(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, completareFeedbackDTO.getComentariu());
         }
-        raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, 1l, completareFeedbackDTO.getNotaGenerala());
-        raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, 2l, completareFeedbackDTO.getInteractiune());
-        raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, 3l, completareFeedbackDTO.getGradIntelegere());
-        raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, 4l, completareFeedbackDTO.getExpunere());
+        raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.NOTA_GENERALA.getId(), completareFeedbackDTO.getNotaGenerala());
+        raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.INTERACTIUNE.getId(), completareFeedbackDTO.getInteractiune());
+        raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.GRAD_INTELEGERE.getId(), completareFeedbackDTO.getGradIntelegere());
+        raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.ORGANIZARE.getId(), completareFeedbackDTO.getOrganizare());
+        raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.EXPUNERE.getId(), completareFeedbackDTO.getExpunere());
+    }
 
+    @RequestMapping(value = RequestMappings.GET_GEEDBACK, method = RequestMethod.GET, produces = "application/json")
+    public CompletareFeedbackDTO getFeedbackByUserAndFeedbackId(@PathVariable("userId") Long userId, @PathVariable("feedbackId") Long feedbackId){
+        return feedbackService.getFeedbackByUserAndFeedbackId(userId, feedbackId);
     }
 }

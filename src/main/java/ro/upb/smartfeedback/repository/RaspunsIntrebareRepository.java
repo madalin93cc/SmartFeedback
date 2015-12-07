@@ -16,7 +16,5 @@ import java.util.List;
 
 @Repository
 public interface RaspunsIntrebareRepository extends JpaRepository<RaspunsIntrebare, Long> {
-
-    @Query("select f from RaspunsIntrebare f where f.idUser.id = :user and f.idIntrebare.id = :intrebare and f.idFeedback.id = :feedback")
-    List<RaspunsIntrebare> getRaspunsForSpecificUserFeedbackIntrebare(@Param("user") Long user, @Param("intrebare") Long intrebare, @Param("feedback") Long feedback);
+    List<RaspunsIntrebare> getAllByIdUserAndIdFeedback(User user, Feedback feedback);
 }

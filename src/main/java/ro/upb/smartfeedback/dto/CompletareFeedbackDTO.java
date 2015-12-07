@@ -1,5 +1,11 @@
 package ro.upb.smartfeedback.dto;
 
+import ro.upb.smartfeedback.entity.RaspunsIntrebare;
+import ro.upb.smartfeedback.utils.TipIntrebareEnum;
+import ro.upb.smartfeedback.utils.TipRaspunsEnum;
+
+import java.util.List;
+
 /**
  * Created by colez on 06/12/2015.
  */
@@ -23,6 +29,29 @@ public class CompletareFeedbackDTO {
         this.organizare = organizare;
         this.expunere = expunere;
         this.comentariu = comentariu;
+    }
+
+    public CompletareFeedbackDTO(List<RaspunsIntrebare> raspunsIntrebareList){
+        this.idFeedback = raspunsIntrebareList.get(0).getIdFeedback().getId();
+        for (RaspunsIntrebare r: raspunsIntrebareList){
+            if (r.getTipRaspuns().equals(TipRaspunsEnum.INTREBARE.getId())){
+                if (r.getIdIntrebare().equals(TipIntrebareEnum.NOTA_GENERALA)){
+                    this.notaGenerala = Integer.parseInt(r.getRaspuns());
+                }
+                if (r.getIdIntrebare().equals(TipIntrebareEnum.INTERACTIUNE)){
+                    this.interactiune = Integer.parseInt(r.getRaspuns());
+                }
+                if (r.getIdIntrebare().equals(TipIntrebareEnum.EXPUNERE)){
+                    this.expunere = Integer.parseInt(r.getRaspuns());
+                }
+                if (r.getIdIntrebare().equals(TipIntrebareEnum.GRAD_INTELEGERE)){
+                    this.gradIntelegere = Integer.parseInt(r.getRaspuns());
+                }
+                if (r.getIdIntrebare().equals(TipIntrebareEnum.ORGANIZARE)){
+                    this.organizare = Integer.parseInt(r.getRaspuns());
+                }
+            }
+        }
     }
 
     public Long getIdFeedback() {

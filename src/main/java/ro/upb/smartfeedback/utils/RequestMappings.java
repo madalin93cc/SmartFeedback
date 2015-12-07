@@ -6,6 +6,7 @@ package ro.upb.smartfeedback.utils;
  */
 public interface RequestMappings {
 
+    public static final String GET_GEEDBACK = "/getFeedback/{userId}/{feedbackId}";
     public static final String SAVE_FEEDBACK = "/saveFeedback";
     public static final String GET_DETALII_FEEDBACK_BY_ID = "/getFeedbackDetailById/{id}";
     public static final String GET_MATERII_UTILIZATOR = "/getMateriiUtilizator";
