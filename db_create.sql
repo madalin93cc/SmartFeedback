@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `feedback` (
   CONSTRAINT `FK_feedback_activitate` FOREIGN KEY (`id_activitate`) REFERENCES `activitate` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Dumping data for table smartfeedback.feedback: ~0 rows (approximately)
+-- Dumping data for table smartfeedback.feedback: ~5 rows (approximately)
 /*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
 REPLACE INTO `feedback` (`id`, `nume`, `id_activitate`, `status`, `from_date`, `to_date`, `saptamana`) VALUES
 	(1, 'USO CC Saptamana 1', 1, 1, '2015-12-02 15:46:56', '2015-12-07 15:47:03', 1),
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `feedback_intrebari` (
   CONSTRAINT `FK_feedback_intrebari_intrebari` FOREIGN KEY (`id_intrebare`) REFERENCES `intrebari` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table smartfeedback.feedback_intrebari: ~0 rows (approximately)
+-- Dumping data for table smartfeedback.feedback_intrebari: ~25 rows (approximately)
 /*!40000 ALTER TABLE `feedback_intrebari` DISABLE KEYS */;
 REPLACE INTO `feedback_intrebari` (`id_feedback`, `id_intrebare`) VALUES
 	(1, 1),
@@ -240,17 +240,22 @@ CREATE TABLE IF NOT EXISTS `raspuns_intrebare` (
   `raspuns` text,
   `tip_raspuns` int(11) NOT NULL COMMENT '1 - observatie; 2 - intrebare',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_9orj7o6cdwdlf8358r60qtvg1` (`id_feedback`),
-  UNIQUE KEY `UK_mkklwfyeasna4luj1w6s1jh6f` (`id_utilizator`),
-  UNIQUE KEY `UK_3fek4sob1owyamh7nt26fevre` (`id_intrebare`),
   KEY `FK__feedback_raspuns` (`id_feedback`),
-  CONSTRAINT `FK_feedback_raspuns` FOREIGN KEY (`id_feedback`) REFERENCES `feedback` (`id`),
+  KEY `FK_raspuns_intrebare_utilizator` (`id_utilizator`),
+  KEY `FK_raspuns_intrebare_intrebari` (`id_intrebare`),
+  CONSTRAINT `FK_raspuns_intrebare_feedback` FOREIGN KEY (`id_feedback`) REFERENCES `feedback` (`id`),
   CONSTRAINT `FK_raspuns_intrebare_intrebari` FOREIGN KEY (`id_intrebare`) REFERENCES `intrebari` (`id`),
   CONSTRAINT `FK_raspuns_intrebare_utilizator` FOREIGN KEY (`id_utilizator`) REFERENCES `utilizator` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
--- Dumping data for table smartfeedback.raspuns_intrebare: ~0 rows (approximately)
+-- Dumping data for table smartfeedback.raspuns_intrebare: ~5 rows (approximately)
 /*!40000 ALTER TABLE `raspuns_intrebare` DISABLE KEYS */;
+REPLACE INTO `raspuns_intrebare` (`id`, `id_feedback`, `id_utilizator`, `id_intrebare`, `raspuns`, `tip_raspuns`) VALUES
+	(1, 2, 2, NULL, 'test', 1),
+	(3, 1, 2, 1, '7', 2),
+	(4, 1, 2, 2, '6', 2),
+	(5, 1, 2, 3, '7', 2),
+	(6, 1, 2, 4, '6', 2);
 /*!40000 ALTER TABLE `raspuns_intrebare` ENABLE KEYS */;
 
 
