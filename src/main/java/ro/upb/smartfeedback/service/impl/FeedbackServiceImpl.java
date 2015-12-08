@@ -47,6 +47,7 @@ public class FeedbackServiceImpl implements FeedbackService{
         User user = userRepository.findById(userId);
         Feedback feedback = feedbackRepository.findOne(feedbackId);
         List<RaspunsIntrebare> raspunsIntrebares = raspunsIntrebareRepository.getAllByIdUserAndIdFeedback(user, feedback);
-        return new CompletareFeedbackDTO(raspunsIntrebares);
+        CompletareFeedbackDTO completareFeedbackDTO = new CompletareFeedbackDTO();
+        return completareFeedbackDTO.setResponses(raspunsIntrebares);
     }
 }

@@ -12,6 +12,17 @@ app.factory('FeedbackService', ['$http',
             return response;
           });
         },
+        getFeedback: function (userId, feedbackId) {
+          return $http({
+            method: 'GET',
+            url: 'http://localhost:8080/getFeedback/' + userId + "/" + feedbackId
+          }).then(function successCallback(response) {
+            return response.data;
+          }, function errorCallback(response) {
+            console.log('error');
+            return response;
+          });
+        },
         saveFeedback: function (feedback) {
           return $http({
             method: 'POST',

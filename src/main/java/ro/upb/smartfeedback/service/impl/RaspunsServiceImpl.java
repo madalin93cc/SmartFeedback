@@ -15,6 +15,7 @@ import ro.upb.smartfeedback.utils.TipRaspunsEnum;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -45,6 +46,7 @@ public class RaspunsServiceImpl implements RaspunsService{
         raspunsIntrebare.setIdIntrebare(intrebare);
         raspunsIntrebare.setRaspuns(Integer.toString(raspuns));
         raspunsIntrebare.setTipRaspuns(TipRaspunsEnum.INTREBARE.getId());
+        raspunsIntrebare.setCreatedAt(new Date());
         return raspunsIntrebareRepository.save(raspunsIntrebare);
     }
 
@@ -56,6 +58,7 @@ public class RaspunsServiceImpl implements RaspunsService{
         raspunsIntrebare.setIdUser(utilizator);
         raspunsIntrebare.setRaspuns(raspuns);
         raspunsIntrebare.setTipRaspuns(TipRaspunsEnum.OBSERVATIE.getId());
+        raspunsIntrebare.setCreatedAt(new Date());
         return raspunsIntrebareRepository.saveAndFlush(raspunsIntrebare);
     }
 

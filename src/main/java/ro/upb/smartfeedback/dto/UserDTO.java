@@ -45,7 +45,8 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String nume, String prenume, String username) {
+    public UserDTO(Long id, String nume, String prenume, String username) {
+        this.id = id;
         this.nume = nume;
         this.prenume = prenume;
         this.username = username;

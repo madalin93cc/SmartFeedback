@@ -18,6 +18,9 @@
   <h3 align="center"> Acordare calificative</h3>
   <br>
   <!--AICI PUI CALIFICATIVELE-->
+    <div class="row" ng-show="completed">
+      <span class="label label-warning">Feedback-ul a fost deja completat</span>
+    </div>
     <div class="row">
         <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
           Nota generală
@@ -25,11 +28,10 @@
         <div class="col-lg-6">
           <rzslider
             rz-slider-model="feedback.notaGenerala"
-            rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
+            rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
           </rzslider>
         </div>
     </div>
-    <!--AICI PUI CALIFICATIVELE-->
     <div class="row">
       <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
         Interacțiunea cu studenții
@@ -37,11 +39,10 @@
       <div class="col-lg-6">
         <rzslider
           rz-slider-model="feedback.interactiune"
-          rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
+          rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
         </rzslider>
       </div>
     </div>
-    <!--AICI PUI CALIFICATIVELE-->
     <div class="row">
       <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
         Gradul de înțelegere
@@ -49,11 +50,10 @@
       <div class="col-lg-6">
         <rzslider
           rz-slider-model="feedback.gradIntelegere"
-          rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
+          rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
         </rzslider>
       </div>
     </div>
-    <!--AICI PUI CALIFICATIVELE-->
     <div class="row">
       <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
         Organizare
@@ -61,11 +61,10 @@
       <div class="col-lg-6">
         <rzslider
           rz-slider-model="feedback.organizare"
-          rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
+          rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
         </rzslider>
       </div>
     </div>
-    <!--AICI PUI CALIFICATIVELE-->
     <div class="row">
       <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
         Expunerea activității
@@ -73,30 +72,11 @@
       <div class="col-lg-6">
         <rzslider
           rz-slider-model="feedback.expunere"
-          rz-slider-options="{floor: 1, ceil: 10, showTicks: true}">
+          rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
         </rzslider>
       </div>
     </div>
-
-    <div class="row">
-      <!--AICI PUI COMENTARIILE-->
-      <div class="row text-center">
-        <h3> Adaugă comentariu</h3>
-      </div>
-      <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-          <textarea ng-model="feedback.comentariu" class="form-control" rows="3"></textarea>
-        </div>
-      </div>
-      <br/>
-      <div class="row">
-        <div class="col-sm-2 col-sm-offset-5">
-        <button ng-click="saveFeedback()" type="button" class="btn btn-primary btn-md">Salveaza comentariul</button>
-        </div>
-      </div>
-    </div>
-
-
+    <br/>
     <div class="panel panel-default">
         <div class="panel-heading">
             <i class="fa fa-clock-o fa-fw"></i> Comentarii
@@ -130,27 +110,41 @@
                 </li>
 
                 <li class="timeline-inverted success">
-                    <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i>
+                    <div class="timeline-badge info"><i class="fa fa-save"></i>
                     </div>
                     <div class="timeline-panel">
                         <div class="timeline-heading">
-                            <h4 class="timeline-title">Ionel Danciulescu</h4>
+                            <h4 class="timeline-title">Adauga comentariu</h4>
                         </div>
-                        <div class="timeline-body">
-                            <p>Comentariu</p>
+                        <div class="row">
+                          <div class="col-sm-10 col-sm-offset-1">
+                            <textarea ng-model="feedback.comentariu" class="form-control" rows="3"></textarea>
+                          </div>
                         </div>
                     </div>
                 </li>
             </ul>
         </div>
+
+      <!--<div class="row">-->
+        <!--&lt;!&ndash;AICI PUI COMENTARIILE&ndash;&gt;-->
+        <!--<div class="row text-center">-->
+          <!--<h3> Adaugă comentariu</h3>-->
+        <!--</div>-->
+        <!--<div class="row">-->
+          <!--<div class="col-sm-8 col-sm-offset-2">-->
+            <!--<textarea ng-model="feedback.comentariu" class="form-control" rows="3"></textarea>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<br/>-->
+      <!--</div>-->
+
         <!-- /.panel-body -->
     </div>
 
-
-
-    <div class="row">
+  <div class="row">
     <div align="center" style="margin-top: 10px">
-      <button type="button" class="btn btn-primary">Trimitere</button>
+      <button  ng-click="saveFeedback()" type="button" class="btn btn-primary">Trimitere</button>
     </div>
   </div>
 </div>
@@ -168,88 +162,57 @@
     }
 </style>
 
-<script>
-    function saveComment() {
-        document.getElementById('comment').innerHTML = document.getElementById('textareaComment').value;
-        document.getElementById('saveComment').disabled = true;
-    }
+<!--<script>-->
+    <!--window.onload = function () {-->
+        <!--var chart = new CanvasJS.Chart("chartContainer", {-->
+<!--//            title: {-->
+<!--//                text: "Mobile Phones Used For",-->
+<!--//                fontFamily: "Verdana",-->
+<!--//                fontColor: "Peru",-->
+<!--//                fontSize: 28-->
+<!--//-->
+<!--//            },-->
+<!--//            credits: {-->
+<!--//                enabled: false-->
+<!--//            },-->
+            <!--animationEnabled: true,-->
 
-    function cbInteresantChange(obj) {
-        document.getElementById("CbInteresant").checked = false;
-        document.getElementById("CbNInteresant").checked = false;
-        obj.checked = true;
-    }
-    function cbInteractivChange(obj) {
-        document.getElementById("CbInteractiv").checked = false;
-        document.getElementById("CbNInteractiv").checked = false;
-        obj.checked = true;
-    }
-    function cbUsorChange(obj) {
-        document.getElementById("CbUsor").checked = false;
-        document.getElementById("CbNUsor").checked = false;
-        obj.checked = true;
-    }
-    function cbOrganizatChange(obj) {
-        document.getElementById("CbOrganizat").checked = false;
-        document.getElementById("CbNOrganizat").checked = false;
-        obj.checked = true;
-    }
-    function cbUtilChange(obj) {
-        document.getElementById("CbUtil").checked = false;
-        document.getElementById("CbNUtil").checked = false;
-        obj.checked = true;
-    }
+            <!--axisY: {-->
+                <!--tickThickness: 1,-->
+                <!--lineThickness: 1,-->
+                <!--valueFormatString: "#",-->
+                <!--gridThickness: 0,-->
+                <!--interval: 1,-->
+                <!--maximum: 10-->
+            <!--},-->
+            <!--axisX: {-->
+                <!--tickThickness: 0,-->
+                <!--lineThickness: 0,-->
+                <!--labelFontSize: 18,-->
+                <!--labelFontColor: "Peru"-->
 
-    window.onload = function () {
-        var chart = new CanvasJS.Chart("chartContainer", {
-//            title: {
-//                text: "Mobile Phones Used For",
-//                fontFamily: "Verdana",
-//                fontColor: "Peru",
-//                fontSize: 28
-//
-//            },
-//            credits: {
-//                enabled: false
-//            },
-            animationEnabled: true,
+            <!--},-->
+            <!--data: [-->
+                <!--{-->
+                    <!--indexLabelFontSize: 26,-->
+                    <!--toolTipContent: "<span style='\"'color: {color};'\"'><strong>{indexLabel}</strong></span><span style='\"'font-size: 20px; color:peru '\"'><strong>{y}</strong></span>",-->
+                    <!--indexLabelPlacement: "inside",-->
+                    <!--indexLabelFontColor: "white",-->
+                    <!--indexLabelFontWeight: 600,-->
+                    <!--indexLabelFontFamily: "Verdana",-->
+                    <!--color: "#62C9C3",-->
+                    <!--type: "bar",-->
+                    <!--dataPoints: [-->
+                        <!--{ y: 7.2, label: "7.2", indexLabel: "Expunerea activitatii" },-->
+                        <!--{ y: 10.0, label: "10.0", indexLabel: "Organizare" },-->
+                        <!--{ y: 8.1, label: "8.1", indexLabel: "Gradul de intelegere" },-->
+                        <!--{ y: 6.0, label: "6.0", indexLabel: "Interactiunea cu studentii" },-->
+                        <!--{ y: 8.5, label: "8.5", indexLabel: "Nota generala" }-->
+                    <!--]-->
+                <!--}-->
+            <!--]-->
+        <!--});-->
+        <!--chart.render();-->
+    <!--}-->
 
-            axisY: {
-                tickThickness: 1,
-                lineThickness: 1,
-                valueFormatString: "#",
-                gridThickness: 0,
-                interval: 1,
-                maximum: 10
-            },
-            axisX: {
-                tickThickness: 0,
-                lineThickness: 0,
-                labelFontSize: 18,
-                labelFontColor: "Peru"
-
-            },
-            data: [
-                {
-                    indexLabelFontSize: 26,
-                    toolTipContent: "<span style='\"'color: {color};'\"'><strong>{indexLabel}</strong></span><span style='\"'font-size: 20px; color:peru '\"'><strong>{y}</strong></span>",
-                    indexLabelPlacement: "inside",
-                    indexLabelFontColor: "white",
-                    indexLabelFontWeight: 600,
-                    indexLabelFontFamily: "Verdana",
-                    color: "#62C9C3",
-                    type: "bar",
-                    dataPoints: [
-                        { y: 7.2, label: "7.2", indexLabel: "Expunerea activitatii" },
-                        { y: 10.0, label: "10.0", indexLabel: "Organizare" },
-                        { y: 8.1, label: "8.1", indexLabel: "Gradul de intelegere" },
-                        { y: 6.0, label: "6.0", indexLabel: "Interactiunea cu studentii" },
-                        { y: 8.5, label: "8.5", indexLabel: "Nota generala" }
-                    ]
-                }
-            ]
-        });
-        chart.render();
-    }
-
-</script>
+<!--</script>-->

@@ -29,7 +29,7 @@ public class LoginServiceImpl implements LoginService{
             return userDTO;
         } else {
             SmartFeedback.loggedUser = loggedUser;
-            userDTO = new UserDTO(loggedUser.getNume(), loggedUser.getPrenume(), loggedUser.getUsername());
+            userDTO = new UserDTO(loggedUser.getId(), loggedUser.getNume(), loggedUser.getPrenume(), loggedUser.getUsername());
             return userDTO;
         }
     }

@@ -17,11 +17,12 @@ public class CompletareFeedbackDTO {
     private Integer organizare;
     private Integer expunere;
     private String comentariu;
+    private Boolean completed;
 
     public CompletareFeedbackDTO() {
     }
 
-    public CompletareFeedbackDTO(Integer notaGenerala, Integer interactiune, Integer gradIntelegere, Long idFeedback, Integer organizare, Integer expunere, String comentariu) {
+    public CompletareFeedbackDTO(Integer notaGenerala, Integer interactiune, Integer gradIntelegere, Long idFeedback, Integer organizare, Integer expunere, String comentariu, Boolean completed) {
         this.idFeedback = idFeedback;
         this.notaGenerala = notaGenerala;
         this.interactiune = interactiune;
@@ -29,31 +30,39 @@ public class CompletareFeedbackDTO {
         this.organizare = organizare;
         this.expunere = expunere;
         this.comentariu = comentariu;
+        this.completed = completed;
     }
 
-    public CompletareFeedbackDTO(List<RaspunsIntrebare> raspunsIntrebareList){
+    public CompletareFeedbackDTO setResponses(List<RaspunsIntrebare> raspunsIntrebareList) {
         if (raspunsIntrebareList.size() != 0){
             this.idFeedback = raspunsIntrebareList.get(0).getIdFeedback().getId();
             for (RaspunsIntrebare r: raspunsIntrebareList){
                 if (r.getTipRaspuns().equals(TipRaspunsEnum.INTREBARE.getId())){
                     if (r.getIdIntrebare().getId().equals(TipIntrebareEnum.NOTA_GENERALA.getId())){
+                        this.completed = true;
                         this.notaGenerala = Integer.parseInt(r.getRaspuns());
                     }
                     if (r.getIdIntrebare().getId().equals(TipIntrebareEnum.INTERACTIUNE.getId())){
+                        this.completed = true;
                         this.interactiune = Integer.parseInt(r.getRaspuns());
                     }
                     if (r.getIdIntrebare().getId().equals(TipIntrebareEnum.EXPUNERE.getId())){
+                        this.completed = true;
                         this.expunere = Integer.parseInt(r.getRaspuns());
                     }
                     if (r.getIdIntrebare().getId().equals(TipIntrebareEnum.GRAD_INTELEGERE.getId())){
+                        this.completed = true;
                         this.gradIntelegere = Integer.parseInt(r.getRaspuns());
                     }
                     if (r.getIdIntrebare().getId().equals(TipIntrebareEnum.ORGANIZARE.getId())){
+                        this.completed = true;
                         this.organizare = Integer.parseInt(r.getRaspuns());
                     }
                 }
             }
+            return this;
         }
+        return null;
     }
 
     public Long getIdFeedback() {
@@ -112,6 +121,14 @@ public class CompletareFeedbackDTO {
         this.comentariu = comentariu;
     }
 
+    public Boolean getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -126,7 +143,8 @@ public class CompletareFeedbackDTO {
             return false;
         if (organizare != null ? !organizare.equals(that.organizare) : that.organizare != null) return false;
         if (expunere != null ? !expunere.equals(that.expunere) : that.expunere != null) return false;
-        return !(comentariu != null ? !comentariu.equals(that.comentariu) : that.comentariu != null);
+        if (comentariu != null ? !comentariu.equals(that.comentariu) : that.comentariu != null) return false;
+        return !(completed != null ? !completed.equals(that.completed) : that.completed != null);
 
     }
 
@@ -139,6 +157,7 @@ public class CompletareFeedbackDTO {
         result = 31 * result + (organizare != null ? organizare.hashCode() : 0);
         result = 31 * result + (expunere != null ? expunere.hashCode() : 0);
         result = 31 * result + (comentariu != null ? comentariu.hashCode() : 0);
+        result = 31 * result + (completed != null ? completed.hashCode() : 0);
         return result;
     }
 }
