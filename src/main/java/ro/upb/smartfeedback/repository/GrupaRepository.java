@@ -9,4 +9,5 @@ import ro.upb.smartfeedback.entity.Grupa;
  */
 @Repository
 public interface GrupaRepository extends JpaRepository<Grupa, Long> {
+    Grupa findById(Long id);
 }

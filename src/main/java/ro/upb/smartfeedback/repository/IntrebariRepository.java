@@ -9,4 +9,5 @@ import ro.upb.smartfeedback.entity.Intrebari;
  */
 @Repository
 public interface IntrebariRepository extends JpaRepository<Intrebari, Long>{
+    Intrebari findById(Long id);
 }

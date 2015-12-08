@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface TipActivitateRepository extends JpaRepository<TipActivitate, Long> {
     public TipActivitate getByNume(String nume);
+    TipActivitate findById(Long id);
 }

@@ -9,4 +9,5 @@ import ro.upb.smartfeedback.entity.Mesaj;
  */
 @Repository
 public interface MesajRepository extends JpaRepository<Mesaj, Long>{
+    Mesaj findById(Long id);
 }

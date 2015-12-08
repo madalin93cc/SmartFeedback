@@ -17,4 +17,5 @@ import java.util.List;
 @Repository
 public interface RaspunsIntrebareRepository extends JpaRepository<RaspunsIntrebare, Long> {
     List<RaspunsIntrebare> getAllByIdUserAndIdFeedback(User user, Feedback feedback);
+    RaspunsIntrebare findById(Long id);
 }

@@ -20,7 +20,7 @@ public class Feedback {
     @Column(name = "status", nullable = false, length = 11)
     private Integer status;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_feedback_activitate"), name = "id_activitate", unique = false, nullable = false, updatable = true)
     private Activitate idActivitate;
 

@@ -17,5 +17,5 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
 
     @Query("select f from Feedback f where f.idActivitate.id = :activitateId")
     List<Feedback> getAllFeedbackForActivity(@Param("activitateId") Long activitateId);
-
+    Feedback findById(Long id);
 }
