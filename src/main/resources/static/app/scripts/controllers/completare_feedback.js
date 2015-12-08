@@ -21,7 +21,6 @@ angular.module('smartFeedbackApp')
     });
 
     FeedbackService.getFeedback($cookies.getObject('isAuthenticated').id, $scope.feedbackId).then(function (response) {
-      debugger;
       $scope.feedback = {
         'idFeedback' : $scope.feedbackId,
         'notaGenerala': (response.notaGenerala != null)? response.notaGenerala: 5,
@@ -35,6 +34,10 @@ angular.module('smartFeedbackApp')
       $scope.completed = response.completed;
     });
 
+    FeedbackService.getComments($scope.feedbackId).then(function (response) {
+      $scope.comments = response;
+    });
+
     $scope.saveFeedback = function(){
       if ($scope.completed) {
         $scope.feedback.notaGenerala = null;
@@ -43,7 +46,11 @@ angular.module('smartFeedbackApp')
         $scope.feedback.organizare = null;
         $scope.feedback.expunere = null;
       }
-      FeedbackService.saveFeedback($scope.feedback).then(function (response) {});
+      FeedbackService.saveFeedback($scope.feedback).then(function (response) {
+        FeedbackService.getComments($scope.feedbackId).then(function (response) {
+          $scope.comments = response;
+        });
+      });
     };
 
     $scope.chart = new CanvasJS.Chart("chartContainer", {

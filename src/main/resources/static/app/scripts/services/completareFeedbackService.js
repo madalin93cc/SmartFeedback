@@ -23,6 +23,17 @@ app.factory('FeedbackService', ['$http',
             return response;
           });
         },
+        getComments: function (feedbackId) {
+          return $http({
+            method: 'GET',
+            url: 'http://localhost:8080/getCommentsForFeedback/' + feedbackId
+          }).then(function successCallback(response) {
+            return response.data;
+          }, function errorCallback(response) {
+            console.log('error');
+            return response;
+          });
+        },
         saveFeedback: function (feedback) {
           return $http({
             method: 'POST',

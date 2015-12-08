@@ -84,31 +84,35 @@
         <!-- /.panel-heading -->
         <div class="panel-body">
             <ul class="timeline">
-                <li class="timeline-inverted success">
+                <li ng-repeat="comment in comments" class="timeline-inverted success">
                     <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i>
                     </div>
                     <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Ionel Danciulescu</h4>
+                        <div class="row">
+                          <div class="timeline-heading col-sm-10">
+                              <h4 class="timeline-title">{{comment.nume}}</h4>
+                          </div>
+                          <div class="col-sm-2 pull-right">
+                            <h6 class="timeline-title">{{comment.data | date:'MM/dd/yyyy h:mma'}}</h6>
+                          </div>
                         </div>
                         <div class="timeline-body">
-                            <p id="comment"></p>
+                            <p id="comment">{{comment.comentariu}}</p>
                         </div>
                     </div>
                 </li>
-                <li class="timeline-inverted success">
-                    <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i>
-                    </div>
-                    <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4 class="timeline-title">Student</h4>
-                        </div>
-                        <div class="timeline-body">
-                            <p>Tres bien</p>
-                        </div>
-                    </div>
-                </li>
-
+                <!--<li class="timeline-inverted success">-->
+                    <!--<div class="timeline-badge success"><i class="fa fa-graduation-cap"></i>-->
+                    <!--</div>-->
+                    <!--<div class="timeline-panel">-->
+                        <!--<div class="timeline-heading">-->
+                            <!--<h4 class="timeline-title">Student</h4>-->
+                        <!--</div>-->
+                        <!--<div class="timeline-body">-->
+                            <!--<p>Tres bien</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</li>-->
                 <li class="timeline-inverted success">
                     <div class="timeline-badge info"><i class="fa fa-save"></i>
                     </div>
@@ -125,19 +129,6 @@
                 </li>
             </ul>
         </div>
-
-      <!--<div class="row">-->
-        <!--&lt;!&ndash;AICI PUI COMENTARIILE&ndash;&gt;-->
-        <!--<div class="row text-center">-->
-          <!--<h3> Adaugă comentariu</h3>-->
-        <!--</div>-->
-        <!--<div class="row">-->
-          <!--<div class="col-sm-8 col-sm-offset-2">-->
-            <!--<textarea ng-model="feedback.comentariu" class="form-control" rows="3"></textarea>-->
-          <!--</div>-->
-        <!--</div>-->
-        <!--<br/>-->
-      <!--</div>-->
 
         <!-- /.panel-body -->
     </div>
