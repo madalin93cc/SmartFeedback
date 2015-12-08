@@ -31,11 +31,11 @@ public class User implements BaseEntity {
     @Column(name = "tip", nullable = false, length = 11)
     private Integer tip;
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = true)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_utilizator_student"), name = "id_student", unique = true, nullable = true, updatable = true)
     private Student idStudent;
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = true)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_utilizator_profesor"), name = "id_profesor", unique = true, nullable = true, updatable = true)
     private Profesor idProfesor;
 
