@@ -12,4 +12,5 @@ public interface RequestMappings {
     public static final String GET_MATERII_UTILIZATOR = "/getMateriiUtilizator";
     public static final String GET_LOGIN_PARAMS = "/login/username/{username}/password/{password}";
     public static final String LOGOUT = "/logout";
+    public static final String GET_COMMENTS_FOR_FEEDBACK = "/getCommentsForFeedback/{feedbackId}";
 }

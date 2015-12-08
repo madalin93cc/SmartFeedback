@@ -4,6 +4,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.swing.text.Utilities;
+import java.util.Date;
 
 /**
  * Created by George on 12/3/2015.
@@ -21,6 +22,18 @@ public class RaspunsIntrebare implements BaseEntity {
 
     @Column(name = "raspuns", nullable = false)
     private String raspuns;
+
+    @Column(name = "created_at", nullable = false)
+    private Date createdAt;
+
+    public Date getCreatedAt() {
+
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
 
     @ManyToOne(optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_feedback_raspuns"),name = "id_feedback", unique = false, nullable = false, updatable = true)
@@ -91,22 +104,24 @@ public class RaspunsIntrebare implements BaseEntity {
 
         RaspunsIntrebare that = (RaspunsIntrebare) o;
 
-        if (!id.equals(that.id)) return false;
-        if (!tipRaspuns.equals(that.tipRaspuns)) return false;
+        if (id != null ? !id.equals(that.id) : that.id != null) return false;
+        if (tipRaspuns != null ? !tipRaspuns.equals(that.tipRaspuns) : that.tipRaspuns != null) return false;
         if (raspuns != null ? !raspuns.equals(that.raspuns) : that.raspuns != null) return false;
-        if (!idFeedback.equals(that.idFeedback)) return false;
-        if (!idUser.equals(that.idUser)) return false;
+        if (createdAt != null ? !createdAt.equals(that.createdAt) : that.createdAt != null) return false;
+        if (idFeedback != null ? !idFeedback.equals(that.idFeedback) : that.idFeedback != null) return false;
+        if (idUser != null ? !idUser.equals(that.idUser) : that.idUser != null) return false;
         return !(idIntrebare != null ? !idIntrebare.equals(that.idIntrebare) : that.idIntrebare != null);
 
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + tipRaspuns.hashCode();
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (tipRaspuns != null ? tipRaspuns.hashCode() : 0);
         result = 31 * result + (raspuns != null ? raspuns.hashCode() : 0);
-        result = 31 * result + idFeedback.hashCode();
-        result = 31 * result + idUser.hashCode();
+        result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
+        result = 31 * result + (idFeedback != null ? idFeedback.hashCode() : 0);
+        result = 31 * result + (idUser != null ? idUser.hashCode() : 0);
         result = 31 * result + (idIntrebare != null ? idIntrebare.hashCode() : 0);
         return result;
     }

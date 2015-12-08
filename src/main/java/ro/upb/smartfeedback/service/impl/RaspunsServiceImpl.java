@@ -2,6 +2,7 @@ package ro.upb.smartfeedback.service.impl;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ro.upb.smartfeedback.dto.ComentariiDTO;
 import ro.upb.smartfeedback.entity.Feedback;
 import ro.upb.smartfeedback.entity.Intrebari;
 import ro.upb.smartfeedback.entity.RaspunsIntrebare;
@@ -13,6 +14,7 @@ import ro.upb.smartfeedback.service.RaspunsService;
 import ro.upb.smartfeedback.utils.TipRaspunsEnum;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -55,5 +57,14 @@ public class RaspunsServiceImpl implements RaspunsService{
         raspunsIntrebare.setRaspuns(raspuns);
         raspunsIntrebare.setTipRaspuns(TipRaspunsEnum.OBSERVATIE.getId());
         return raspunsIntrebareRepository.saveAndFlush(raspunsIntrebare);
+    }
+
+    public List<ComentariiDTO> getComentariiFeedback(Long id) {
+        List<RaspunsIntrebare> raspunsuri = raspunsIntrebareRepository.getComentariiByFeedbackId(id);
+        List<ComentariiDTO> comentariiDto = new ArrayList<>();
+        for(RaspunsIntrebare i : raspunsuri) {
+            comentariiDto.add(new ComentariiDTO(i));
+        }
+        return comentariiDto;
     }
 }
