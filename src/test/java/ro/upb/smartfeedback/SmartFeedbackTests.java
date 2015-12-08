@@ -10,6 +10,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import ro.upb.smartfeedback.entity.*;
 import ro.upb.smartfeedback.repository.*;
 
+import java.util.List;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = SmartFeedback.class)
 @WebAppConfiguration
@@ -41,6 +43,17 @@ public class SmartFeedbackTests {
 	@Test
 	@Ignore
 	public void contextLoads() {
+	}
+
+	@Test
+	public void test() {
+		Serie s = serieRepository.findOne(1l);
+		Profesor p = profesorRepository.findOne(1l);
+		Grupa g = grupaRepository.findOne(1l);
+		User u = userRepository.findOne(1l);
+		User u3 = userRepository.getOne(1l);
+		User u2= userRepository.findById(1l);
+		List<User> userList = userRepository.findAll();
 	}
 
 	@Test
