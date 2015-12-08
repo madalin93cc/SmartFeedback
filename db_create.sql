@@ -11,8 +11,8 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping database structure for smartfeedback
---DROP DATABASE IF EXISTS `smartfeedback`;feedback
---CREATE DATABASE IF NOT EXISTS `smartfeedback` /*!40100 DEFAULT CHARACTER SET latin1 */;
+DROP DATABASE IF EXISTS `smartfeedback`;
+CREATE DATABASE IF NOT EXISTS `smartfeedback` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `smartfeedback`;
 
 
