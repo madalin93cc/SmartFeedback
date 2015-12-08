@@ -32,23 +32,25 @@ public class CompletareFeedbackDTO {
     }
 
     public CompletareFeedbackDTO(List<RaspunsIntrebare> raspunsIntrebareList){
-        this.idFeedback = raspunsIntrebareList.get(0).getIdFeedback().getId();
-        for (RaspunsIntrebare r: raspunsIntrebareList){
-            if (r.getTipRaspuns().equals(TipRaspunsEnum.INTREBARE.getId())){
-                if (r.getIdIntrebare().equals(TipIntrebareEnum.NOTA_GENERALA)){
-                    this.notaGenerala = Integer.parseInt(r.getRaspuns());
-                }
-                if (r.getIdIntrebare().equals(TipIntrebareEnum.INTERACTIUNE)){
-                    this.interactiune = Integer.parseInt(r.getRaspuns());
-                }
-                if (r.getIdIntrebare().equals(TipIntrebareEnum.EXPUNERE)){
-                    this.expunere = Integer.parseInt(r.getRaspuns());
-                }
-                if (r.getIdIntrebare().equals(TipIntrebareEnum.GRAD_INTELEGERE)){
-                    this.gradIntelegere = Integer.parseInt(r.getRaspuns());
-                }
-                if (r.getIdIntrebare().equals(TipIntrebareEnum.ORGANIZARE)){
-                    this.organizare = Integer.parseInt(r.getRaspuns());
+        if (raspunsIntrebareList.size() != 0){
+            this.idFeedback = raspunsIntrebareList.get(0).getIdFeedback().getId();
+            for (RaspunsIntrebare r: raspunsIntrebareList){
+                if (r.getTipRaspuns().equals(TipRaspunsEnum.INTREBARE.getId())){
+                    if (r.getIdIntrebare().getId().equals(TipIntrebareEnum.NOTA_GENERALA.getId())){
+                        this.notaGenerala = Integer.parseInt(r.getRaspuns());
+                    }
+                    if (r.getIdIntrebare().getId().equals(TipIntrebareEnum.INTERACTIUNE.getId())){
+                        this.interactiune = Integer.parseInt(r.getRaspuns());
+                    }
+                    if (r.getIdIntrebare().getId().equals(TipIntrebareEnum.EXPUNERE.getId())){
+                        this.expunere = Integer.parseInt(r.getRaspuns());
+                    }
+                    if (r.getIdIntrebare().getId().equals(TipIntrebareEnum.GRAD_INTELEGERE.getId())){
+                        this.gradIntelegere = Integer.parseInt(r.getRaspuns());
+                    }
+                    if (r.getIdIntrebare().getId().equals(TipIntrebareEnum.ORGANIZARE.getId())){
+                        this.organizare = Integer.parseInt(r.getRaspuns());
+                    }
                 }
             }
         }
