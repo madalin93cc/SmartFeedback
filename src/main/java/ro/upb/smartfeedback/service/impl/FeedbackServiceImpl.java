@@ -44,8 +44,8 @@ public class FeedbackServiceImpl implements FeedbackService{
 
     @Override
     public CompletareFeedbackDTO getFeedbackByUserAndFeedbackId(Long userId, Long feedbackId) {
-        User user = userRepository.getOne(userId);
-        Feedback feedback = feedbackRepository.getOne(feedbackId);
+        User user = userRepository.findById(userId);
+        Feedback feedback = feedbackRepository.findOne(feedbackId);
         List<RaspunsIntrebare> raspunsIntrebares = raspunsIntrebareRepository.getAllByIdUserAndIdFeedback(user, feedback);
         return new CompletareFeedbackDTO(raspunsIntrebares);
     }
