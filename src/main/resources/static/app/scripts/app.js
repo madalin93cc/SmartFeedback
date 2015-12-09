@@ -34,6 +34,10 @@ var app = angular
         templateUrl: 'views/completare_feedback.html',
         controller: 'CompletareFeedbackCtrl'
       })
+      .when('/add_feedback/:cursId', {
+        templateUrl: 'views/adaugare_feedback.html',
+        controller: 'AdaugareFeedbackCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -278,13 +278,18 @@
 
               <!-- CURSURI -->
               <li ng-controller="MenuCtrl">
-                  <a href="index.html"><i class="fa  fa-folder-open-o fa-fw"></i> Cursuri<span class="fa arrow"></span></a>
+                  <a><i class="fa  fa-folder-open-o fa-fw"></i> Cursuri<span class="fa arrow"></span></a>
                   <ul class="nav nav-second-level">
                         <li ng-repeat="x in cursuri">
                             <a> {{ x.nume }}<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li ng-repeat="feedback in x.feedbacks">
                                   <a ng-click="viewFeedback(feedback.id)">{{feedback.nume}}</a>
+                                </li>
+                                <li>
+                                  <a ng-click="addFeedback(x.id)">
+                                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Activeaza alt feedback
+                                  </a>
                                 </li>
                             </ul>
                         </li>
@@ -348,12 +353,13 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/login.js"></script>
-        <script src="scripts/controllers/completare_feedback.js"></script>
         <!-- endbuild -->
         <!-- controllers-->
         <script src="scripts/controllers/menu.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/completare_feedback.js"></script>
+        <script src="scripts/controllers/adaugare_feedback.js"></script>
         <!-- service -->
         <script src="scripts/services/menuService.js"></script>
         <script src="scripts/services/loginService.js"></script>

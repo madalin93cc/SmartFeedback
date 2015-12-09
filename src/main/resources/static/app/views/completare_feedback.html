@@ -4,16 +4,16 @@
             <h1 class="page-header" align="center">{{feedbackDetails.nume}}</h1>
         </div>
     </div>
-    <div class="row" align="center">
+    <div class="row">
       <h3> Statistică</h3>
       <br>
-      <p>Numărul studenților participanți:</p>
-      <p>Numărul feedback-urilor completate:</p>
+      <!--<p>Numărul studenților participanți:</p>-->
+      <h4>Numărul feedback-urilor completate: {{nrFeedbacks}}</h4>
     </div>
     <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
   <div ng-if="isStudent">
-    <h3 align="center"> Acordare calificative</h3>
+    <h3> Acordare calificative</h3>
     <br>
     <!--AICI PUI CALIFICATIVELE-->
       <div class="row" ng-show="completed">

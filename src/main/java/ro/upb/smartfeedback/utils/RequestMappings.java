@@ -5,7 +5,7 @@ package ro.upb.smartfeedback.utils;
  * Interfata in care se vor tine toate request mapping-urile
  */
 public interface RequestMappings {
-
+    public static final String GET_ADAUGARE_FEEDBACK_DETAILS = "/getAdaugareFeedbackDetails/{idActivitate}";
     public static final String GET_GEEDBACK = "/getFeedback/{userId}/{feedbackId}";
     public static final String SAVE_FEEDBACK = "/saveFeedback";
     public static final String GET_DETALII_FEEDBACK_BY_ID = "/getFeedbackDetailById/{id}";

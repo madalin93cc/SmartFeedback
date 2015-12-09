@@ -44,6 +44,7 @@ angular.module('smartFeedbackApp')
       FeedbackService.loadStatistics($scope.feedbackId).then(function (response) {
         if (response !== "") {
           $scope.showStatistics = true;
+          $scope.nrFeedbacks = response.numarFeedbackuri;
           $scope.chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
 

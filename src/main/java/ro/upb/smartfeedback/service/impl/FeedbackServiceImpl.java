@@ -2,13 +2,23 @@ package ro.upb.smartfeedback.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.upb.smartfeedback.dto.AdaugareFeedbackDetailsDTO;
 import ro.upb.smartfeedback.dto.CompletareFeedbackDTO;
 import ro.upb.smartfeedback.dto.FeedbackMenuDTO;
+import ro.upb.smartfeedback.entity.Activitate;
+import ro.upb.smartfeedback.entity.Feedback;
+import ro.upb.smartfeedback.entity.RaspunsIntrebare;
+import ro.upb.smartfeedback.entity.User;
+import ro.upb.smartfeedback.repository.ActivitateRepository;
+import ro.upb.smartfeedback.repository.FeedbackRepository;
+import ro.upb.smartfeedback.repository.RaspunsIntrebareRepository;
+import ro.upb.smartfeedback.repository.UserRepository;
 import ro.upb.smartfeedback.entity.*;
 import ro.upb.smartfeedback.repository.*;
 import ro.upb.smartfeedback.service.FeedbackService;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,6 +61,29 @@ public class FeedbackServiceImpl implements FeedbackService{
         List<RaspunsIntrebare> raspunsIntrebares = raspunsIntrebareRepository.getAllByIdUserAndIdFeedback(user, feedback);
         CompletareFeedbackDTO completareFeedbackDTO = new CompletareFeedbackDTO();
         return completareFeedbackDTO.setResponses(raspunsIntrebares);
+    }
+
+    @Override
+    public AdaugareFeedbackDetailsDTO getAdaugareFeedbackDetails(Long idActivitate) {
+        Activitate activitate = activitateRepository.findOne(idActivitate);
+        AdaugareFeedbackDetailsDTO detailsDTO = new AdaugareFeedbackDetailsDTO();
+        detailsDTO.setNume(activitate.getNume());
+        List<Feedback> feedbacks = feedbackRepository.getAllFeedbackForActivity(idActivitate);
+        List<Integer> weeks = new ArrayList<>();
+        for (int i = 1; i <= 13; i++) {
+            boolean ok = true;
+            for (Feedback f: feedbacks){
+                if (f.getSaptamana() == i){
+                    ok = false;
+                    break;
+                }
+            }
+            if (ok) {
+                weeks.add(i);
+            }
+        }
+        detailsDTO.setAvailableWeeks(weeks);
+        return detailsDTO;
     }
 
     @Override
