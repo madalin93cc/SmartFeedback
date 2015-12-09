@@ -13,6 +13,9 @@ angular.module('smartFeedbackApp')
       if ($cookies.getObject('isAuthenticated')){
         var user = $cookies.getObject('isAuthenticated');
         $scope.username = user.prenume + " " + user.nume;
+        if(user.grupa) {
+          $scope.username = $scope.username + " " + user.grupa;
+        }
       }
       $scope.login = function () {
         if ($scope.user && $scope.user.username && $scope.user.password) {
@@ -22,6 +25,9 @@ angular.module('smartFeedbackApp')
                 $cookies.remove('isAuthenticated');
                 $cookies.putObject('isAuthenticated', response);
                 $scope.username = response.prenume + " " + response.nume;
+                if(response.grupa) {
+                  $scope.username = $scope.username + " " + response.grupa;
+                }
                 $rootScope.isAuthenticated = true;
                 $location.path("#/");
               }

@@ -12,6 +12,24 @@ public class UserDTO {
     private String prenume;
     private String username;
     private UserTypeEnum userType;
+    private String grupa;
+    private String seria;
+
+    public String getGrupa() {
+        return grupa;
+    }
+
+    public void setGrupa(String grupa) {
+        this.grupa = grupa;
+    }
+
+    public String getSeria() {
+        return seria;
+    }
+
+    public void setSeria(String seria) {
+        this.seria = seria;
+    }
 
     public Long getId() {
         return id;
@@ -43,6 +61,16 @@ public class UserDTO {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public UserDTO(Long id, String nume, String prenume, String username, UserTypeEnum userType, String grupa, String seria) {
+        this.id = id;
+        this.nume = nume;
+        this.prenume = prenume;
+        this.username = username;
+        this.userType = userType;
+        this.grupa = grupa;
+        this.seria = seria;
     }
 
     public UserTypeEnum getUserType() {

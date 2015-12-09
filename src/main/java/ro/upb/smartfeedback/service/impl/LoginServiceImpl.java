@@ -30,11 +30,14 @@ public class LoginServiceImpl implements LoginService{
             return userDTO;
         } else {
             SmartFeedback.loggedUser = loggedUser;
-            userDTO = new UserDTO(loggedUser.getId(), loggedUser.getNume(), loggedUser.getPrenume(), loggedUser.getUsername(), null);
+            userDTO = new UserDTO(loggedUser.getId(), loggedUser.getNume(), loggedUser.getPrenume(), loggedUser.getUsername(), null, null, null);
             if (SmartFeedback.loggedUser.getIdProfesor() != null){
                 userDTO.setUserType(UserTypeEnum.PROFESOR);
+
             } else if (SmartFeedback.loggedUser.getIdStudent() != null){
                 userDTO.setUserType(UserTypeEnum.STUDENT);
+                userDTO.setSeria(SmartFeedback.loggedUser.getIdStudent().getIdSerie().getCode());
+                userDTO.setGrupa(SmartFeedback.loggedUser.getIdStudent().getIdGrupa().getNume());
             }
             return userDTO;
         }
