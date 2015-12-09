@@ -6,6 +6,7 @@ import ro.upb.smartfeedback.dto.UserDTO;
 import ro.upb.smartfeedback.entity.User;
 import ro.upb.smartfeedback.repository.UserRepository;
 import ro.upb.smartfeedback.service.LoginService;
+import ro.upb.smartfeedback.utils.UserTypeEnum;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -29,7 +30,12 @@ public class LoginServiceImpl implements LoginService{
             return userDTO;
         } else {
             SmartFeedback.loggedUser = loggedUser;
-            userDTO = new UserDTO(loggedUser.getId(), loggedUser.getNume(), loggedUser.getPrenume(), loggedUser.getUsername());
+            userDTO = new UserDTO(loggedUser.getId(), loggedUser.getNume(), loggedUser.getPrenume(), loggedUser.getUsername(), null);
+            if (SmartFeedback.loggedUser.getIdProfesor() != null){
+                userDTO.setUserType(UserTypeEnum.PROFESOR);
+            } else if (SmartFeedback.loggedUser.getIdStudent() != null){
+                userDTO.setUserType(UserTypeEnum.STUDENT);
+            }
             return userDTO;
         }
     }

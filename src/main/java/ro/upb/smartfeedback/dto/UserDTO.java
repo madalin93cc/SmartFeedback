@@ -1,5 +1,7 @@
 package ro.upb.smartfeedback.dto;
 
+import ro.upb.smartfeedback.utils.UserTypeEnum;
+
 /**
  * Created by colez on 30/11/2015.
  */
@@ -9,6 +11,7 @@ public class UserDTO {
     private String nume;
     private String prenume;
     private String username;
+    private UserTypeEnum userType;
 
     public Long getId() {
         return id;
@@ -42,14 +45,23 @@ public class UserDTO {
         this.username = username;
     }
 
+    public UserTypeEnum getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserTypeEnum userType) {
+        this.userType = userType;
+    }
+
     public UserDTO() {
     }
 
-    public UserDTO(Long id, String nume, String prenume, String username) {
+    public UserDTO(Long id, String nume, String prenume, String username, UserTypeEnum userType) {
         this.id = id;
         this.nume = nume;
         this.prenume = prenume;
         this.username = username;
+        this.userType = userType;
     }
 
     @Override
@@ -62,7 +74,8 @@ public class UserDTO {
         if (id != null ? !id.equals(userDTO.id) : userDTO.id != null) return false;
         if (nume != null ? !nume.equals(userDTO.nume) : userDTO.nume != null) return false;
         if (prenume != null ? !prenume.equals(userDTO.prenume) : userDTO.prenume != null) return false;
-        return !(username != null ? !username.equals(userDTO.username) : userDTO.username != null);
+        if (username != null ? !username.equals(userDTO.username) : userDTO.username != null) return false;
+        return userType == userDTO.userType;
 
     }
 
@@ -72,6 +85,7 @@ public class UserDTO {
         result = 31 * result + (nume != null ? nume.hashCode() : 0);
         result = 31 * result + (prenume != null ? prenume.hashCode() : 0);
         result = 31 * result + (username != null ? username.hashCode() : 0);
+        result = 31 * result + (userType != null ? userType.hashCode() : 0);
         return result;
     }
 }

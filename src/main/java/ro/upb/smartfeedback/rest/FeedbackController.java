@@ -6,7 +6,6 @@ import ro.upb.smartfeedback.SmartFeedback;
 import ro.upb.smartfeedback.dto.ComentariiDTO;
 import ro.upb.smartfeedback.dto.CompletareFeedbackDTO;
 import ro.upb.smartfeedback.dto.FeedbackMenuDTO;
-import ro.upb.smartfeedback.entity.Comentariu;
 import ro.upb.smartfeedback.service.FeedbackService;
 import ro.upb.smartfeedback.service.RaspunsService;
 import ro.upb.smartfeedback.utils.RequestMappings;
