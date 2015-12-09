@@ -31,20 +31,18 @@ public class FeedbackController {
     }
 
     @RequestMapping(value = RequestMappings.SAVE_FEEDBACK, method = RequestMethod.POST, produces = "application/json")
-    public void saveFeedback(@RequestBody CompletareFeedbackDTO completareFeedbackDTO){
+    public boolean saveFeedback(@RequestBody CompletareFeedbackDTO completareFeedbackDTO){
         if(!completareFeedbackDTO.getComentariu().isEmpty()) {
             raspunsService.saveComentariu(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, completareFeedbackDTO.getComentariu());
         }
-        if(completareFeedbackDTO.getNotaGenerala() != null)
+        if (!completareFeedbackDTO.getCompleted()) {
             raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.NOTA_GENERALA.getId(), completareFeedbackDTO.getNotaGenerala());
-        if(completareFeedbackDTO.getInteractiune() != null)
             raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.INTERACTIUNE.getId(), completareFeedbackDTO.getInteractiune());
-        if(completareFeedbackDTO.getGradIntelegere() != null)
             raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.GRAD_INTELEGERE.getId(), completareFeedbackDTO.getGradIntelegere());
-        if(completareFeedbackDTO.getOrganizare() != null)
             raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.ORGANIZARE.getId(), completareFeedbackDTO.getOrganizare());
-        if(completareFeedbackDTO.getExpunere() != null)
             raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.EXPUNERE.getId(), completareFeedbackDTO.getExpunere());
+        }
+        return true;
     }
 
     @RequestMapping(value = RequestMappings.GET_GEEDBACK, method = RequestMethod.GET, produces = "application/json")

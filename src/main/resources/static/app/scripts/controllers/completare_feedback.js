@@ -13,7 +13,7 @@
 angular.module('smartFeedbackApp')
     .controller('CompletareFeedbackCtrl', ['$scope', '$cookies', 'FeedbackService', '$routeParams', function ($scope, $cookies, FeedbackService, $routeParams) {
     $scope.feedbackId = $routeParams.feedbackId;
-    $scope.feedback = {};
+    //$scope.feedback = {};
     $scope.feedbackCompleted = false;
 
     FeedbackService.getFeedbackDetailbyId($routeParams.feedbackId).then(function (response) {
@@ -40,15 +40,15 @@ angular.module('smartFeedbackApp')
 
     $scope.saveFeedback = function(){
       if ($scope.completed) {
-        $scope.feedback.notaGenerala = null;
-        $scope.feedback.interactiune = null;
-        $scope.feedback.gradIntelegere = null;
-        $scope.feedback.organizare = null;
-        $scope.feedback.expunere = null;
+        $scope.feedback.completed = true;
+      } else {
+        $scope.feedback.completed = false;
       }
-      FeedbackService.saveFeedback($scope.feedback).then(function (response) {
+      FeedbackService.saveFeedback($scope.feedback).then(function () {
         FeedbackService.getComments($scope.feedbackId).then(function (response) {
           $scope.comments = response;
+          $scope.feedback.comentariu = "";
+          $scope.completed = true;
         });
       });
     };
