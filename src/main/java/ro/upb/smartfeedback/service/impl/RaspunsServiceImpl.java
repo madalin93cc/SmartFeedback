@@ -81,7 +81,7 @@ public class RaspunsServiceImpl implements RaspunsService{
         Double organizareMedie = raspunsIntrebareRepository.getMedieNotaByFeedbackIdAndIntrebare(feedbackId, TipIntrebareEnum.ORGANIZARE.getId());
         Double expunereMedie = raspunsIntrebareRepository.getMedieNotaByFeedbackIdAndIntrebare(feedbackId, TipIntrebareEnum.EXPUNERE.getId());
         Integer numarFeedbackuri = raspunsIntrebareRepository.getNumarFeedbackuri(feedbackId, TipIntrebareEnum.NOTA_GENERALA.getId());
-
+        if (notaGeneralaMedie == null) return null;
         return new MediiNoteDTO(notaGeneralaMedie, interactiuneMedie, gradIntelegereMedie, organizareMedie, expunereMedie, numarFeedbackuri);
     }
 }
