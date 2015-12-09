@@ -33,12 +33,15 @@ CREATE TABLE IF NOT EXISTS `activitate` (
   CONSTRAINT `FK_activitate_grupa` FOREIGN KEY (`id_grupa`) REFERENCES `grupa` (`id`),
   CONSTRAINT `FK_activitate_serie` FOREIGN KEY (`id_serie`) REFERENCES `serie` (`id`),
   CONSTRAINT `FK_activitate_tip_activitate` FOREIGN KEY (`id_tip_activitate`) REFERENCES `tip_activitate` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Tabele pentru activitate';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1 COMMENT='Tabele pentru activitate';
 
 -- Dumping data for table smartfeedback.activitate: ~0 rows (approximately)
 /*!40000 ALTER TABLE `activitate` DISABLE KEYS */;
 REPLACE INTO `activitate` (`id`, `an`, `nume`, `code`, `id_tip_activitate`, `id_serie`, `id_grupa`) VALUES
-	(1, 1, 'Utilizarea sistemelor de operare CA', 'USO', 1, 3, NULL);
+	(1, 3, 'Utilizarea sistemelor de operare CC', 'USO', 1, 3, NULL),
+	(2, 3, 'Utilizarea sistemelor de operare CA', 'USO', 1, 1, NULL),
+	(3, 3, 'Utilizarea sistemelor de operare CB', 'USO', 1, 2, NULL),
+	(4, 3, 'Proiectarea retelelor CA', 'PR', 1, 1, NULL);
 /*!40000 ALTER TABLE `activitate` ENABLE KEYS */;
 
 
@@ -78,16 +81,17 @@ CREATE TABLE IF NOT EXISTS `feedback` (
   PRIMARY KEY (`id`),
   KEY `FK_feedback_activitate` (`id_activitate`),
   CONSTRAINT `FK_feedback_activitate` FOREIGN KEY (`id_activitate`) REFERENCES `activitate` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table smartfeedback.feedback: ~5 rows (approximately)
 /*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
 REPLACE INTO `feedback` (`id`, `nume`, `id_activitate`, `status`, `from_date`, `to_date`, `saptamana`) VALUES
-	(1, 'USO CC Saptamana 1', 1, 1, '2015-12-02 15:46:56', '2015-12-07 15:47:03', 1),
-	(2, 'USO CC Saptamana 2', 1, 1, '2015-12-02 15:46:56', '2015-12-07 15:47:03', 2),
-	(3, 'USO CC Saptamana 3', 1, 1, '2015-11-23 15:46:56', '2015-11-30 15:47:03', 3),
-	(4, 'USO CC Saptamana 4', 1, 1, '2015-12-05 15:46:56', '2015-12-13 15:48:03', 4),
-	(5, 'USO CC Saptamana 5', 1, 2, '2015-12-02 15:46:56', '2015-12-07 15:47:03', 5);
+	(1, 'Utilizarea sistemelor de operare CC Saptamana 1', 1, 1, '2015-12-02 15:46:56', '2015-12-07 15:47:03', 1),
+	(2, 'Utilizarea sistemelor de operare CC Saptamana 2', 1, 1, '2015-12-02 15:46:56', '2015-12-07 15:47:03', 2),
+	(3, 'Utilizarea sistemelor de operare CC Saptamana 3', 1, 1, '2015-11-23 15:46:56', '2015-11-30 15:47:03', 3),
+	(4, 'Utilizarea sistemelor de operare CC Saptamana 4', 1, 1, '2015-12-05 15:46:56', '2015-12-13 15:48:03', 4),
+	(5, 'Utilizarea sistemelor de operare CC Saptamana 5', 1, 2, '2015-12-02 15:46:56', '2015-12-07 15:47:03', 5),
+	(6, 'Utilizarea sistemelor de operare CC Saptamana 6', 1, 1, '2015-12-09 22:41:21', '2015-12-16 22:41:21', 6);
 /*!40000 ALTER TABLE `feedback` ENABLE KEYS */;
 
 
@@ -129,7 +133,12 @@ REPLACE INTO `feedback_intrebari` (`id_feedback`, `id_intrebare`) VALUES
 	(5, 2),
 	(5, 3),
 	(5, 4),
-	(5, 5);
+	(5, 5),
+	(6, 1),
+	(6, 2),
+	(6, 3),
+	(6, 4),
+	(6, 5);
 /*!40000 ALTER TABLE `feedback_intrebari` ENABLE KEYS */;
 
 
@@ -140,14 +149,17 @@ CREATE TABLE IF NOT EXISTS `grupa` (
   `nume` varchar(50) DEFAULT NULL,
   `an` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table smartfeedback.grupa: ~3 rows (approximately)
 /*!40000 ALTER TABLE `grupa` DISABLE KEYS */;
 REPLACE INTO `grupa` (`id`, `nume`, `an`) VALUES
-	(1, '334CC', 2015),
-	(2, '333CC', 2015),
-	(3, '332CC', 2015);
+	(1, '334CC', 3),
+	(2, '333CC', 3),
+	(3, '332CC', 3),
+	(4, '331CA', 3),
+	(5, '332CA', 3),
+	(6, '333CA', 3);
 /*!40000 ALTER TABLE `grupa` ENABLE KEYS */;
 
 
@@ -203,12 +215,13 @@ DROP TABLE IF EXISTS `profesor`;
 CREATE TABLE IF NOT EXISTS `profesor` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Tabele pentru profesori';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='Tabele pentru profesori';
 
 -- Dumping data for table smartfeedback.profesor: ~0 rows (approximately)
 /*!40000 ALTER TABLE `profesor` DISABLE KEYS */;
 REPLACE INTO `profesor` (`id`) VALUES
-	(1);
+	(1),
+	(2);
 /*!40000 ALTER TABLE `profesor` ENABLE KEYS */;
 
 
@@ -226,7 +239,10 @@ CREATE TABLE IF NOT EXISTS `profesor_activitate` (
 -- Dumping data for table smartfeedback.profesor_activitate: ~0 rows (approximately)
 /*!40000 ALTER TABLE `profesor_activitate` DISABLE KEYS */;
 REPLACE INTO `profesor_activitate` (`id_activitate`, `id_profesor`) VALUES
-	(1, 1);
+	(1, 1),
+	(2, 1),
+	(3, 2),
+	(4, 2);
 /*!40000 ALTER TABLE `profesor_activitate` ENABLE KEYS */;
 
 
@@ -239,6 +255,7 @@ CREATE TABLE IF NOT EXISTS `raspuns_intrebare` (
   `id_intrebare` int(11) DEFAULT NULL,
   `raspuns` text,
   `tip_raspuns` int(11) NOT NULL COMMENT '1 - observatie; 2 - intrebare',
+  `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK__feedback_raspuns` (`id_feedback`),
   KEY `FK_raspuns_intrebare_utilizator` (`id_utilizator`),
@@ -246,16 +263,39 @@ CREATE TABLE IF NOT EXISTS `raspuns_intrebare` (
   CONSTRAINT `FK_raspuns_intrebare_feedback` FOREIGN KEY (`id_feedback`) REFERENCES `feedback` (`id`),
   CONSTRAINT `FK_raspuns_intrebare_intrebari` FOREIGN KEY (`id_intrebare`) REFERENCES `intrebari` (`id`),
   CONSTRAINT `FK_raspuns_intrebare_utilizator` FOREIGN KEY (`id_utilizator`) REFERENCES `utilizator` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
--- Dumping data for table smartfeedback.raspuns_intrebare: ~5 rows (approximately)
+-- Dumping data for table smartfeedback.raspuns_intrebare: ~14 rows (approximately)
 /*!40000 ALTER TABLE `raspuns_intrebare` DISABLE KEYS */;
-REPLACE INTO `raspuns_intrebare` (`id`, `id_feedback`, `id_utilizator`, `id_intrebare`, `raspuns`, `tip_raspuns`) VALUES
-	(1, 2, 2, NULL, 'test', 1),
-	(3, 1, 2, 1, '7', 2),
-	(4, 1, 2, 2, '6', 2),
-	(5, 1, 2, 3, '7', 2),
-	(6, 1, 2, 4, '6', 2);
+REPLACE INTO `raspuns_intrebare` (`id`, `id_feedback`, `id_utilizator`, `id_intrebare`, `raspuns`, `tip_raspuns`, `created_at`) VALUES
+	(1, 2, 2, NULL, 'test', 1, '2005-04-04 00:00:00'),
+	(3, 1, 2, 1, '7', 2, '2005-04-04 00:00:00'),
+	(4, 1, 2, 2, '6', 2, '2005-04-04 00:00:00'),
+	(5, 1, 2, 3, '7', 2, '2005-04-04 00:00:00'),
+	(6, 1, 2, 4, '6', 2, '2005-04-04 00:00:00'),
+	(7, 2, 2, NULL, 'test', 1, '2005-04-04 00:00:00'),
+	(8, 1, 2, NULL, 'Bossule', 1, '2015-12-09 00:17:34'),
+	(9, 1, 2, NULL, 'baaaa', 1, '2015-12-09 00:18:13'),
+	(10, 2, 2, NULL, 'asdfg', 1, '2015-12-09 00:18:22'),
+	(11, 2, 2, 1, '7', 2, '2015-12-09 00:18:22'),
+	(12, 2, 2, 2, '7', 2, '2015-12-09 00:18:22'),
+	(13, 2, 2, 3, '7', 2, '2015-12-09 00:18:22'),
+	(14, 2, 2, 4, '7', 2, '2015-12-09 00:18:22'),
+	(15, 2, 2, 5, '7', 2, '2015-12-09 00:18:22'),
+	(16, 1, 2, NULL, 'testttt', 1, '2015-12-09 00:20:17'),
+	(17, 2, 2, NULL, 'baaa', 1, '2015-12-09 00:22:01'),
+	(18, 2, 6, NULL, 'baaa bravo', 1, '2015-12-09 21:31:06'),
+	(19, 2, 6, 1, '8', 2, '2015-12-09 21:31:06'),
+	(20, 2, 6, 2, '6', 2, '2015-12-09 21:31:06'),
+	(21, 2, 6, 3, '8', 2, '2015-12-09 21:31:06'),
+	(22, 2, 6, 4, '6', 2, '2015-12-09 21:31:06'),
+	(23, 2, 6, 5, '7', 2, '2015-12-09 21:31:06'),
+	(24, 6, 2, NULL, 'BAAAA', 1, '2015-12-09 22:42:38'),
+	(25, 6, 2, 1, '7', 2, '2015-12-09 22:42:38'),
+	(26, 6, 2, 2, '8', 2, '2015-12-09 22:42:38'),
+	(27, 6, 2, 3, '6', 2, '2015-12-09 22:42:38'),
+	(28, 6, 2, 4, '3', 2, '2015-12-09 22:42:38'),
+	(29, 6, 2, 5, '9', 2, '2015-12-09 22:42:38');
 /*!40000 ALTER TABLE `raspuns_intrebare` ENABLE KEYS */;
 
 
@@ -317,12 +357,15 @@ CREATE TABLE IF NOT EXISTS `student` (
   KEY `FK_student_grupa` (`id_grupa`),
   CONSTRAINT `FK_student_grupa` FOREIGN KEY (`id_grupa`) REFERENCES `grupa` (`id`),
   CONSTRAINT `FK_student_serie` FOREIGN KEY (`id_serie`) REFERENCES `serie` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Tabele pentru studenti';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COMMENT='Tabele pentru studenti';
 
 -- Dumping data for table smartfeedback.student: ~0 rows (approximately)
 /*!40000 ALTER TABLE `student` DISABLE KEYS */;
 REPLACE INTO `student` (`id`, `an_studiu`, `id_serie`, `id_grupa`) VALUES
-	(1, 2015, 3, 1);
+	(1, 3, 3, 1),
+	(2, 3, 3, 1),
+	(3, 3, 1, 6),
+	(5, 3, 1, 4);
 /*!40000 ALTER TABLE `student` ENABLE KEYS */;
 
 
@@ -340,7 +383,12 @@ CREATE TABLE IF NOT EXISTS `student_activitate` (
 -- Dumping data for table smartfeedback.student_activitate: ~0 rows (approximately)
 /*!40000 ALTER TABLE `student_activitate` DISABLE KEYS */;
 REPLACE INTO `student_activitate` (`id_student`, `id_activitate`) VALUES
-	(1, 1);
+	(1, 1),
+	(2, 1),
+	(3, 2),
+	(3, 4),
+	(5, 2),
+	(5, 4);
 /*!40000 ALTER TABLE `student_activitate` ENABLE KEYS */;
 
 
@@ -381,13 +429,17 @@ CREATE TABLE IF NOT EXISTS `utilizator` (
   KEY `FK_utilizator_profesor` (`id_profesor`),
   CONSTRAINT `FK_utilizator_profesor` FOREIGN KEY (`id_profesor`) REFERENCES `profesor` (`id`),
   CONSTRAINT `FK_utilizator_student` FOREIGN KEY (`id_student`) REFERENCES `student` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='Tabela generica pentru orice utilizator';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COMMENT='Tabela generica pentru orice utilizator';
 
 -- Dumping data for table smartfeedback.utilizator: ~2 rows (approximately)
 /*!40000 ALTER TABLE `utilizator` DISABLE KEYS */;
 REPLACE INTO `utilizator` (`id`, `nume`, `prenume`, `username`, `password`, `email`, `tip`, `id_student`, `id_profesor`) VALUES
 	(1, 'Deaconescu', 'Razvan', 'prof', 'test', 'razvan.deaconescu@cs.pub.ro', 1, NULL, 1),
-	(2, 'Colezea', 'Madalin', 'george', 'test', 'madalin.colezea@cs.pub.ro', 2, 1, NULL);
+	(2, 'Colezea', 'Madalin', 'stud', 'test', 'madalin.colezea@cs.pub.ro', 2, 1, NULL),
+	(6, 'Musat', 'George', 'stud2', 'test', 'madalin.colezea@cs.pub.ro', 2, 2, NULL),
+	(8, 'Rughinis', 'Razvan', 'prof2', 'test', 'razvan.deaconescu@cs.pub.ro', 1, NULL, 2),
+	(10, 'Cimpian', 'Vlad', 'stud3', 'test', 'madalin.colezea@cs.pub.ro', 2, 3, NULL),
+	(11, 'Popescu', 'Ion', 'stud4', 'test', 'madalin.colezea@cs.pub.ro', 2, 5, NULL);
 /*!40000 ALTER TABLE `utilizator` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
