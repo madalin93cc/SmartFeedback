@@ -2,6 +2,7 @@ package ro.upb.smartfeedback.dto;
 
 import ro.upb.smartfeedback.config.DatasourceConfig;
 import ro.upb.smartfeedback.entity.RaspunsIntrebare;
+import ro.upb.smartfeedback.utils.UserTypeEnum;
 
 /**
  * Created by George on 12/8/2015.
@@ -10,17 +11,20 @@ public class ComentariiDTO {
     private String nume;
     private String comentariu;
     private String data;
+    private UserTypeEnum userType;
 
-    public ComentariiDTO(String nume, String comentariu, String data) {
+    public ComentariiDTO(String nume, String comentariu, String data, UserTypeEnum userType) {
         this.nume = nume;
         this.comentariu = comentariu;
         this.data = data;
+        this.userType = userType;
     }
 
     public ComentariiDTO(RaspunsIntrebare rasp) {
         this.nume = rasp.getIdUser().getNume() + " " + rasp.getIdUser().getPrenume();
         this.comentariu = rasp.getRaspuns();
         this.data = rasp.getCreatedAt().toString();
+        this.userType = (rasp.getIdUser().getIdProfesor() != null) ? UserTypeEnum.PROFESOR: (rasp.getIdUser().getIdStudent() != null)? UserTypeEnum.STUDENT: null;
     }
 
     public String getNume() {
@@ -47,6 +51,14 @@ public class ComentariiDTO {
         this.data = data;
     }
 
+    public UserTypeEnum getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserTypeEnum userType) {
+        this.userType = userType;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -56,7 +68,8 @@ public class ComentariiDTO {
 
         if (nume != null ? !nume.equals(that.nume) : that.nume != null) return false;
         if (comentariu != null ? !comentariu.equals(that.comentariu) : that.comentariu != null) return false;
-        return !(data != null ? !data.equals(that.data) : that.data != null);
+        if (data != null ? !data.equals(that.data) : that.data != null) return false;
+        return userType == that.userType;
 
     }
 
@@ -65,6 +78,7 @@ public class ComentariiDTO {
         int result = nume != null ? nume.hashCode() : 0;
         result = 31 * result + (comentariu != null ? comentariu.hashCode() : 0);
         result = 31 * result + (data != null ? data.hashCode() : 0);
+        result = 31 * result + (userType != null ? userType.hashCode() : 0);
         return result;
     }
 }

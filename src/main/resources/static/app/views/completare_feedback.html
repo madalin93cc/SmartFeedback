@@ -10,72 +10,71 @@
       <p>Numărul studenților participanți:</p>
       <p>Numărul feedback-urilor completate:</p>
     </div>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
-    <div id="chartContainer" style="height: 300px; width: 100%;">
-    </div>
-
-
-  <h3 align="center"> Acordare calificative</h3>
-  <br>
-  <!--AICI PUI CALIFICATIVELE-->
-    <div class="row" ng-show="completed">
-      <span class="label label-warning">Feedback-ul a fost deja completat</span>
-    </div>
-    <div class="row">
+  <div ng-if="isStudent">
+    <h3 align="center"> Acordare calificative</h3>
+    <br>
+    <!--AICI PUI CALIFICATIVELE-->
+      <div class="row" ng-show="completed">
+        <span class="label label-warning">Feedback-ul a fost deja completat</span>
+      </div>
+      <div class="row">
+          <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
+            Nota generală
+          </div>
+          <div class="col-lg-6">
+            <rzslider
+              rz-slider-model="feedback.notaGenerala"
+              rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
+            </rzslider>
+          </div>
+      </div>
+      <div class="row">
         <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
-          Nota generală
+          Interacțiunea cu studenții
         </div>
         <div class="col-lg-6">
           <rzslider
-            rz-slider-model="feedback.notaGenerala"
+            rz-slider-model="feedback.interactiune"
             rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
           </rzslider>
         </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
-        Interacțiunea cu studenții
       </div>
-      <div class="col-lg-6">
-        <rzslider
-          rz-slider-model="feedback.interactiune"
-          rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
-        </rzslider>
+      <div class="row">
+        <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
+          Gradul de înțelegere
+        </div>
+        <div class="col-lg-6">
+          <rzslider
+            rz-slider-model="feedback.gradIntelegere"
+            rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
+          </rzslider>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
-        Gradul de înțelegere
+      <div class="row">
+        <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
+          Organizare
+        </div>
+        <div class="col-lg-6">
+          <rzslider
+            rz-slider-model="feedback.organizare"
+            rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
+          </rzslider>
+        </div>
       </div>
-      <div class="col-lg-6">
-        <rzslider
-          rz-slider-model="feedback.gradIntelegere"
-          rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
-        </rzslider>
+      <div class="row">
+        <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
+          Expunerea activității
+        </div>
+        <div class="col-lg-6">
+          <rzslider
+            rz-slider-model="feedback.expunere"
+            rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
+          </rzslider>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
-        Organizare
-      </div>
-      <div class="col-lg-6">
-        <rzslider
-          rz-slider-model="feedback.organizare"
-          rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
-        </rzslider>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-3 col-lg-offset-1" style = "height: 54px; padding-top: 25px">
-        Expunerea activității
-      </div>
-      <div class="col-lg-6">
-        <rzslider
-          rz-slider-model="feedback.expunere"
-          rz-slider-options="{disabled: completed, floor: 1, ceil: 10, showTicks: true}">
-        </rzslider>
-      </div>
-    </div>
+  </div>
     <br/>
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -85,7 +84,7 @@
         <div class="panel-body">
             <ul class="timeline">
                 <li ng-repeat="comment in comments" class="timeline-inverted success">
-                    <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i>
+                    <div ng-class="comment.userType === 'STUDENT' ? 'timeline-badge success' : 'timeline-badge danger'"><i class="fa fa-graduation-cap"></i>
                     </div>
                     <div class="timeline-panel">
                         <div class="row">
@@ -123,7 +122,7 @@
 
   <div class="row">
     <div align="center" style="margin-top: 10px">
-      <button  ng-click="saveFeedback()" type="button" class="btn btn-primary">Trimitere</button>
+      <button ng-disabled="checkTrimiteEnabled()" ng-click="saveFeedback()" type="button" class="btn btn-primary">Trimitere</button>
     </div>
   </div>
 </div>
