@@ -8,7 +8,9 @@
  * Controller of the smartFeedbackApp
  */
 angular.module('smartFeedbackApp')
-  .controller('MenuCtrl', ['$scope', '$location', 'MenuService', function ($scope, $location, MenuService) {
+  .controller('MenuCtrl', ['$cookies', '$scope', '$location', 'MenuService', function ($cookies, $scope, $location, MenuService) {
+    $scope.userType = $cookies.getObject('isAuthenticated').userType;
+
     MenuService.getMateriiUtilizator().then(function(response){
       $scope.cursuri = response;
     });

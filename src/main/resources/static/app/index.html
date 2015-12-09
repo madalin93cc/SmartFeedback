@@ -286,7 +286,7 @@
                                 <li ng-repeat="feedback in x.feedbacks">
                                   <a ng-click="viewFeedback(feedback.id)">{{feedback.nume}}</a>
                                 </li>
-                                <li>
+                                <li ng-if="userType === 'PROFESOR'">
                                   <a ng-click="addFeedback(x.id)">
                                     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Activeaza alt feedback
                                   </a>

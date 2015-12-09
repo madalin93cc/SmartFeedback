@@ -56,6 +56,29 @@ app.factory('FeedbackService', ['$http',
             console.log('error');
             return response;
           });
+        },
+      //  adaugare feedback
+        getDetailsForAdd: function (activityId) {
+          return $http({
+            method: 'GET',
+            url: 'http://localhost:8080/getAdaugareFeedbackDetails/' + activityId
+          }).then(function successCallback(response) {
+            return response.data;
+          }, function errorCallback(response) {
+            console.log('error');
+            return response;
+          });
+        },
+        createFeedback: function (activityId, week) {
+          return $http({
+            method: 'GET',
+            url: 'http://localhost:8080/addFeedback/' + activityId + "/" + week
+          }).then(function successCallback(response) {
+            return response.data;
+          }, function errorCallback(response) {
+            console.log('error');
+            return response;
+          });
         }
       }
     }]);
