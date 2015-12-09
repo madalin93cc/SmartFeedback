@@ -20,7 +20,6 @@ angular.module('smartFeedbackApp')
       'comentariu': ""
     };
     $scope.completed = false;
-    $scope.showStatistics = false;
     FeedbackService.getFeedbackDetailbyId($routeParams.feedbackId).then(function (response) {
       $scope.feedbackDetails = response;
     });
@@ -43,7 +42,6 @@ angular.module('smartFeedbackApp')
     $scope.loadStat = function(){
       FeedbackService.loadStatistics($scope.feedbackId).then(function (response) {
         if (response !== "") {
-          $scope.showStatistics = true;
           $scope.nrFeedbacks = response.numarFeedbackuri;
           $scope.chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
@@ -93,6 +91,63 @@ angular.module('smartFeedbackApp')
                   {
                     y: response.notaGeneralaMedie,
                     label: response.notaGeneralaMedie.toString(),
+                    indexLabel: "Nota generala"
+                  }
+                ]
+              }
+            ]
+          });
+          $scope.chart.render();
+        } else {
+          $scope.nrFeedbacks = 0;
+          $scope.chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+
+            axisY: {
+              tickThickness: 1,
+              lineThickness: 1,
+              valueFormatString: "#",
+              gridThickness: 0,
+              interval: 1,
+              maximum: 10
+            },
+            axisX: {
+              tickThickness: 0,
+              lineThickness: 0,
+              labelFontSize: 18,
+              labelFontColor: "Peru"
+
+            },
+            data: [
+              {
+                indexLabelFontSize: 26,
+                toolTipContent: "<span style='\"'color: {color};'\"'><strong>{indexLabel}</strong></span><span style='\"'font-size: 20px; color:peru '\"'><strong>{y}</strong></span>",
+                indexLabelPlacement: "inside",
+                indexLabelFontColor: "white",
+                indexLabelFontWeight: 600,
+                indexLabelFontFamily: "Verdana",
+                color: "#62C9C3",
+                type: "bar",
+                dataPoints: [
+                  {
+                    y: 0,
+                    label: "",
+                    indexLabel: "Expunerea activitatii"
+                  },
+                  {y: 0, label: "", indexLabel: "Organizare"},
+                  {
+                    y: 0,
+                    label: "",
+                    indexLabel: "Gradul de intelegere"
+                  },
+                  {
+                    y: 0,
+                    label: "",
+                    indexLabel: "Interactiunea cu studentii"
+                  },
+                  {
+                    y: 0,
+                    label: "",
                     indexLabel: "Nota generala"
                   }
                 ]
