@@ -1,6 +1,7 @@
 package ro.upb.smartfeedback.service;
 
 import ro.upb.smartfeedback.dto.ComentariiDTO;
+import ro.upb.smartfeedback.dto.MediiNoteDTO;
 import ro.upb.smartfeedback.entity.RaspunsIntrebare;
 import ro.upb.smartfeedback.entity.User;
 
@@ -15,4 +16,6 @@ public interface RaspunsService {
     public RaspunsIntrebare saveComentariu(Long idFeedback, User utilizator, String raspuns);
 
     public List<ComentariiDTO> getComentariiFeedback(Long id);
+
+    public MediiNoteDTO getMediiByFeedbackId(Long feedbackId);
 }

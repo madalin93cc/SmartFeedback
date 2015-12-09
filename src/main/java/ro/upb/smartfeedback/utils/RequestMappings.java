@@ -13,4 +13,5 @@ public interface RequestMappings {
     public static final String GET_LOGIN_PARAMS = "/login/username/{username}/password/{password}";
     public static final String LOGOUT = "/logout";
     public static final String GET_COMMENTS_FOR_FEEDBACK = "/getCommentsForFeedback/{feedbackId}";
+    public static final String GET_STATISTICS = "/getStatistics/{feedbackId}";
 }

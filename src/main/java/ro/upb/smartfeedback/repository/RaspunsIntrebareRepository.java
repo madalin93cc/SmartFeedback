@@ -21,4 +21,11 @@ public interface RaspunsIntrebareRepository extends JpaRepository<RaspunsIntreba
 
     @Query("select f from RaspunsIntrebare f where f.idFeedback.id = :feedbackId and f.tipRaspuns = 1 order by f.createdAt asc")
     List<RaspunsIntrebare> getComentariiByFeedbackId(@Param("feedbackId") Long feedbackId);
+
+    @Query("select avg(f.raspuns) from RaspunsIntrebare f where f.idFeedback.id = :feedbackId and f.tipRaspuns = 2 and f.idIntrebare.id = :tipIntrebareId")
+    Double getMedieNotaByFeedbackIdAndIntrebare(@Param("feedbackId") Long feedbackId, @Param("tipIntrebareId") Long tipIntrebareId);
+
+    @Query("select count(f) from RaspunsIntrebare f where f.idFeedback.id = :feedbackId and f.tipRaspuns = 2 and f.idIntrebare.id = :tipIntrebareId")
+    Integer getNumarFeedbackuri(@Param("feedbackId") Long feedbackId, @Param("tipIntrebareId") Long tipIntrebareId);
 }
+

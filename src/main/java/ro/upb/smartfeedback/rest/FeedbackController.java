@@ -6,6 +6,7 @@ import ro.upb.smartfeedback.SmartFeedback;
 import ro.upb.smartfeedback.dto.ComentariiDTO;
 import ro.upb.smartfeedback.dto.CompletareFeedbackDTO;
 import ro.upb.smartfeedback.dto.FeedbackMenuDTO;
+import ro.upb.smartfeedback.dto.MediiNoteDTO;
 import ro.upb.smartfeedback.service.FeedbackService;
 import ro.upb.smartfeedback.service.RaspunsService;
 import ro.upb.smartfeedback.utils.RequestMappings;
@@ -52,6 +53,12 @@ public class FeedbackController {
     @RequestMapping(value = RequestMappings.GET_COMMENTS_FOR_FEEDBACK, method = RequestMethod.GET, produces = "application/json")
     public List<ComentariiDTO> getCommentsByFeedbackId(@PathVariable("feedbackId") Long feedbackId){
         return raspunsService.getComentariiFeedback(feedbackId);
+
+    }
+
+    @RequestMapping(value = RequestMappings.GET_STATISTICS, method = RequestMethod.GET, produces = "application/json")
+    public MediiNoteDTO getFeedbackStatistics(@PathVariable("feedbackId") Long feedbackId){
+        return raspunsService.getMediiByFeedbackId(feedbackId);
 
     }
 }
