@@ -9,9 +9,5 @@
  */
 angular.module('smartFeedbackApp')
   .controller('MainCtrl', ['$scope', function ($scope) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+
   }]);
