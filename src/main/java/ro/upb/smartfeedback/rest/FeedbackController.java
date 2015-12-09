@@ -64,7 +64,7 @@ public class FeedbackController {
     }
 
     @RequestMapping(value = RequestMappings.ADD_FEEDBACK, method = RequestMethod.GET, produces = "application/json")
-    public Feedback getFeedbackStatistics(@PathVariable("idActivitate") Long idActivitate, @PathVariable("saptamana") Integer saptamana){
+    public Feedback addFeedback(@PathVariable("idActivitate") Long idActivitate, @PathVariable("saptamana") Integer saptamana){
         return feedbackService.addFeeeback(idActivitate, saptamana);
 
     }
