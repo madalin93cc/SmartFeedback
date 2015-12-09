@@ -15,4 +15,6 @@ public interface FeedbackService {
     public FeedbackMenuDTO getFeedbackDetailsById(Long id);
 
     public CompletareFeedbackDTO getFeedbackByUserAndFeedbackId(Long userId, Long feedbackId);
+
+    public Feedback addFeeeback(Long idActivitate, Integer saptamana);
 }

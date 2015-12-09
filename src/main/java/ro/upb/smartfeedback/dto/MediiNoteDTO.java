@@ -10,6 +10,17 @@ public class MediiNoteDTO {
     private Double organizareMedie;
     private Double expunereMedie;
     private Integer numarFeedbackuri;
+    private Integer numarStudenti;
+
+    public MediiNoteDTO(Double notaGeneralaMedie, Double interactiuneMedie, Double gradIntelegereMedie, Double organizareMedie, Double expunereMedie, Integer numarFeedbackuri, Integer numarStudenti) {
+        this.notaGeneralaMedie = notaGeneralaMedie;
+        this.interactiuneMedie = interactiuneMedie;
+        this.gradIntelegereMedie = gradIntelegereMedie;
+        this.organizareMedie = organizareMedie;
+        this.expunereMedie = expunereMedie;
+        this.numarFeedbackuri = numarFeedbackuri;
+        this.numarStudenti = numarStudenti;
+    }
 
     public MediiNoteDTO(Double notaGeneralaMedie, Double interactiuneMedie, Double gradIntelegereMedie, Double organizareMedie, Double expunereMedie, Integer numarFeedbackuri) {
         this.notaGeneralaMedie = notaGeneralaMedie;
@@ -20,6 +31,14 @@ public class MediiNoteDTO {
         this.numarFeedbackuri = numarFeedbackuri;
     }
 
+    public Integer getNumarStudenti() {
+
+        return numarStudenti;
+    }
+
+    public void setNumarStudenti(Integer numarStudenti) {
+        this.numarStudenti = numarStudenti;
+    }
     public Double getNotaGeneralaMedie() {
         return notaGeneralaMedie;
     }

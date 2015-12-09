@@ -75,13 +75,17 @@ public class RaspunsServiceImpl implements RaspunsService{
 
 
     public MediiNoteDTO getMediiByFeedbackId(Long feedbackId) {
+
+        Feedback f = feedbackRepository.findById(feedbackId);
+
         Double notaGeneralaMedie = raspunsIntrebareRepository.getMedieNotaByFeedbackIdAndIntrebare(feedbackId, TipIntrebareEnum.NOTA_GENERALA.getId());
         Double interactiuneMedie = raspunsIntrebareRepository.getMedieNotaByFeedbackIdAndIntrebare(feedbackId, TipIntrebareEnum.INTERACTIUNE.getId());
         Double gradIntelegereMedie = raspunsIntrebareRepository.getMedieNotaByFeedbackIdAndIntrebare(feedbackId, TipIntrebareEnum.GRAD_INTELEGERE.getId());
         Double organizareMedie = raspunsIntrebareRepository.getMedieNotaByFeedbackIdAndIntrebare(feedbackId, TipIntrebareEnum.ORGANIZARE.getId());
         Double expunereMedie = raspunsIntrebareRepository.getMedieNotaByFeedbackIdAndIntrebare(feedbackId, TipIntrebareEnum.EXPUNERE.getId());
         Integer numarFeedbackuri = raspunsIntrebareRepository.getNumarFeedbackuri(feedbackId, TipIntrebareEnum.NOTA_GENERALA.getId());
+        Integer numarStudenti = f.getIdActivitate().getStudents().size();
 
-        return new MediiNoteDTO(notaGeneralaMedie, interactiuneMedie, gradIntelegereMedie, organizareMedie, expunereMedie, numarFeedbackuri);
+        return new MediiNoteDTO(notaGeneralaMedie, interactiuneMedie, gradIntelegereMedie, organizareMedie, expunereMedie, numarFeedbackuri, numarStudenti);
     }
 }

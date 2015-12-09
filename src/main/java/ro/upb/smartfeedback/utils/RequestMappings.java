@@ -14,4 +14,5 @@ public interface RequestMappings {
     public static final String LOGOUT = "/logout";
     public static final String GET_COMMENTS_FOR_FEEDBACK = "/getCommentsForFeedback/{feedbackId}";
     public static final String GET_STATISTICS = "/getStatistics/{feedbackId}";
+    public static final String ADD_FEEDBACK = "/addFeedback/{idActivitate}/{saptamana}";
 }
