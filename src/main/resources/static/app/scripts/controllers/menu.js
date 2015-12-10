@@ -21,5 +21,5 @@ angular.module('smartFeedbackApp')
 
     $scope.addFeedback = function (id) {
       $location.path("/add_feedback/" + id);
-    }
+    };
   }]);

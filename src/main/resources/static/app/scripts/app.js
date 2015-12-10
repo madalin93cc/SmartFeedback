@@ -8,8 +8,7 @@
  *
  * Main module of the application.
  */
-var app = angular
-  .module('smartFeedbackApp', [
+angular.module('smartFeedbackApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',

@@ -4,16 +4,18 @@ import ro.upb.smartfeedback.config.DatasourceConfig;
 import ro.upb.smartfeedback.entity.RaspunsIntrebare;
 import ro.upb.smartfeedback.utils.UserTypeEnum;
 
+import java.util.Date;
+
 /**
  * Created by George on 12/8/2015.
  */
 public class ComentariiDTO {
     private String nume;
     private String comentariu;
-    private String data;
+    private Date data;
     private UserTypeEnum userType;
 
-    public ComentariiDTO(String nume, String comentariu, String data, UserTypeEnum userType) {
+    public ComentariiDTO(String nume, String comentariu, Date data, UserTypeEnum userType) {
         this.nume = nume;
         this.comentariu = comentariu;
         this.data = data;
@@ -23,7 +25,7 @@ public class ComentariiDTO {
     public ComentariiDTO(RaspunsIntrebare rasp) {
         this.nume = rasp.getIdUser().getNume() + " " + rasp.getIdUser().getPrenume();
         this.comentariu = rasp.getRaspuns();
-        this.data = rasp.getCreatedAt().toString();
+        this.data = rasp.getCreatedAt();
         this.userType = (rasp.getIdUser().getIdProfesor() != null) ? UserTypeEnum.PROFESOR: (rasp.getIdUser().getIdStudent() != null)? UserTypeEnum.STUDENT: null;
     }
 
@@ -43,11 +45,11 @@ public class ComentariiDTO {
         this.comentariu = comentariu;
     }
 
-    public String getData() {
+    public Date getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(Date data) {
         this.data = data;
     }
 

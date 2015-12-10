@@ -20,7 +20,7 @@ angular.module('smartFeedbackApp')
     });
 
     $scope.createFeedback = function() {
-      FeedbackService.createFeedback($scope.cursId, $scope.selectedWeek).then(function (response) {
+      FeedbackService.createFeedback($scope.cursId, $scope.selectedWeek).then(function () {
         $scope.showSuccess = true;
       });
     };

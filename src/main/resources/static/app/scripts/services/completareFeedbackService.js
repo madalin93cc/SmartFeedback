@@ -1,4 +1,7 @@
-app.factory('FeedbackService', ['$http',
+"use strict";
+
+angular.module('smartFeedbackApp')
+  .factory('FeedbackService', ['$http',
     function($http){
       return{
         getFeedbackDetailbyId: function (id) {
@@ -80,5 +83,5 @@ app.factory('FeedbackService', ['$http',
             return response;
           });
         }
-      }
+      };
     }]);

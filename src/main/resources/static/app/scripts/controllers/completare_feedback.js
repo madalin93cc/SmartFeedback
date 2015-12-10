@@ -28,11 +28,11 @@ angular.module('smartFeedbackApp')
       FeedbackService.getFeedback($scope.user.id, $scope.feedbackId).then(function (response) {
         $scope.feedback = {
           'idFeedback': $scope.feedbackId,
-          'notaGenerala': (response.notaGenerala != null) ? response.notaGenerala : 5,
-          'interactiune': (response.interactiune != null) ? response.interactiune : 5,
-          'gradIntelegere': (response.gradIntelegere != null) ? response.gradIntelegere : 5,
-          'organizare': (response.organizare != null) ? response.organizare : 5,
-          'expunere': (response.expunere != null) ? response.expunere : 5,
+          'notaGenerala': (response.notaGenerala !== null) ? response.notaGenerala : 5,
+          'interactiune': (response.interactiune !== null) ? response.interactiune : 5,
+          'gradIntelegere': (response.gradIntelegere !== null) ? response.gradIntelegere : 5,
+          'organizare': (response.organizare !== null) ? response.organizare : 5,
+          'expunere': (response.expunere !== null) ? response.expunere : 5,
           'comentariu': ""
         };
         $scope.completed = response.completed;
@@ -193,7 +193,7 @@ angular.module('smartFeedbackApp')
       } else {
         return false;
       }
-    }
+    };
     }]);
 
 

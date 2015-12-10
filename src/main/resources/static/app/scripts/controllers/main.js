@@ -8,6 +8,6 @@
  * Controller of the smartFeedbackApp
  */
 angular.module('smartFeedbackApp')
-  .controller('MainCtrl', ['$scope', function ($scope) {
+  .controller('MainCtrl', [function () {
 
   }]);

@@ -44,14 +44,15 @@ angular.module('smartFeedbackApp')
               $location.path("#/login");
             }
           });
-      }
+      };
 
   }]);
 
-app.run(['$cookies', '$rootScope', '$location', '$route',
+angular.module('smartFeedbackApp')
+  .run(['$cookies', '$rootScope', '$location', '$route',
   function (
-    $cookies ,$rootScope, $location, $route) {
-  $rootScope.$on('$routeChangeStart', function (event) {
+    $cookies ,$rootScope, $location) {
+  $rootScope.$on('$routeChangeStart', function () {
     if ($cookies.get('isAuthenticated')){
       $rootScope.isAuthenticated = true;
     } else {
