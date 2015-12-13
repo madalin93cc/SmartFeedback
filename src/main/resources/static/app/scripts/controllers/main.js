@@ -15,7 +15,11 @@ angular.module('smartFeedbackApp')
     });
 
     $scope.notificationClicked = function(notification) {
-      NotificationService.setNotificationStatus(notification.id);
+      NotificationService.setNotificationStatus(notification.id).then(function(){
+        NotificationService.getActiveNotification().then(function (response) {
+          $scope.notifications = response;
+        });
+      });
       $location.path(notification.url + "/" + notification.saptamana);
     };
 
