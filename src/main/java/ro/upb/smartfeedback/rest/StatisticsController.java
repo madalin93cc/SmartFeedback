@@ -1,6 +1,5 @@
 package ro.upb.smartfeedback.rest;
 
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +12,7 @@ import ro.upb.smartfeedback.utils.RequestMappings;
 public class StatisticsController {
 
     @RequestMapping(value = RequestMappings.GET_MAIN_PAGE_OVERVIEW, method = RequestMethod.GET, produces = "application/json")
-    public void getOverview(@PathVariable("idUser") Long isUser){
+    public void getOverview(){
 
     }
 }

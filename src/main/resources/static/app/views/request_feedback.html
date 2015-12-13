@@ -1,7 +1,7 @@
 <div id="page-wrapper">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header" align="center">Activare Feedback pentru {{activityName}}</h1>
+      <h1 class="page-header" align="center">Cerere activare Feedback pentru {{activityName}}</h1>
     </div>
   </div>
   <div class="container">
@@ -13,17 +13,17 @@
         </h4>
       </div>
       <div class="col-sm-4">
-        <select ng-disabled="tip!=='0'" ng-model="selectedWeek" ng-options="week as week for week in weeks" class="form-control">
+        <select ng-model="selectedWeek" ng-options="week as week for week in weeks" class="form-control">
         </select>
       </div>
       <div class="col-sm-4">
-        <button ng-click="createFeedback()" class="btn btn-primary">Activeaza feedback</button>
+        <button ng-click="requestFeedback()" class="btn btn-primary">Trimite cerere</button>
       </div>
     </div>
     <div class="row" ng-show="showSuccess">
       <div class="alert alert-success alert-dismissible" role="alert">
         <button ng-click="closeSuccess()" type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        Feedback-ul a fost adaugat cu succes.
+        Request-ul a fost trimis cu succes.
       </div>
     </div>
   </div>

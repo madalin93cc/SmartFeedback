@@ -15,4 +15,8 @@ public interface RequestMappings {
     public static final String GET_COMMENTS_FOR_FEEDBACK = "/getCommentsForFeedback/{feedbackId}";
     public static final String GET_STATISTICS = "/getStatistics/{feedbackId}";
     public static final String ADD_FEEDBACK = "/addFeedback/{idActivitate}/{saptamana}";
+    public static final String REQUEST_FEEDBACK = "/requestFeedback/{idActivitate}/{saptamana}";
+    public static final String GET_MAIN_PAGE_OVERVIEW = "/getOverview";
+    public static final String GET_ACTIVE_NOTIFICATIONS = "/getActiveNotifications";
+    public static final String SET_NOTIFICATION_STATUS = "/setNotificationStatus/{notifId}";
 }
