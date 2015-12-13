@@ -1,0 +1,29 @@
+<div id="page-wrapper">
+    <div style="margin-top: 50px" class="row">
+        <label style="font-size: 20px" class="label label-success">Note generale cursuri</label>
+        <div id="bar-example"></div>
+    </div>
+    <div style="margin-top: 50px" class="row">
+        <label style="font-size: 20px" class="label label-success">Prezenta medie la cursuri</label>
+        <br>
+        <div id="chartContainer"></div>
+    </div>
+</div>
+
+<script>
+    Morris.Bar({
+        element: 'bar-example',
+        data: [
+            { y: 'SO II', a: 7.2},
+            { y: 'CPL', a: 6},
+            { y: 'PR', a: 8},
+            { y: 'MPS', a: 5},
+            { y: 'IOC', a: 9}
+        ],
+        xkey: 'y',
+        parsetime: false,
+        ykeys: ['a'],
+        ymax: 10,
+        labels: ['Nota']
+    });
+</script>

@@ -46,6 +46,10 @@ angular.module('smartFeedbackApp')
           });
       };
 
+      $scope.redirectHome = function () {
+          window.location = "/index.html";
+      }
+
   }]);
 
 angular.module('smartFeedbackApp')

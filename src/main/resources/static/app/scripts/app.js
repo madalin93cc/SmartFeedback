@@ -37,6 +37,10 @@ angular.module('smartFeedbackApp', [
         templateUrl: 'views/adaugare_feedback.html',
         controller: 'AdaugareFeedbackCtrl'
       })
+      .when('/statistici', {
+        templateUrl: 'views/statistici.html',
+        controller: 'StatisticiCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

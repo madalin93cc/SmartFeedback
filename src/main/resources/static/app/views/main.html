@@ -6,28 +6,45 @@
 
 
 <script>
-    new Morris.Line({
-        // ID of the element in which to draw the chart.
-        element: 'myfirstchart',
-        // Chart data records -- each entry in this array corresponds to a point on
-        // the chart.
+//    new Morris.Line({
+//        // ID of the element in which to draw the chart.
+//        element: 'myfirstchart',
+//        // Chart data records -- each entry in this array corresponds to a point on
+//        // the chart.
+//        data: [
+//            { year: '2008', value: 20 },
+//            { year: '2009', value: 70 },
+//            { year: '2010', value: 5 },
+//            { year: '2011', value: 50 },
+//            { year: '2012', value: 25 },
+//            { year: '2013', value: 40 },
+//            { year: '2014', value: 9 },
+//            { year: '2015', value: 70 }
+//        ],
+//        // The name of the data record attribute that contains x-values.
+//        xkey: 'year',
+//        // A list of names of data record attributes that contain y-values.
+//        ykeys: ['value'],
+//        // Labels for the ykeys -- will be displayed when you hover over the
+//        // chart.
+//        labels: ['Value']
+//    });
+
+    Morris.Line({
+        element: 'line-example',
         data: [
-            { year: '2008', value: 20 },
-            { year: '2009', value: 70 },
-            { year: '2010', value: 5 },
-            { year: '2011', value: 50 },
-            { year: '2012', value: 25 },
-            { year: '2013', value: 40 },
-            { year: '2014', value: 9 },
-            { year: '2015', value: 70 }
+            { y: 'S 1', a: 40, b: 90, c: 50, d:30},
+            { y: 'S 2', a: 75,  b: 65, c: 80, d:80},
+            { y: 'S 3', a: 50,  b: 40, c: 90, d:20},
+            { y: 'S 4', a: 75,  b: 65, c: 100, d:90},
+            { y: 'S 5', a: 50,  b: 40, c: 100, d:10},
+            { y: 'S 6', a: 75,  b: 65, c: 80, d:70},
+            { y: 'S 7', a: 100, b: 90, c: 10, d:30}
         ],
-        // The name of the data record attribute that contains x-values.
-        xkey: 'year',
-        // A list of names of data record attributes that contain y-values.
-        ykeys: ['value'],
-        // Labels for the ykeys -- will be displayed when you hover over the
-        // chart.
-        labels: ['Value']
+        xkey: 'y',
+        ykeys: ['a', 'b', 'c', 'd'],
+        labels: ['Series A', 'Series B'],
+        parseTime: false
     });
 
     Morris.Donut({
@@ -50,7 +67,7 @@
         </div>
     </div>
 
-    <div id="myfirstchart" style="height: 250px;"></div>
+    <!--<div id="myfirstchart" style="height: 250px;"></div>-->
 
     <div class="container">
           <br>
@@ -85,6 +102,8 @@
           <!--</div>-->
     </div>
 
+
+    <div id="line-example"></div>
     <div id="donut-example"></div>
 
 </div>
