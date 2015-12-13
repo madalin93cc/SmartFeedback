@@ -4,6 +4,7 @@ import ro.upb.smartfeedback.dto.AdaugareFeedbackDetailsDTO;
 import ro.upb.smartfeedback.dto.CompletareFeedbackDTO;
 import ro.upb.smartfeedback.dto.FeedbackMenuDTO;
 import ro.upb.smartfeedback.entity.Feedback;
+import ro.upb.smartfeedback.entity.Notificare;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface FeedbackService {
     public AdaugareFeedbackDetailsDTO getAdaugareFeedbackDetails(Long idActivitate);
 
     public Feedback addFeeeback(Long idActivitate, Integer saptamana);
+
+    public Notificare requestFeedback(Long idActivitate, Integer saptamana);
 }

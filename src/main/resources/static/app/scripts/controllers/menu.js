@@ -20,6 +20,10 @@ angular.module('smartFeedbackApp')
     };
 
     $scope.addFeedback = function (id) {
-      $location.path("/add_feedback/" + id);
+      $location.path("/add_feedback/" + id + "/" + 0);
+    };
+
+    $scope.requestFeedback = function (id) {
+      $location.path("/request_feedback/" + id);
     };
   }]);

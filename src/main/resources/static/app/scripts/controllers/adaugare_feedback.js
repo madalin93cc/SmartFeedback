@@ -10,13 +10,19 @@
 angular.module('smartFeedbackApp')
   .controller('AdaugareFeedbackCtrl', ['$scope', '$location', '$routeParams', 'FeedbackService', function ($scope, $location, $routeParams, FeedbackService) {
     $scope.cursId = $routeParams.cursId;
+    $scope.tip = $routeParams.tip;
     $scope.activityName = null;
     $scope.weeks = [];
     $scope.showSuccess = false;
 
-    FeedbackService.getDetailsForAdd($scope.cursId).then(function(response){
+    FeedbackService.getDetailsForAdd($scope.cursId).then(function (response) {
       $scope.activityName = response.nume;
-      $scope.weeks = response.availableWeeks;
+      if ($scope.tip !== '0'){
+        $scope.weeks = $scope.tip;
+        $scope.selectedWeek = $scope.tip;
+      } else{
+        $scope.weeks = response.availableWeeks;
+      }
     });
 
     $scope.createFeedback = function() {

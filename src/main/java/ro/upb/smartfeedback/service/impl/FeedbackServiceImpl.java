@@ -16,6 +16,7 @@ import ro.upb.smartfeedback.repository.UserRepository;
 import ro.upb.smartfeedback.entity.*;
 import ro.upb.smartfeedback.repository.*;
 import ro.upb.smartfeedback.service.FeedbackService;
+import ro.upb.smartfeedback.utils.TipNotificareEnum;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
@@ -42,6 +43,9 @@ public class FeedbackServiceImpl implements FeedbackService{
 
     @Autowired
     IntrebariRepository intrebariRepository;
+
+    @Autowired
+    NotificareRepository notificareRepository;
 
     @Override
     public List<Feedback> getAllFeedbacksForActivity(Long activityId) {
@@ -99,5 +103,24 @@ public class FeedbackServiceImpl implements FeedbackService{
         f.setToDate(new Date(currentDate.getTime() + 7 * 60 * 60 * 24 * 1000));
         f.setStatus(1);
         return feedbackRepository.save(f);
+    }
+
+    @Override
+    public Notificare requestFeedback(Long idActivitate, Integer saptamana) {
+        Notificare notificare = new Notificare();
+        Activitate activitate = activitateRepository.findById(idActivitate);
+        Profesor titulat = activitate.getProfesors().get(0);
+        User user = titulat.getUser();
+
+        notificare.setActivitate(activitate);
+        notificare.setUser(user);
+        notificare.setTipNotificare(TipNotificareEnum.CERERE_ACTIVARE_FEEDBACK.getId());
+        notificare.setUrl(TipNotificareEnum.CERERE_ACTIVARE_FEEDBACK.getBaseUrl() + activitate.getId());
+        notificare.setMessage(TipNotificareEnum.CERERE_ACTIVARE_FEEDBACK.getMessage());
+        notificare.setStatus(false);
+        notificare.setSaptamana(saptamana);
+        notificare = notificareRepository.save(notificare);
+
+        return notificare;
     }
 }

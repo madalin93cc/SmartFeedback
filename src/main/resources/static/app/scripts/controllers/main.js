@@ -8,6 +8,19 @@
  * Controller of the smartFeedbackApp
  */
 angular.module('smartFeedbackApp')
-  .controller('MainCtrl', [function () {
+  .controller('MainCtrl', ['$scope', '$location', 'NotificationService', function ($scope, $location, NotificationService) {
+
+    NotificationService.getActiveNotification().then(function (response) {
+      $scope.notifications = response;
+    });
+
+    $scope.notificationClicked = function(notification) {
+      NotificationService.setNotificationStatus(notification.id).then(function(){
+        NotificationService.getActiveNotification().then(function (response) {
+          $scope.notifications = response;
+        });
+      });
+      $location.path(notification.url + "/" + notification.saptamana);
+    };
 
   }]);

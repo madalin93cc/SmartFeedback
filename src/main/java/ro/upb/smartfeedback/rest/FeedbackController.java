@@ -3,11 +3,6 @@ package ro.upb.smartfeedback.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import ro.upb.smartfeedback.SmartFeedback;
-import ro.upb.smartfeedback.dto.ComentariiDTO;
-import ro.upb.smartfeedback.dto.CompletareFeedbackDTO;
-import ro.upb.smartfeedback.dto.FeedbackMenuDTO;
-import ro.upb.smartfeedback.dto.MediiNoteDTO;
-import ro.upb.smartfeedback.entity.Feedback;
 import ro.upb.smartfeedback.dto.*;
 import ro.upb.smartfeedback.service.FeedbackService;
 import ro.upb.smartfeedback.service.RaspunsService;
@@ -72,5 +67,10 @@ public class FeedbackController {
     @RequestMapping(value = RequestMappings.GET_ADAUGARE_FEEDBACK_DETAILS, method = RequestMethod.GET, produces = "application/json")
     public AdaugareFeedbackDetailsDTO getAdaugareFeedbackDetails(@PathVariable("idActivitate") Long idActivitate){
         return feedbackService.getAdaugareFeedbackDetails(idActivitate);
+    }
+
+    @RequestMapping(value = RequestMappings.REQUEST_FEEDBACK, method = RequestMethod.GET, produces = "application/json")
+    public Boolean requestFeedback(@PathVariable("idActivitate") Long idActivitate, @PathVariable("saptamana") Integer saptamana){
+        return feedbackService.requestFeedback(idActivitate, saptamana) != null;
     }
 }
