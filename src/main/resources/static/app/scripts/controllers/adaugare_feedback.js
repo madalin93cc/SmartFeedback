@@ -18,8 +18,9 @@ angular.module('smartFeedbackApp')
     FeedbackService.getDetailsForAdd($scope.cursId).then(function (response) {
       $scope.activityName = response.nume;
       if ($scope.tip !== '0'){
-        $scope.weeks = $scope.tip;
-        $scope.selectedWeek = $scope.tip;
+        $scope.weeks = [];
+        $scope.weeks.push(parseInt($scope.tip));
+        $scope.selectedWeek = $scope.weeks[0];
       } else{
         $scope.weeks = response.availableWeeks;
       }

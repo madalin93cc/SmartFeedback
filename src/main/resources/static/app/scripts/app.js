@@ -45,6 +45,10 @@ angular.module('smartFeedbackApp', [
         templateUrl: 'views/request_feedback.html',
         controller: 'RequestFeedbackCtrl'
       })
+      .when('/messages',{
+        templateUrl: 'views/messages.html',
+        controller: 'MessagesCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

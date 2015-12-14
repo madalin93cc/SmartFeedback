@@ -56,7 +56,7 @@ angular.module('smartFeedbackApp')
   .run(['$cookies', '$rootScope', '$location', '$route',
   function (
     $cookies ,$rootScope, $location) {
-  $rootScope.$on('$routeChangeStart', function () {
+  $rootScope.$on('$routeChangeStart', function (e) {
     if ($cookies.get('isAuthenticated')){
       $rootScope.isAuthenticated = true;
     } else {
