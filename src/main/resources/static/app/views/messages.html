@@ -3,7 +3,7 @@
     <div class="col-sm-12">
       <div class="panel panel-default">
         <div class="panel-heading">
-          Messages
+          Mesaje
         </div>
         <!-- /.panel-heading -->
         <div class="panel-body">
@@ -13,23 +13,66 @@
             </li>
             <li ng-click="tabClicked(2)" ng-class="getTabClass(2)"><a data-toggle="tab">Outbox</a>
             </li>
-            <li ng-click="tabClicked(3)" ng-class="getTabClass(3)"><a data-toggle="tab">Send message</a>
+            <li ng-click="tabClicked(3)" ng-class="getTabClass(3)"><a data-toggle="tab">Trimite mesaj</a>
             </li>
           </ul>
 
           <!-- Tab panes -->
           <div class="tab-content">
             <div ng-class="getTabContentClass(1)" id="inbox">
-              <h4>Inbox</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <!--<h4>Inbox</h4>-->
+              <br/>
+              <div class="row">
+                <div class="well well-sm col-sm-10 col-sm-offset-1">
+                  <h4>Sam smith</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                </div>
+              </div>
+              <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
             </div>
             <div ng-class="getTabContentClass(2)" id="outbox">
-              <h4>Outbox</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <!--<h4>Outbox</h4>-->
+              <br/>
+              <div class="row">
+                <div class="well well-sm col-sm-10 col-sm-offset-1">
+                  <h4>Sam smith</h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                </div>
+              </div>
+              <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
             </div>
             <div ng-class="getTabContentClass(3)" id="sendmessages">
-              <h4>Send message</h4>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+              <!--<h4>Send message</h4>-->
+              <br/>
+              <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">
+                  <h4>
+                    Selecteaza destinatarul
+                  </h4>
+                </div>
+                <div class="col-sm-4">
+                  <select class="form-control">
+                    <option>a</option>
+                    <option>b</option>
+                  </select>
+                </div>
+                <div class="col-sm-4"></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                  <div class="form-group">
+                    <label>Message</label>
+                    <textarea class="form-control" rows="3"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 ">
+                  <button class="btn btn-primary">Trimite mesajul</button>
+                </div>
+              </div>
+              <!--<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>-->
             </div>
           </div>
         </div>
