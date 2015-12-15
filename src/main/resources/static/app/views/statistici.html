@@ -1,12 +1,28 @@
 <div id="page-wrapper">
-    <div style="margin-top: 50px" class="row">
-        <label style="font-size: 20px" class="label label-success">Note generale cursuri</label>
+
+    <br>
+    <label style="font-size: 20px" class="label label-info">Note generale cursuri</label>
+    <div style="margin: 50px">
         <div id="bar-example"></div>
     </div>
-    <div style="margin-top: 50px" class="row">
-        <label style="font-size: 20px" class="label label-success">Prezenta medie la cursuri</label>
-        <div id="chartContainer"></div>
+
+    <label style="font-size: 20px" class="label label-info">Evolutia numarului de feedback-uri</label>
+    <div class="form-group" style="margin: 50px">
+        <label>Selectare materie</label>
+        <br><br>
+        <select id="selectMaterie">
+            <option>1</option>
+            <option>2</option>
+        </select>
     </div>
+
+    <div id="chartLine" style="height: 400px; width: 90%;margin: 50px"></div>
+
+    <!--<div style="margin-top: 50px" class="row">-->
+    <label style="font-size: 20px" class="label label-info">Prezenta medie la cursuri</label>
+    <div id="chartContainer" style="height: 400px; width: 90%;margin: 50px"></div>
+    <!--</div>-->
+
 </div>
 
 <script>
