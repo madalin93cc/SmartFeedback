@@ -25,8 +25,10 @@
               <div class="row">
                 <div ng-repeat="inm in inbox" class="well well-sm col-sm-10 col-sm-offset-1">
                   <div class="row">
+                    <span ng-click="changeSeen(inm.id, false)" ng-if="inm.seen" class="col-sm-1 fa fa-circle-o"></span>
+                    <span ng-click="changeSeen(inm.id, true)" ng-if="!inm.seen"class="col-sm-1 fa fa-circle"></span>
                     <h4 class="col-sm-8">{{inm.user}}</h4>
-                    <h4 class="col-sm-4">{{inm.createdAt | date:'MM/dd/yyyy h:mma'}}</h4>
+                    <h4 class="col-sm-3">{{inm.createdAt | date:'MM/dd/yyyy h:mma'}}</h4>
                   </div>
                   <div class="row">
                     <p class="col-sm-12">{{inm.text}}</p>

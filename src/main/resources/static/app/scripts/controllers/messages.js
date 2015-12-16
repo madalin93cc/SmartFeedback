@@ -11,13 +11,18 @@ angular.module('smartFeedbackApp')
   .controller('MessagesCtrl', ['$scope', '$location', 'MessageService', function ($scope, $location, MessageService) {
     $scope.activeTab = 1;
     $scope.showSuccess = false;
-
+    $scope.count = 0;
     MessageService.getUsersForMessages().then(function (response) {
       $scope.users = response;
     });
 
     MessageService.getInbox().then(function (response) {
       $scope.inbox = response;
+      angular.forEach($scope.inbox, function(value){
+        if (value.seen === false){
+          $scope.count ++;
+        }
+      });
     });
 
     MessageService.getOutbox().then(function (response) {
@@ -47,7 +52,6 @@ angular.module('smartFeedbackApp')
     };
 
     $scope.sendMessage = function(){
-      debugger;
       MessageService.sendMessage($scope.message).then(function(response){
         $scope.showSuccess = true;
         $scope.message= {};
@@ -59,5 +63,20 @@ angular.module('smartFeedbackApp')
       MessageService.getOutbox().then(function (response) {
         $scope.outbox = response;
       });
+    }
+
+    $scope.changeSeen = function(messageId, change) {
+      MessageService.changeSeen(messageId, change).then(function () {
+        MessageService.getInbox().then(function (response) {
+          $scope.inbox = response;
+          $scope.count = 0;
+          angular.forEach($scope.inbox, function(value){
+            if (value.seen === false){
+              $scope.count ++;
+            }
+          });
+        });
+      });
+
     }
   }]);

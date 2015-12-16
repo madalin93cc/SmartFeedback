@@ -43,6 +43,16 @@ angular.module('smartFeedbackApp')
         }, function errorCallback(response) {
           return response;
         });
+      },
+      changeSeen: function (messageId, change) {
+        return $http({
+          method: 'GET',
+          url: 'http://localhost:8080/changeSeen/' + messageId + "/" + change,
+        }).then(function successCallback(response) {
+          return response.data;
+        }, function errorCallback(response) {
+          return response;
+        });
       }
     };
   }]);

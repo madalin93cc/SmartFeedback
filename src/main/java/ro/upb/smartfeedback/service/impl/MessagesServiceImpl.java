@@ -77,4 +77,12 @@ public class MessagesServiceImpl implements MessagesService {
         mesaj.setText(sendMessageDTO.getMessage());
         return mesajRepository.save(mesaj) != null;
     }
+
+    @Override
+    public Boolean changeSeen(Long messageId, Boolean change) {
+        Mesaj m = mesajRepository.findById(messageId);
+        m.setSeen(change);
+        mesajRepository.save(m);
+        return true;
+    }
 }

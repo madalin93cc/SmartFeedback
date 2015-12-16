@@ -17,4 +17,6 @@ public interface MessagesService {
     List<MessageDTO> getOutbox();
 
     Boolean sendMessage(SendMessageDTO sendMessageDTO);
+
+    Boolean changeSeen(Long messageId, Boolean change);
 }

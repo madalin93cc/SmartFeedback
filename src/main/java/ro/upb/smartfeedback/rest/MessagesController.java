@@ -1,10 +1,7 @@
 package ro.upb.smartfeedback.rest;
 
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ro.upb.smartfeedback.dto.MessageDTO;
 import ro.upb.smartfeedback.dto.SendMessageDTO;
 import ro.upb.smartfeedback.dto.UserDTO;
@@ -40,5 +37,10 @@ public class MessagesController {
     @RequestMapping(value = RequestMappings.SEND_MESSAGE, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     private Boolean sendMessage(@RequestBody SendMessageDTO sendMessageDTO){
         return messagesService.sendMessage(sendMessageDTO);
+    }
+
+    @RequestMapping(value = RequestMappings.CHANGE_SEEN, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    private Boolean changeSeen(@PathVariable("messageId") Long messageId, @PathVariable("change") Boolean change){
+        return messagesService.changeSeen(messageId, change);
     }
 }

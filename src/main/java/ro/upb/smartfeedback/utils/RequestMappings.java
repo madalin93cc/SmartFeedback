@@ -25,4 +25,5 @@ public interface RequestMappings {
     public static final String SEND_MESSAGE = "/sendMessage";
     public static final String GET_NO_FEEDBACKS_PER_PROFESOR = "/getNoFeedbacks/{idProfesor}";
     public static final String GET_MEDII_ACTIVITATI = "/getMediiActivitati";
+    public static final String CHANGE_SEEN = "/changeSeen/{messageId}/{change}";
 }

@@ -25,11 +25,6 @@ public class StatisticsController {
     @Autowired
     ActivitatiService activitatiService;
 
-    @RequestMapping(value = RequestMappings.GET_MAIN_PAGE_OVERVIEW, method = RequestMethod.GET, produces = "application/json")
-    public void getOverview(@PathVariable("idUser") Long isUser){
-
-    }
-
     @RequestMapping(value = RequestMappings.GET_NO_FEEDBACKS_PER_PROFESOR, method = RequestMethod.GET, produces = "application/json")
     public List<FeedbackPeMaterieDTO> getNoFeedbacks(@PathVariable("idProfesor") Long idProfesor) {
         return feedbackService.getFeedbacksPerProfesor(idProfesor);
