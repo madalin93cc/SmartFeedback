@@ -2,6 +2,7 @@ package ro.upb.smartfeedback.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.upb.smartfeedback.SmartFeedback;
 import ro.upb.smartfeedback.dto.*;
 import ro.upb.smartfeedback.entity.Activitate;
 import ro.upb.smartfeedback.entity.Feedback;
@@ -153,8 +154,9 @@ public class FeedbackServiceImpl implements FeedbackService{
     }
 
     @Override
-    public List<FeedbackPeMaterieDTO> getFeedbacksPerProfesor(Long idProfesor) {
-        Profesor p = profesorRepository.getById(idProfesor);
+    public List<FeedbackPeMaterieDTO> getFeedbacksPerProfesor() {
+        Profesor p = SmartFeedback.loggedUser.getIdProfesor();
+        if (p != null){
         Set<Activitate> activitati = p.getActivitati();
         List<FeedbackPeMaterieDTO> rezultate = new ArrayList<>();
 
@@ -162,5 +164,7 @@ public class FeedbackServiceImpl implements FeedbackService{
             rezultate.add(this.getFeedbacksPerActivitate(a.getId()));
         }
         return rezultate;
+        }
+        return null;
     }
 }

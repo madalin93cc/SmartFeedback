@@ -26,8 +26,8 @@ public class StatisticsController {
     ActivitatiService activitatiService;
 
     @RequestMapping(value = RequestMappings.GET_NO_FEEDBACKS_PER_PROFESOR, method = RequestMethod.GET, produces = "application/json")
-    public List<FeedbackPeMaterieDTO> getNoFeedbacks(@PathVariable("idProfesor") Long idProfesor) {
-        return feedbackService.getFeedbacksPerProfesor(idProfesor);
+    public List<FeedbackPeMaterieDTO> getNoFeedbacks() {
+        return feedbackService.getFeedbacksPerProfesor();
     }
 
     @RequestMapping(value = RequestMappings.GET_MEDII_ACTIVITATI, method = RequestMethod.GET, produces = "application/json")
