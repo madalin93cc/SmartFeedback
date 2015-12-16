@@ -19,4 +19,8 @@ public interface RequestMappings {
     public static final String GET_MAIN_PAGE_OVERVIEW = "/getOverview";
     public static final String GET_ACTIVE_NOTIFICATIONS = "/getActiveNotifications";
     public static final String SET_NOTIFICATION_STATUS = "/setNotificationStatus/{notifId}";
+    public static final String GET_USERS_FOR_MESSAGES = "/getUsersFormMessages";
+    public static final String GET_INBOX = "/getInbox";
+    public static final String GET_OUTBOX = "/getOutbox";
+    public static final String SEND_MESSAGE = "/sendMessage";
 }

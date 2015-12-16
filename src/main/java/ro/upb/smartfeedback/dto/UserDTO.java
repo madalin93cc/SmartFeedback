@@ -1,5 +1,6 @@
 package ro.upb.smartfeedback.dto;
 
+import ro.upb.smartfeedback.entity.User;
 import ro.upb.smartfeedback.utils.UserTypeEnum;
 
 /**
@@ -71,6 +72,18 @@ public class UserDTO {
         this.userType = userType;
         this.grupa = grupa;
         this.seria = seria;
+    }
+
+    public UserDTO(User user){
+        this.id = user.getId();
+        this.nume = user.getNume();
+        this.prenume = user.getPrenume();
+        this.username = user.getUsername();
+        if (user.getIdProfesor() != null){
+            this.setUserType(UserTypeEnum.PROFESOR);
+        } else if (user.getIdStudent() != null) {
+            this.setUserType(UserTypeEnum.STUDENT);
+        }
     }
 
     public UserTypeEnum getUserType() {
