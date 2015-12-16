@@ -81,15 +81,16 @@ angular.module('smartFeedbackApp')
       });
       $scope.chart.render();
 
-    $scope.bar = Morris.Bar({
+      $scope.note = [];
+      angular.forEach($scope.MediiActivitati, function (value, key) {
+        $scope.note.concat([{ a : Math.round(value.medieNote * 100) / 100, y : value.materie.code}]);
+      });
+
+
+
+      $scope.bar = Morris.Bar({
       element: 'bar-example',
-      data: [
-        { y: 'SO II', a: 7.2},
-        { y: 'CPL', a: 6},
-        { y: 'PR', a: 8},
-        { y: 'MPS', a: 5},
-        { y: 'IOC', a: 9}
-      ],
+      data: $scope.note,
       xkey: 'y',
       parsetime: false,
       ykeys: ['a'],
