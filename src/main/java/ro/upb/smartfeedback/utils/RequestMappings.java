@@ -23,4 +23,6 @@ public interface RequestMappings {
     public static final String GET_INBOX = "/getInbox";
     public static final String GET_OUTBOX = "/getOutbox";
     public static final String SEND_MESSAGE = "/sendMessage";
+    public static final String GET_NO_FEEDBACKS_PER_PROFESOR = "/getNoFeedbacks/{idProfesor}";
+    public static final String GET_MEDII_ACTIVITATI = "/getMediiActivitati";
 }

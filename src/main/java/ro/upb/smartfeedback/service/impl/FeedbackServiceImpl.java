@@ -2,9 +2,7 @@ package ro.upb.smartfeedback.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ro.upb.smartfeedback.dto.AdaugareFeedbackDetailsDTO;
-import ro.upb.smartfeedback.dto.CompletareFeedbackDTO;
-import ro.upb.smartfeedback.dto.FeedbackMenuDTO;
+import ro.upb.smartfeedback.dto.*;
 import ro.upb.smartfeedback.entity.Activitate;
 import ro.upb.smartfeedback.entity.Feedback;
 import ro.upb.smartfeedback.entity.RaspunsIntrebare;
@@ -16,12 +14,14 @@ import ro.upb.smartfeedback.repository.UserRepository;
 import ro.upb.smartfeedback.entity.*;
 import ro.upb.smartfeedback.repository.*;
 import ro.upb.smartfeedback.service.FeedbackService;
+import ro.upb.smartfeedback.utils.TipIntrebareEnum;
 import ro.upb.smartfeedback.utils.TipNotificareEnum;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by colez on 03/12/2015.
@@ -46,6 +46,9 @@ public class FeedbackServiceImpl implements FeedbackService{
 
     @Autowired
     NotificareRepository notificareRepository;
+
+    @Autowired
+    ProfesorRepository profesorRepository;
 
     @Override
     public List<Feedback> getAllFeedbacksForActivity(Long activityId) {
@@ -122,5 +125,42 @@ public class FeedbackServiceImpl implements FeedbackService{
         notificare = notificareRepository.save(notificare);
 
         return notificare;
+    }
+
+
+    @Override
+    public List<FeedbackPeSaptamanaDTO> getFeedbacksPerWeek(Long idActivitate) {
+        List<FeedbackPeSaptamanaDTO> rezultate = new ArrayList<>();
+        List<Feedback> feedbacks = feedbackRepository.getAllFeedbackForActivity(idActivitate);
+        Activitate a = activitateRepository.findById(idActivitate);
+
+        for(Integer i = 1; i <= 14; i++) {
+            rezultate.add(new FeedbackPeSaptamanaDTO(i, new ActivitateMenuDTO(a), 0));
+        }
+
+        for(Feedback f : feedbacks) {
+            for(FeedbackPeSaptamanaDTO rez : rezultate) {
+                if(f.getSaptamana().equals(rez.getSaptamana()))
+                    rez.setFeedbacks(raspunsIntrebareRepository.getNumarFeedbackuri(f.getId(), TipIntrebareEnum.NOTA_GENERALA.getId()));
+            }
+        }
+        return rezultate;
+    }
+
+    @Override
+    public FeedbackPeMaterieDTO getFeedbacksPerActivitate(Long idActivitate) {
+        return new FeedbackPeMaterieDTO(new ActivitateMenuDTO(activitateRepository.findById(idActivitate)), this.getFeedbacksPerWeek(idActivitate));
+    }
+
+    @Override
+    public List<FeedbackPeMaterieDTO> getFeedbacksPerProfesor(Long idProfesor) {
+        Profesor p = profesorRepository.getById(idProfesor);
+        Set<Activitate> activitati = p.getActivitati();
+        List<FeedbackPeMaterieDTO> rezultate = new ArrayList<>();
+
+        for(Activitate a : activitati) {
+            rezultate.add(this.getFeedbacksPerActivitate(a.getId()));
+        }
+        return rezultate;
     }
 }
