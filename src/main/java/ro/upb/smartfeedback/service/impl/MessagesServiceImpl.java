@@ -1,6 +1,7 @@
 package ro.upb.smartfeedback.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ro.upb.smartfeedback.SmartFeedback;
 import ro.upb.smartfeedback.dto.MessageDTO;
 import ro.upb.smartfeedback.dto.SendMessageDTO;
@@ -11,6 +12,7 @@ import ro.upb.smartfeedback.repository.MesajRepository;
 import ro.upb.smartfeedback.repository.UserRepository;
 import ro.upb.smartfeedback.service.MessagesService;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -18,6 +20,8 @@ import java.util.List;
 /**
  * Created by Madalin.Colezea on 12/16/2015.
  */
+@Service
+@Transactional
 public class MessagesServiceImpl implements MessagesService {
     @Autowired
     private UserRepository userRepository;

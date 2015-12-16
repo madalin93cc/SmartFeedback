@@ -36,8 +36,8 @@ angular.module('smartFeedbackApp')
       sendMessage: function (message) {
         return $http({
           method: 'POST',
-          url: 'http://localhost:8080/sendMessage',
-          date: message
+          url: 'http://localhost:8080/sendMessage/',
+          data: message
         }).then(function successCallback(response) {
           return response.data;
         }, function errorCallback(response) {

@@ -17,11 +17,11 @@ public class Mesaj implements BaseEntity{
 //    @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_mesaj"),name = "id_parinte", unique = false, nullable = false, updatable = true)
 //    private Mesaj idParinte;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_utilizator"),name = "id_user_send", unique = false, nullable = false, updatable = true)
     private User idUserSend;
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(foreignKey = @ForeignKey(name = "FK_mesaj_utilizator_2"),name = "id_user_recv", unique = false, nullable = false, updatable = true)
     private User idUserRecv;
 
