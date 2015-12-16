@@ -81,4 +81,20 @@ angular.module('smartFeedbackApp')
       });
       $scope.chart.render();
 
+    $scope.bar = Morris.Bar({
+      element: 'bar-example',
+      data: [
+        { y: 'SO II', a: 7.2},
+        { y: 'CPL', a: 6},
+        { y: 'PR', a: 8},
+        { y: 'MPS', a: 5},
+        { y: 'IOC', a: 9}
+      ],
+      xkey: 'y',
+      parsetime: false,
+      ykeys: ['a'],
+      ymax: 10,
+      labels: ['Nota']
+    });
+
 }]);
