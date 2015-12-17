@@ -6,17 +6,28 @@
 
 angular.module('smartFeedbackApp')
     .controller('StatisticiCtrl', ['$scope', 'StatisticiService',function($scope, StatisticiService) {
+    $scope.note = [];
 
     StatisticiService.getNoFeedbacks().then(function (response) {
-      debugger;
       $scope.noFeedbacks = response;
     });
 
     StatisticiService.getMediiActivitati().then(function (response) {
       debugger;
       $scope.mediiActivitati = response;
+      angular.forEach($scope.mediiActivitati, function (value) {
+        $scope.note.push({ y : value.materie.code, a : Math.round(value.medieNote * 100) / 100});
+      });
+      $scope.bar = Morris.Bar({
+        element: 'bar-example',
+        data: $scope.note,
+        xkey: 'y',
+        parsetime: false,
+        ykeys: ['a'],
+        ymax: 10,
+        labels: ['Nota']
+      });
     });
-
       $scope.chart = new CanvasJS.Chart("chartContainer", {
           animationEnabled: true,
           legend:{
@@ -80,22 +91,5 @@ angular.module('smartFeedbackApp')
           ]
       });
       $scope.chart.render();
-
-      $scope.note = [];
-      angular.forEach($scope.MediiActivitati, function (value, key) {
-        $scope.note.concat([{ a : Math.round(value.medieNote * 100) / 100, y : value.materie.code}]);
-      });
-
-
-
-      $scope.bar = Morris.Bar({
-      element: 'bar-example',
-      data: $scope.note,
-      xkey: 'y',
-      parsetime: false,
-      ykeys: ['a'],
-      ymax: 10,
-      labels: ['Nota']
-    });
 
 }]);
