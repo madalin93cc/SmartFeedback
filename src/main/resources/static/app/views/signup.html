@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <div class="login-panel panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Create account</h3>
+            </div>
+            <div class="panel-body">
+                <form role="form">
+                    <fieldset>
+                        <div class="form-group">
+                            <input ng-model="user.nume" class="form-control" placeholder="Nume" name="nume" ng-required="true" ng-pattern="/[A-Z][a-z]*/" autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="user.prenume" class="form-control" placeholder="Prenume" name="prenume">
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="user.username" class="form-control" placeholder="Username" name="username">
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="user.password" class="form-control" placeholder="Password" name="password" type="password" value="">
+                        </div>
+                        <div class="form-group">
+                            <input ng-model="user.email" class="form-control" placeholder="Email" name="email" type="email">
+                        </div>
+                        <form action="">
+                            <input ng-model="user.student" id="student" style="display: inline" type="radio" name="tip" value="student">Student
+                            <input ng-model="user.profesor" id="profesor" style="display: inline" type="radio" name="tip" value="profesor">Profesor<br>
+                        </form>
+                        <br>
+                        <form action="" id="specializare">
+                            <input ng-model="user.cti" style="display: inline" type="radio" name="specializare" value="CTI">CTI
+                            <input ng-model="user.is" style="display: inline; margin-left: 25px" type="radio" name="specializare" value="IS">IS
+                        </form>
+                        <br>
+                        <div id="divAnul" class="form-group">
+                            <label for="anul" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: normal; color: darkgrey">Anul</label>
+                            <select ng-model="user.anul" class="form-control" id="anul">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                        <div id="divGrupa" class="form-group">
+                            <label for="grupa" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: normal; color: darkgrey">Grupa</label>
+                            <select ng-model="user.grupa" class="form-control" id="grupa">
+                                <option>333CA</option>
+                                <option>333CC</option>
+                                <option>341C1</option>
+                                <option>342C5</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-lg btn-info btn-block">Sign Up</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
