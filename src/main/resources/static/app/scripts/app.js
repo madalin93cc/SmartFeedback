@@ -49,6 +49,10 @@ angular.module('smartFeedbackApp', [
         templateUrl: 'views/messages.html',
         controller: 'MessagesCtrl'
       })
+      .when('/signup',{
+          templateUrl: 'views/signup.html',
+          controller: 'SignupCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
