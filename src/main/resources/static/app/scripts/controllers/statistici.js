@@ -16,7 +16,7 @@ angular.module('smartFeedbackApp')
       debugger;
       $scope.mediiActivitati = response;
       angular.forEach($scope.mediiActivitati, function (value) {
-        $scope.note.push({ y : value.materie.code, a : Math.round(value.medieNote * 100) / 100});
+        $scope.note.push({ y : value.materie.nume, a : Math.round(value.medieNote * 100) / 100});
       });
       $scope.bar = Morris.Bar({
         element: 'bar-example',
