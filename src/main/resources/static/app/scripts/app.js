@@ -19,6 +19,10 @@ angular.module('smartFeedbackApp', [
     'ngTouch',
     'rzModule'
   ])
+  .constant("myConst", {
+    //"host": "http://192.168.0.105:8080"
+    "host": "http://localhost:8080"
+  })
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

@@ -1,12 +1,12 @@
 "use strict";
 
 angular.module('smartFeedbackApp')
-  .factory('MenuService', ['$http', function($http){
+  .factory('MenuService', ['$http', 'myConst', function($http, myConst){
   return{
     getMateriiUtilizator: function () {
       return $http({
         method: 'GET',
-        url: 'http://localhost:8080/getMateriiUtilizator'
+        url: myConst.host + '/getMateriiUtilizator'
       }).then(function successCallback(response) {
         return response.data;
       }, function errorCallback(response) {

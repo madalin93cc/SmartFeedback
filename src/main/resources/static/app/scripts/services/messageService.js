@@ -1,12 +1,12 @@
 "use strict";
 
 angular.module('smartFeedbackApp')
-  .factory('MessageService', ['$http', function($http){
+  .factory('MessageService', ['$http', 'myConst', function($http, myConst){
     return{
       getUsersForMessages: function () {
         return $http({
           method: 'GET',
-          url: 'http://localhost:8080/getUsersFormMessages'
+          url: myConst.host + '/getUsersFormMessages'
         }).then(function successCallback(response) {
           return response.data;
         }, function errorCallback(response) {
@@ -16,7 +16,7 @@ angular.module('smartFeedbackApp')
       getInbox: function () {
         return $http({
           method: 'GET',
-          url: 'http://localhost:8080/getInbox'
+          url: myConst.host + '/getInbox'
         }).then(function successCallback(response) {
           return response.data;
         }, function errorCallback(response) {
@@ -26,7 +26,7 @@ angular.module('smartFeedbackApp')
       getOutbox: function () {
         return $http({
           method: 'GET',
-          url: 'http://localhost:8080/getOutbox'
+          url: myConst.host + '/getOutbox'
         }).then(function successCallback(response) {
           return response.data;
         }, function errorCallback(response) {
@@ -36,7 +36,7 @@ angular.module('smartFeedbackApp')
       sendMessage: function (message) {
         return $http({
           method: 'POST',
-          url: 'http://localhost:8080/sendMessage/',
+          url: myConst.host + '/sendMessage/',
           data: message
         }).then(function successCallback(response) {
           return response.data;
@@ -47,7 +47,7 @@ angular.module('smartFeedbackApp')
       changeSeen: function (messageId, change) {
         return $http({
           method: 'GET',
-          url: 'http://localhost:8080/changeSeen/' + messageId + "/" + change,
+          url: myConst.host + '/changeSeen/' + messageId + "/" + change,
         }).then(function successCallback(response) {
           return response.data;
         }, function errorCallback(response) {

@@ -8,10 +8,6 @@ angular.module('smartFeedbackApp')
     .controller('StatisticiCtrl', ['$scope', 'StatisticiService',function($scope, StatisticiService) {
     $scope.note = [];
 
-    StatisticiService.getNoFeedbacks().then(function (response) {
-      $scope.noFeedbacks = response;
-    });
-
     StatisticiService.getMediiActivitati().then(function (response) {
       debugger;
       $scope.mediiActivitati = response;

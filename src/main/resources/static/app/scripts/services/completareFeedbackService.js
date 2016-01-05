@@ -1,13 +1,13 @@
 "use strict";
 
 angular.module('smartFeedbackApp')
-  .factory('FeedbackService', ['$http',
-    function($http){
+  .factory('FeedbackService', ['$http', 'myConst',
+    function($http, myConst){
       return{
         getFeedbackDetailbyId: function (id) {
           return $http({
             method: 'GET',
-            url: 'http://localhost:8080/getFeedbackDetailById/' + id
+            url: myConst.host + '/getFeedbackDetailById/' + id
           }).then(function successCallback(response) {
             return response.data;
           }, function errorCallback(response) {
@@ -18,7 +18,7 @@ angular.module('smartFeedbackApp')
         getFeedback: function (userId, feedbackId) {
           return $http({
             method: 'GET',
-            url: 'http://localhost:8080/getFeedback/' + userId + "/" + feedbackId
+            url: myConst.host + '/getFeedback/' + userId + "/" + feedbackId
           }).then(function successCallback(response) {
             return response.data;
           }, function errorCallback(response) {
@@ -29,7 +29,7 @@ angular.module('smartFeedbackApp')
         getComments: function (feedbackId) {
           return $http({
             method: 'GET',
-            url: 'http://localhost:8080/getCommentsForFeedback/' + feedbackId
+            url: myConst.host + '/getCommentsForFeedback/' + feedbackId
           }).then(function successCallback(response) {
             return response.data;
           }, function errorCallback(response) {
@@ -40,7 +40,7 @@ angular.module('smartFeedbackApp')
         loadStatistics: function (feedbackId) {
           return $http({
             method: 'GET',
-            url: 'http://localhost:8080/getStatistics/' + feedbackId
+            url: myConst.host + '/getStatistics/' + feedbackId
           }).then(function successCallback(response) {
             return response.data;
           }, function errorCallback(response) {
@@ -51,7 +51,7 @@ angular.module('smartFeedbackApp')
         saveFeedback: function (feedback) {
           return $http({
             method: 'POST',
-            url: 'http://localhost:8080/saveFeedback/',
+            url: myConst.host + '/saveFeedback/',
             data: feedback
           }).then(function successCallback(response) {
             return response.data;
@@ -64,7 +64,7 @@ angular.module('smartFeedbackApp')
         getDetailsForAdd: function (activityId) {
           return $http({
             method: 'GET',
-            url: 'http://localhost:8080/getAdaugareFeedbackDetails/' + activityId
+            url: myConst.host + '/getAdaugareFeedbackDetails/' + activityId
           }).then(function successCallback(response) {
             return response.data;
           }, function errorCallback(response) {
@@ -75,7 +75,7 @@ angular.module('smartFeedbackApp')
         createFeedback: function (activityId, week) {
           return $http({
             method: 'GET',
-            url: 'http://localhost:8080/addFeedback/' + activityId + "/" + week
+            url: myConst.host + '/addFeedback/' + activityId + "/" + week
           }).then(function successCallback(response) {
             return response.data;
           }, function errorCallback(response) {
@@ -86,7 +86,7 @@ angular.module('smartFeedbackApp')
         requestFeedback: function (activityId, week) {
           return $http({
             method: 'GET',
-            url: 'http://localhost:8080/requestFeedback/' + activityId + "/" + week
+            url: myConst.host + '/requestFeedback/' + activityId + "/" + week
           }).then(function successCallback(response) {
             return response.data;
           }, function errorCallback(response) {

@@ -1,12 +1,12 @@
 "use strict";
 
 angular.module('smartFeedbackApp')
-  .factory('StatisticiService', ['$http', function($http){
+  .factory('StatisticiService', ['$http', 'myConst', function($http, myConst){
     return{
       getNoFeedbacks: function () {
         return $http({
           method: 'GET',
-          url: 'http://localhost:8080/getNoFeedbacks'
+          url: myConst.host + '/getNoFeedbacks'
         }).then(function successCallback(response) {
           return response.data;
         }, function errorCallback(response) {
@@ -16,7 +16,7 @@ angular.module('smartFeedbackApp')
       getMediiActivitati: function () {
         return $http({
           method: 'GET',
-          url: 'http://localhost:8080/getMediiActivitati'
+          url: myConst.host + '/getMediiActivitati'
         }).then(function successCallback(response) {
           return response.data;
         }, function errorCallback(response) {
