@@ -8,15 +8,26 @@
  * Controller of the smartFeedbackApp
  */
 angular.module('smartFeedbackApp')
-  .controller('LoginCtrl', ['$cookies', '$rootScope', '$scope', '$location', '$route','LoginService',
-    function ($cookies, $rootScope, $scope, $location, $route, LoginService) {
-      if ($cookies.getObject('isAuthenticated')){
-        var user = $cookies.getObject('isAuthenticated');
-        $scope.username = user.prenume + " " + user.nume;
-        if(user.grupa) {
-          $scope.username = $scope.username + " " + user.grupa;
+  .controller('LoginCtrl', ['$cookies', '$interval', '$rootScope', '$scope', '$location', '$route','LoginService',
+    function ($cookies, $interval, $rootScope, $scope, $location, $route, LoginService) {
+
+      $scope.getCurrentUser = function(){
+        if ($cookies.getObject('isAuthenticated')){
+          var user = $cookies.getObject('isAuthenticated');
+          $scope.username = user.prenume + " " + user.nume;
+          if(user.grupa) {
+            $scope.username = $scope.username + " " + user.grupa;
+          }
         }
-      }
+      };
+      $scope.getCurrentUser();
+
+      $scope.refresh = function () {
+        $scope.getCurrentUser();
+      };
+
+      //$interval($scope.refresh, 1000);
+
       $scope.login = function () {
         if ($scope.user && $scope.user.username && $scope.user.password) {
           LoginService.login($scope.user.username, $scope.user.password)
@@ -29,6 +40,7 @@ angular.module('smartFeedbackApp')
                   $scope.username = $scope.username + " " + response.grupa;
                 }
                 $rootScope.isAuthenticated = true;
+                $rootScope.userId = response.id;
                 $location.path("#/");
               }
             });

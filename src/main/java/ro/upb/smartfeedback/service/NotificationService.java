@@ -8,6 +8,6 @@ import java.util.List;
  * Created by colez on 13/12/2015.
  */
 public interface NotificationService {
-    List<NotificareDTO> getActiveNotification();
+    List<NotificareDTO> getActiveNotification(Long userId);
     Boolean setNotificationStatus(Long notifId);
 }

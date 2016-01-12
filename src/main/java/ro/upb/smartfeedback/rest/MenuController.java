@@ -1,6 +1,7 @@
 package ro.upb.smartfeedback.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,8 +32,8 @@ public class MenuController {
     ActivitateRepository activitateRepository;
 
     @RequestMapping(value = RequestMappings.GET_MATERII_UTILIZATOR, method = RequestMethod.GET, produces = "application/json")
-    public List<ActivitateMenuDTO> getMateriiUtilizator(){
-        List<ActivitateMenuDTO> materii = activitatiService.getMateriiUtilizator();
+    public List<ActivitateMenuDTO> getMateriiUtilizator(@PathVariable("userId") Long userId){
+        List<ActivitateMenuDTO> materii = activitatiService.getMateriiUtilizator(userId);
         for (ActivitateMenuDTO activitate: materii){
             List<Feedback> feedbacks = feedbackService.getAllFeedbacksForActivity(activitate.getId());
             List<FeedbackMenuDTO> feedbackMenuDTOs = new ArrayList<>();

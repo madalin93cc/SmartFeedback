@@ -6,6 +6,7 @@ import ro.upb.smartfeedback.SmartFeedback;
 import ro.upb.smartfeedback.dto.NotificareDTO;
 import ro.upb.smartfeedback.entity.Notificare;
 import ro.upb.smartfeedback.repository.NotificareRepository;
+import ro.upb.smartfeedback.repository.UserRepository;
 import ro.upb.smartfeedback.service.NotificationService;
 
 import javax.transaction.Transactional;
@@ -21,10 +22,13 @@ public class NotificationServiceImpl implements NotificationService{
     @Autowired
     NotificareRepository notificareRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @Override
-    public List<NotificareDTO> getActiveNotification() {
+    public List<NotificareDTO> getActiveNotification(Long userId) {
         List<NotificareDTO> notificationDTOs = new ArrayList<>();
-        List<Notificare> notificares = notificareRepository.findByUserAndStatus(SmartFeedback.loggedUser, Boolean.FALSE);
+        List<Notificare> notificares = notificareRepository.findByUserAndStatus(userRepository.findById(userId), Boolean.FALSE);
         for(Notificare n : notificares){
             notificationDTOs.add(new NotificareDTO(n));
         }

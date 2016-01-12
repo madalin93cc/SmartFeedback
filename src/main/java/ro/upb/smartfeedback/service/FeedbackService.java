@@ -26,5 +26,5 @@ public interface FeedbackService {
 
     public FeedbackPeMaterieDTO getFeedbacksPerActivitate(Long idActivitate);
 
-    public List<FeedbackPeMaterieDTO> getFeedbacksPerProfesor();
+    public List<FeedbackPeMaterieDTO> getFeedbacksPerProfesor(Long userId);
 }

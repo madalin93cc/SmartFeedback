@@ -30,11 +30,11 @@ public class MessagesServiceImpl implements MessagesService {
     private MesajRepository mesajRepository;
 
     @Override
-    public List<UserDTO> getUsersForMessages() {
+    public List<UserDTO> getUsersForMessages(Long userId) {
         List<User> users = userRepository.findAll();
         List<UserDTO> userDTOs = new ArrayList<UserDTO>();
         for (User u : users){
-            if (u.getId() != SmartFeedback.loggedUser.getId()){
+            if (u.getId() != userRepository.findById(userId).getId()){
                 userDTOs.add(new UserDTO(u));
             }
         }
@@ -42,8 +42,8 @@ public class MessagesServiceImpl implements MessagesService {
     }
 
     @Override
-    public List<MessageDTO> getInbox() {
-        List<Mesaj> mesajList = mesajRepository.findByIdUserRecv(SmartFeedback.loggedUser);
+    public List<MessageDTO> getInbox(Long userId) {
+        List<Mesaj> mesajList = mesajRepository.findByIdUserRecv(userRepository.findById(userId));
         List<MessageDTO> messageDTOs = new ArrayList<>();
         for (Mesaj m : mesajList){
             MessageDTO messageDTO = new MessageDTO(m);
@@ -54,8 +54,8 @@ public class MessagesServiceImpl implements MessagesService {
     }
 
     @Override
-    public List<MessageDTO> getOutbox() {
-        List<Mesaj> mesajList = mesajRepository.findByIdUserSend(SmartFeedback.loggedUser);
+    public List<MessageDTO> getOutbox(Long userId) {
+        List<Mesaj> mesajList = mesajRepository.findByIdUserSend(userRepository.findById(userId));
         List<MessageDTO> messageDTOs = new ArrayList<>();
         for (Mesaj m : mesajList){
             MessageDTO messageDTO = new MessageDTO(m);
@@ -66,11 +66,11 @@ public class MessagesServiceImpl implements MessagesService {
     }
 
     @Override
-    public Boolean sendMessage(SendMessageDTO sendMessageDTO) {
+    public Boolean sendMessage(SendMessageDTO sendMessageDTO, Long userId) {
         User u = userRepository.findById(sendMessageDTO.getUserId());
         Mesaj mesaj = new Mesaj();
         mesaj.setCreatedAt(new Date());
-        mesaj.setIdUserSend(SmartFeedback.loggedUser);
+        mesaj.setIdUserSend(userRepository.findById(userId));
         mesaj.setIdUserRecv(u);
         mesaj.setSeen(false);
         mesaj.setUpdatedAt(mesaj.getCreatedAt());

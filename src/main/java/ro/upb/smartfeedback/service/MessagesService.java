@@ -10,13 +10,13 @@ import java.util.List;
  * Created by Madalin.Colezea on 12/16/2015.
  */
 public interface MessagesService {
-    List<UserDTO> getUsersForMessages();
+    List<UserDTO> getUsersForMessages(Long userId);
 
-    List<MessageDTO> getInbox();
+    List<MessageDTO> getInbox(Long userId);
 
-    List<MessageDTO> getOutbox();
+    List<MessageDTO> getOutbox(Long userId);
 
-    Boolean sendMessage(SendMessageDTO sendMessageDTO);
+    Boolean sendMessage(SendMessageDTO sendMessageDTO, Long userId);
 
     Boolean changeSeen(Long messageId, Boolean change);
 }

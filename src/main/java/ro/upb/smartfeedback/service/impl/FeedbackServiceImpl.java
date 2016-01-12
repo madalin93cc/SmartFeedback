@@ -154,8 +154,8 @@ public class FeedbackServiceImpl implements FeedbackService{
     }
 
     @Override
-    public List<FeedbackPeMaterieDTO> getFeedbacksPerProfesor() {
-        Profesor p = SmartFeedback.loggedUser.getIdProfesor();
+    public List<FeedbackPeMaterieDTO> getFeedbacksPerProfesor(Long userId) {
+        Profesor p = userRepository.findById(userId).getIdProfesor();
         if (p != null){
         Set<Activitate> activitati = p.getActivitati();
         List<FeedbackPeMaterieDTO> rezultate = new ArrayList<>();

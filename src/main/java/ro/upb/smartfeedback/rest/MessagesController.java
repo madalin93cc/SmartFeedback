@@ -20,23 +20,23 @@ public class MessagesController {
     private MessagesService messagesService;
 
     @RequestMapping(value = RequestMappings.GET_USERS_FOR_MESSAGES, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    List<UserDTO> getUsersForMessages(){
-        return messagesService.getUsersForMessages();
+    List<UserDTO> getUsersForMessages(@PathVariable("userId") Long userId){
+        return messagesService.getUsersForMessages(userId);
     }
 
     @RequestMapping(value = RequestMappings.GET_INBOX, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    List<MessageDTO> getInbox(){
-        return messagesService.getInbox();
+    List<MessageDTO> getInbox(@PathVariable("userId") Long userId){
+        return messagesService.getInbox(userId);
     }
 
     @RequestMapping(value = RequestMappings.GET_OUTBOX, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    List<MessageDTO> getOutbox(){
-        return messagesService.getOutbox();
+    List<MessageDTO> getOutbox(@PathVariable("userId") Long userId){
+        return messagesService.getOutbox(userId);
     }
 
     @RequestMapping(value = RequestMappings.SEND_MESSAGE, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    private Boolean sendMessage(@RequestBody SendMessageDTO sendMessageDTO){
-        return messagesService.sendMessage(sendMessageDTO);
+    private Boolean sendMessage(@RequestBody SendMessageDTO sendMessageDTO, @PathVariable("userId") Long userId){
+        return messagesService.sendMessage(sendMessageDTO, userId);
     }
 
     @RequestMapping(value = RequestMappings.CHANGE_SEEN, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

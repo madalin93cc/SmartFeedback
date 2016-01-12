@@ -2,8 +2,9 @@ package ro.upb.smartfeedback.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ro.upb.smartfeedback.SmartFeedback;
 import ro.upb.smartfeedback.dto.*;
+import ro.upb.smartfeedback.entity.User;
+import ro.upb.smartfeedback.repository.UserRepository;
 import ro.upb.smartfeedback.service.FeedbackService;
 import ro.upb.smartfeedback.service.RaspunsService;
 import ro.upb.smartfeedback.utils.RequestMappings;
@@ -22,27 +23,31 @@ public class FeedbackController {
     @Autowired
     RaspunsService raspunsService;
 
+    @Autowired
+    UserRepository userRepository;
+
     @RequestMapping(value = RequestMappings.GET_DETALII_FEEDBACK_BY_ID, method = RequestMethod.GET, produces = "application/json")
     public FeedbackMenuDTO getFeeedbackDetailById(@PathVariable("id") Long id) {
         return feedbackService.getFeedbackDetailsById(id);
     }
 
     @RequestMapping(value = RequestMappings.SAVE_FEEDBACK, method = RequestMethod.POST, produces = "application/json")
-    public boolean saveFeedback(@RequestBody CompletareFeedbackDTO completareFeedbackDTO){
+    public boolean saveFeedback(@RequestBody CompletareFeedbackDTO completareFeedbackDTO, @PathVariable("userId") Long userId){
+        User user = userRepository.findById(userId);
         if(!completareFeedbackDTO.getComentariu().isEmpty()) {
-            raspunsService.saveComentariu(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, completareFeedbackDTO.getComentariu());
+            raspunsService.saveComentariu(completareFeedbackDTO.getIdFeedback(), user, completareFeedbackDTO.getComentariu());
         }
         if (!completareFeedbackDTO.getCompleted()) {
-            raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.NOTA_GENERALA.getId(), completareFeedbackDTO.getNotaGenerala());
-            raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.INTERACTIUNE.getId(), completareFeedbackDTO.getInteractiune());
-            raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.GRAD_INTELEGERE.getId(), completareFeedbackDTO.getGradIntelegere());
-            raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.ORGANIZARE.getId(), completareFeedbackDTO.getOrganizare());
-            raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), SmartFeedback.loggedUser, TipIntrebareEnum.EXPUNERE.getId(), completareFeedbackDTO.getExpunere());
+            raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), user, TipIntrebareEnum.NOTA_GENERALA.getId(), completareFeedbackDTO.getNotaGenerala());
+            raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), user, TipIntrebareEnum.INTERACTIUNE.getId(), completareFeedbackDTO.getInteractiune());
+            raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), user, TipIntrebareEnum.GRAD_INTELEGERE.getId(), completareFeedbackDTO.getGradIntelegere());
+            raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), user, TipIntrebareEnum.ORGANIZARE.getId(), completareFeedbackDTO.getOrganizare());
+            raspunsService.saveIntrebare(completareFeedbackDTO.getIdFeedback(), user, TipIntrebareEnum.EXPUNERE.getId(), completareFeedbackDTO.getExpunere());
         }
         return true;
     }
 
-    @RequestMapping(value = RequestMappings.GET_GEEDBACK, method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = RequestMappings.GET_FEEDBACK, method = RequestMethod.GET, produces = "application/json")
     public CompletareFeedbackDTO getFeedbackByUserAndFeedbackId(@PathVariable("userId") Long userId, @PathVariable("feedbackId") Long feedbackId){
         return feedbackService.getFeedbackByUserAndFeedbackId(userId, feedbackId);
     }

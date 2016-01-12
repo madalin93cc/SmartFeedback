@@ -1,8 +1,9 @@
 "use strict";
 
 angular.module('smartFeedbackApp')
-  .factory('FeedbackService', ['$http', 'myConst',
-    function($http, myConst){
+  .factory('FeedbackService', ['$http', 'myConst', '$cookies',
+    function($http, myConst, $cookies){
+      var user = $cookies.getObject('isAuthenticated');
       return{
         getFeedbackDetailbyId: function (id) {
           return $http({
@@ -51,7 +52,7 @@ angular.module('smartFeedbackApp')
         saveFeedback: function (feedback) {
           return $http({
             method: 'POST',
-            url: myConst.host + '/saveFeedback/',
+            url: myConst.host + '/saveFeedback/' + user.id,
             data: feedback
           }).then(function successCallback(response) {
             return response.data;

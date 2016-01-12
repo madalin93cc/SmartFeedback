@@ -62,7 +62,7 @@ public class CompletareFeedbackDTO {
             }
             return this;
         }
-        return null;
+        return new CompletareFeedbackDTO(0,0,0,null, 0,0, null,false);
     }
 
     public Long getIdFeedback() {

@@ -12,7 +12,7 @@ import java.util.List;
  * Created by George on 11/30/2015.
  */
 public interface ActivitatiService {
-    public List<ActivitateMenuDTO> getMateriiUtilizator();
+    public List<ActivitateMenuDTO> getMateriiUtilizator(Long userId);
 
-    public List<MedieActivitateDTO> getMediiActivitati();
+    public List<MedieActivitateDTO> getMediiActivitati(Long userId);
 }

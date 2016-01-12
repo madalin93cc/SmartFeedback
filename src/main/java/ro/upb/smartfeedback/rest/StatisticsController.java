@@ -26,13 +26,13 @@ public class StatisticsController {
     ActivitatiService activitatiService;
 
     @RequestMapping(value = RequestMappings.GET_NO_FEEDBACKS_PER_PROFESOR, method = RequestMethod.GET, produces = "application/json")
-    public List<FeedbackPeMaterieDTO> getNoFeedbacks() {
-        return feedbackService.getFeedbacksPerProfesor();
+    public List<FeedbackPeMaterieDTO> getNoFeedbacks(@PathVariable("userId") Long userId) {
+        return feedbackService.getFeedbacksPerProfesor(userId);
     }
 
     @RequestMapping(value = RequestMappings.GET_MEDII_ACTIVITATI, method = RequestMethod.GET, produces = "application/json")
-    public List<MedieActivitateDTO> getMediiActivitati() {
-        return activitatiService.getMediiActivitati();
+    public List<MedieActivitateDTO> getMediiActivitati(@PathVariable("userId") Long userId) {
+        return activitatiService.getMediiActivitati(userId);
     }
 
 }

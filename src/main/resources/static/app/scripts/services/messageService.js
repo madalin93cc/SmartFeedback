@@ -1,12 +1,13 @@
 "use strict";
 
 angular.module('smartFeedbackApp')
-  .factory('MessageService', ['$http', 'myConst', function($http, myConst){
+  .factory('MessageService', ['$http', 'myConst', '$cookies', function($http, myConst, $cookies){
+    var user = $cookies.getObject('isAuthenticated');
     return{
       getUsersForMessages: function () {
         return $http({
           method: 'GET',
-          url: myConst.host + '/getUsersFormMessages'
+          url: myConst.host + '/getUsersFormMessages/' + user.id
         }).then(function successCallback(response) {
           return response.data;
         }, function errorCallback(response) {
@@ -16,7 +17,7 @@ angular.module('smartFeedbackApp')
       getInbox: function () {
         return $http({
           method: 'GET',
-          url: myConst.host + '/getInbox'
+          url: myConst.host + '/getInbox/' + user.id
         }).then(function successCallback(response) {
           return response.data;
         }, function errorCallback(response) {
@@ -26,7 +27,7 @@ angular.module('smartFeedbackApp')
       getOutbox: function () {
         return $http({
           method: 'GET',
-          url: myConst.host + '/getOutbox'
+          url: myConst.host + '/getOutbox/' + user.id
         }).then(function successCallback(response) {
           return response.data;
         }, function errorCallback(response) {
@@ -36,7 +37,7 @@ angular.module('smartFeedbackApp')
       sendMessage: function (message) {
         return $http({
           method: 'POST',
-          url: myConst.host + '/sendMessage/',
+          url: myConst.host + '/sendMessage/' + user.id,
           data: message
         }).then(function successCallback(response) {
           return response.data;
@@ -47,7 +48,7 @@ angular.module('smartFeedbackApp')
       changeSeen: function (messageId, change) {
         return $http({
           method: 'GET',
-          url: myConst.host + '/changeSeen/' + messageId + "/" + change,
+          url: myConst.host + '/changeSeen/' + messageId + "/" + change
         }).then(function successCallback(response) {
           return response.data;
         }, function errorCallback(response) {

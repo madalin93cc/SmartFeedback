@@ -37,15 +37,19 @@ public class ActivitatiServiceImpl implements ActivitatiService{
     @Autowired
     FeedbackService feedbackService;
 
+    @Autowired
+    UserRepository userRepository;
+
     @Override
-    public List<ActivitateMenuDTO> getMateriiUtilizator() {
+    public List<ActivitateMenuDTO> getMateriiUtilizator(Long userId) {
+        User user = userRepository.findById(userId);
         List<ActivitateMenuDTO> activitateMenuDTOs = new ArrayList<>();
-        if (SmartFeedback.loggedUser != null) {
+        if (user != null) {
             Set<Activitate> activitates = new HashSet<>();
-            if (SmartFeedback.loggedUser.getTip() == 1) {
-                activitates = SmartFeedback.loggedUser.getIdProfesor().getActivitati();
-            } else if (SmartFeedback.loggedUser.getTip() == 2) {
-                activitates = SmartFeedback.loggedUser.getIdStudent().getActivitati();
+            if (user.getTip() == 1) {
+                activitates = user.getIdProfesor().getActivitati();
+            } else if (user.getTip() == 2) {
+                activitates = user.getIdStudent().getActivitati();
             }
             for (Activitate a : activitates){
                 activitateMenuDTOs.add(new ActivitateMenuDTO(a));
@@ -55,8 +59,8 @@ public class ActivitatiServiceImpl implements ActivitatiService{
     }
 
     @Override
-    public List<MedieActivitateDTO> getMediiActivitati() {
-        List<ActivitateMenuDTO> materiiUtilizator = this.getMateriiUtilizator();
+    public List<MedieActivitateDTO> getMediiActivitati(Long userId) {
+        List<ActivitateMenuDTO> materiiUtilizator = this.getMateriiUtilizator(userId);
         List<MedieActivitateDTO> rezultate = new ArrayList<>();
 
         for (ActivitateMenuDTO activitate: materiiUtilizator){

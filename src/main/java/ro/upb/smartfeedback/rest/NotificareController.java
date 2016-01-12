@@ -20,8 +20,8 @@ public class NotificareController {
     NotificationService notificationService;
 
     @RequestMapping(value = RequestMappings.GET_ACTIVE_NOTIFICATIONS, method = RequestMethod.GET, produces = "application/json")
-    public List<NotificareDTO> getActiveNotifications(){
-        return notificationService.getActiveNotification();
+    public List<NotificareDTO> getActiveNotifications(@PathVariable("userId") Long userId){
+        return notificationService.getActiveNotification(userId);
     }
 
     @RequestMapping(value = RequestMappings.SET_NOTIFICATION_STATUS, method = RequestMethod.GET, produces = "application/json")
