@@ -78,7 +78,7 @@ public class FeedbackServiceImpl implements FeedbackService{
         detailsDTO.setNume(activitate.getNume());
         List<Feedback> feedbacks = feedbackRepository.getAllFeedbackForActivity(idActivitate);
         List<Integer> weeks = new ArrayList<>();
-        for (int i = 1; i <= 13; i++) {
+        for (int i = 1; i <= 14; i++) {
             boolean ok = true;
             for (Feedback f: feedbacks){
                 if (f.getSaptamana() == i){

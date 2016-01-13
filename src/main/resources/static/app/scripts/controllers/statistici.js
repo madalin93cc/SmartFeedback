@@ -5,11 +5,10 @@
  */
 
 angular.module('smartFeedbackApp')
-    .controller('StatisticiCtrl', ['$scope', 'StatisticiService',function($scope, StatisticiService) {
+    .controller('StatisticiCtrl', ['$scope', '$cookies', 'StatisticiService',function($scope, $cookies, StatisticiService) {
     $scope.note = [];
-
+    $scope.user = $cookies.getObject('isAuthenticated');
     StatisticiService.getMediiActivitati().then(function (response) {
-      debugger;
       $scope.mediiActivitati = response;
       angular.forEach($scope.mediiActivitati, function (value) {
         $scope.note.push({ y : value.materie.nume, a : Math.round(value.medieNote * 100) / 100});
@@ -24,68 +23,121 @@ angular.module('smartFeedbackApp')
         labels: ['Nota']
       });
     });
+    // AL 3 LEA GRAFIC
+    if ($scope.user.userType === 'PROFESOR') {
+
       $scope.chart = new CanvasJS.Chart("chartContainer", {
-          animationEnabled: true,
-          legend:{
-              verticalAlign: "bottom",
-              horizontalAlign: "center"
-          },
-          data: [
-              {
-                  indexLabelFontSize: 20,
-                  indexLabelFontFamily: "Monospace",
-                  indexLabelFontColor: "darkgrey",
-                  indexLabelLineColor: "darkgrey",
-                  indexLabelPlacement: "outside",
-                  type: "pie",
-                  showInLegend: true,
-                  toolTipContent: "{y} - <strong>#percent%</strong>",
-                  dataPoints: [
-                      {  y: 60, legendText:"SO II", indexLabel: "Sisteme de operare II" },
-                      {  y: 40, legendText:"CPL", indexLabel: "Compilatoare" },
-                      {  y: 85, legendText:"PR",exploded: true, indexLabel: "Proiectarea retelelor" },
-                      {  y: 23, legendText:"MPS" , indexLabel: "Managementul proiectelor software"},
-                      {  y: 30, legendText:"IOC", indexLabel: "Interactiunea om - calculator" }
-                  ]
-              }
-          ]
+        animationEnabled: true,
+        legend: {
+          verticalAlign: "bottom",
+          horizontalAlign: "center"
+        },
+        data: [
+          {
+            indexLabelFontSize: 20,
+            indexLabelFontFamily: "Monospace",
+            indexLabelFontColor: "darkgrey",
+            indexLabelLineColor: "darkgrey",
+            indexLabelPlacement: "outside",
+            type: "pie",
+            showInLegend: true,
+            toolTipContent: "{y} - <strong>#percent%</strong>",
+            dataPoints: [
+              {y: 60, legendText: "SO II", indexLabel: "Sisteme de operare II"},
+              {y: 40, legendText: "CPL", indexLabel: "Compilatoare"},
+              {y: 85, legendText: "PR", exploded: true, indexLabel: "Proiectarea retelelor"},
+              {y: 23, legendText: "MPS", indexLabel: "Managementul proiectelor software"},
+              {y: 30, legendText: "IOC", indexLabel: "Interactiunea om - calculator"}
+            ]
+          }
+        ]
       });
       $scope.chart.render();
+      $scope.materii = [];
 
-      $scope.chart = new CanvasJS.Chart("chartLine", {
+      $scope.feedbackRez = [
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+      ];
+
+      $scope.changeMaterie = function () {
+        $scope.feedbacks = [];
+        angular.forEach($scope.nrFeedbacks, function (value) {
+          if (value.materie.id === $scope.materie.id) {
+            $scope.feedbacks = value.feedbackPeSaptamanaDTOs;
+            var i = 0;
+            angular.forEach($scope.feedbacks, function (value) {
+              $scope.feedbackRez[i++] = value.feedbacks;
+            });
+
+            $scope.chart = new CanvasJS.Chart("chartLine", {
+              theme: "theme2",
+              animationEnabled: true,
+              axisX: {},
+              axisY: {},
+              data: [
+                {
+                  type: "line",
+                  dataPoints: [
+                    {x: 1, y: $scope.feedbackRez[0]},
+                    {x: 2, y: $scope.feedbackRez[1]},
+                    {x: 3, y: $scope.feedbackRez[2]},
+                    {x: 4, y: $scope.feedbackRez[3]},
+                    {x: 5, y: $scope.feedbackRez[4]},
+                    {x: 6, y: $scope.feedbackRez[5]},
+                    {x: 7, y: $scope.feedbackRez[6]},
+                    {x: 8, y: $scope.feedbackRez[7]},
+                    {x: 9, y: $scope.feedbackRez[8]},
+                    {x: 10, y: $scope.feedbackRez[9]},
+                    {x: 11, y: $scope.feedbackRez[10]},
+                    {x: 12, y: $scope.feedbackRez[11]},
+                    {x: 13, y: $scope.feedbackRez[12]},
+                    {x: 14, y: $scope.feedbackRez[13]}
+                  ]
+                }
+              ]
+            });
+            $scope.chart.render();
+          }
+        });
+      };
+
+      StatisticiService.getNoFeedbacks().then(function (response) {
+        $scope.nrFeedbacks = response;
+        angular.forEach($scope.nrFeedbacks, function (value) {
+          $scope.materii.push(value.materie);
+        });
+
+        $scope.chart = new CanvasJS.Chart("chartLine", {
           theme: "theme2",
           animationEnabled: true,
-          axisX: {
-              valueFormatString: "MMM",
-              interval:1,
-              intervalType: "month"
-
-          },
-          axisY:{
-              includeZero: false
+          axisX: {},
+          axisY: {
+            includeZero: false
 
           },
           data: [
-              {
-                  type: "line",
-                  //lineThickness: 3,
-                  dataPoints: [
-                      { x: new Date(2012, 0, 1), y: 450 },
-                      { x: new Date(2012, 1, 1), y: 414},
-                      { x: new Date(2012, 2, 1), y: 520, indexLabel: "highest",markerColor: "red", markerType: "triangle"},
-                      { x: new Date(2012, 3, 1), y: 460 },
-                      { x: new Date(2012, 4, 1), y: 450 },
-                      { x: new Date(2012, 5, 1), y: 500 },
-                      { x: new Date(2012, 6, 1), y: 480 },
-                      { x: new Date(2012, 7, 1), y: 480 },
-                      { x: new Date(2012, 8, 1), y: 410 , indexLabel: "lowest",markerColor: "DarkSlateGrey", markerType: "cross"},
-                      { x: new Date(2012, 9, 1), y: 500 },
-                      { x: new Date(2012, 10, 1), y: 480 },
-                      { x: new Date(2012, 11, 1), y: 510 }
-                  ]
-              }
+            {
+              type: "line",
+              dataPoints: [
+                {x: 1, y: $scope.feedbackRez[0]},
+                {x: 2, y: $scope.feedbackRez[1]},
+                {x: 3, y: $scope.feedbackRez[2]},
+                {x: 4, y: $scope.feedbackRez[3]},
+                {x: 5, y: $scope.feedbackRez[4]},
+                {x: 6, y: $scope.feedbackRez[5]},
+                {x: 7, y: $scope.feedbackRez[6]},
+                {x: 8, y: $scope.feedbackRez[7]},
+                {x: 9, y: $scope.feedbackRez[8]},
+                {x: 10, y: $scope.feedbackRez[9]},
+                {x: 11, y: $scope.feedbackRez[10]},
+                {x: 12, y: $scope.feedbackRez[11]},
+                {x: 13, y: $scope.feedbackRez[12]},
+                {x: 14, y: $scope.feedbackRez[13]}
+              ]
+            }
           ]
+        });
+        $scope.chart.render();
       });
-      $scope.chart.render();
-
+    }
 }]);

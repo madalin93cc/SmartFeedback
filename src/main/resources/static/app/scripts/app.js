@@ -17,7 +17,8 @@ angular.module('smartFeedbackApp', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'rzModule'
+    'rzModule',
+    'angular.morris-chart'
   ])
   .constant("myConst", {
     //"host": "http://192.168.0.105:8080"

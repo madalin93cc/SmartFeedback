@@ -6,21 +6,19 @@
         <div id="bar-example"></div>
     </div>
 
+    <div ng-show='user.userType==="PROFESOR"'>
     <label style="font-size: 20px" class="label label-info">Evolutia numarului de feedback-uri</label>
     <div class="form-group" style="margin: 50px">
         <label>Selectare materie</label>
         <br><br>
-        <select id="selectMaterie">
-            <option>1</option>
-            <option>2</option>
+        <select ng-change="changeMaterie()" class="form-control" ng-model="materie" ng-options="mat.nume for mat in materii" id="selectMaterie">
+          <option selected disabled value="">Selecteaza o materie</option>
         </select>
     </div>
 
     <div id="chartLine" style="height: 400px; width: 90%;margin: 50px"></div>
 
-    <!--<div style="margin-top: 50px" class="row">-->
     <label style="font-size: 20px" class="label label-info">Prezenta medie la cursuri</label>
     <div id="chartContainer" style="height: 400px; width: 90%;margin: 50px"></div>
-    <!--</div>-->
-
+    </div>
 </div>
