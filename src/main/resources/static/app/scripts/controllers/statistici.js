@@ -23,7 +23,7 @@ angular.module('smartFeedbackApp')
         labels: ['Nota']
       });
     });
-    // AL 3 LEA GRAFIC
+
     if ($scope.user.userType === 'PROFESOR') {
 
       $scope.chart = new CanvasJS.Chart("chartContainer", {
@@ -52,7 +52,7 @@ angular.module('smartFeedbackApp')
           }
         ]
       });
-      $scope.chart.render();
+      //$scope.chart.render();
       $scope.materii = [];
 
       $scope.feedbackRez = [

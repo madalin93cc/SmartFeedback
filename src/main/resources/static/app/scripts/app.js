@@ -21,8 +21,8 @@ angular.module('smartFeedbackApp', [
     'angular.morris-chart'
   ])
   .constant("myConst", {
-    //"host": "http://192.168.0.105:8080"
-    "host": "http://localhost:8080"
+    "host": "http://192.168.0.105:8080"
+    //"host": "http://localhost:8080"
   })
   .config(function ($routeProvider) {
     $routeProvider
