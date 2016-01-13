@@ -115,7 +115,7 @@ public class FeedbackServiceImpl implements FeedbackService{
         Activitate activitate = activitateRepository.findById(idActivitate);
         Profesor titulat = activitate.getProfesors().get(0);
         User user = titulat.getUser();
-
+        List<Notificare> saptamaniExistente = notificareRepository.findByActivitateAndSaptamana(activitate, saptamana);
         notificare.setActivitate(activitate);
         notificare.setUser(user);
         notificare.setTipNotificare(TipNotificareEnum.CERERE_ACTIVARE_FEEDBACK.getId());
@@ -123,8 +123,10 @@ public class FeedbackServiceImpl implements FeedbackService{
         notificare.setMessage(TipNotificareEnum.CERERE_ACTIVARE_FEEDBACK.getMessage());
         notificare.setStatus(false);
         notificare.setSaptamana(saptamana);
+        if (saptamaniExistente.size() != 0){
+            return notificare;
+        }
         notificare = notificareRepository.save(notificare);
-
         return notificare;
     }
 

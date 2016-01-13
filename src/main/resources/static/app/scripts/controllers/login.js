@@ -14,6 +14,7 @@ angular.module('smartFeedbackApp')
       $scope.getCurrentUser = function(){
         if ($cookies.getObject('isAuthenticated')){
           var user = $cookies.getObject('isAuthenticated');
+          var usern
           $scope.username = user.prenume + " " + user.nume;
           if(user.grupa) {
             $scope.username = $scope.username + " " + user.grupa;
@@ -26,7 +27,7 @@ angular.module('smartFeedbackApp')
         $scope.getCurrentUser();
       };
 
-      //$interval($scope.refresh, 1000);
+      $interval($scope.refresh, 1000, 10);
 
       $scope.login = function () {
         if ($scope.user && $scope.user.username && $scope.user.password) {

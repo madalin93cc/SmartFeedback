@@ -5,10 +5,11 @@ angular.module('smartFeedbackApp')
     function($http, myConst, $cookies){
       var user = $cookies.getObject('isAuthenticated');
       return{
-        getMateriiUtilizator: function () {
+        feedbackActivated: false,
+        getMateriiUtilizator: function (id) {
           return $http({
             method: 'GET',
-            url: myConst.host + '/getMateriiUtilizator/' + user.id
+            url: myConst.host + '/getMateriiUtilizator/' + id
           }).then(function successCallback(response) {
             return response.data;
           }, function errorCallback(response) {

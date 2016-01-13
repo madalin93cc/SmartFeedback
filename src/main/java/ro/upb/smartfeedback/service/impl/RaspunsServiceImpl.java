@@ -86,7 +86,7 @@ public class RaspunsServiceImpl implements RaspunsService{
         Integer numarFeedbackuri = raspunsIntrebareRepository.getNumarFeedbackuri(feedbackId, TipIntrebareEnum.NOTA_GENERALA.getId());
         Integer numarStudenti = f.getIdActivitate().getStudents().size();
 
-        if (notaGeneralaMedie == null) return null;
+        if (notaGeneralaMedie == null) return new MediiNoteDTO(0.0d, 0.0d, 0.0d, 0.0d, 0.0d, 0, numarStudenti);
         return new MediiNoteDTO(notaGeneralaMedie, interactiuneMedie, gradIntelegereMedie, organizareMedie, expunereMedie, numarFeedbackuri, numarStudenti);
     }
 }
